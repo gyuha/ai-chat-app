@@ -18,6 +18,11 @@
   --control-height: 44px;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -49,10 +54,6 @@ select {
   display: grid;
   place-items: center;
   padding: var(--space-6) var(--space-4);
-}
-
-.auth-shell {
-  width: min(100%, 32rem);
 }
 
 .auth-card {
@@ -93,6 +94,57 @@ select {
   gap: var(--space-3);
 }
 
+.auth-screen,
+.app-home-card {
+  width: min(100%, 32rem);
+}
+
+.auth-screen {
+  display: grid;
+}
+
+.auth-card__header,
+.auth-copy-stack,
+.auth-form,
+.session-loader,
+.app-home-card {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.auth-mode-switch {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  padding: var(--space-1);
+  border-radius: 999px;
+  background: rgba(247, 247, 242, 0.8);
+  border: 1px solid rgba(31, 29, 24, 0.08);
+}
+
+.auth-mode-link {
+  min-height: var(--control-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-4);
+  border-radius: 999px;
+  color: rgba(31, 29, 24, 0.72);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.auth-mode-link.is-active {
+  background: var(--color-accent);
+  color: white;
+  box-shadow: 0 10px 24px rgba(194, 106, 61, 0.22);
+}
+
 .primary-action,
 .secondary-action {
   min-height: var(--control-height);
@@ -118,6 +170,12 @@ select {
   border-color: rgba(31, 29, 24, 0.1);
 }
 
+.primary-action:disabled {
+  cursor: wait;
+  transform: none;
+  opacity: 0.9;
+}
+
 .primary-action:hover,
 .secondary-action:hover {
   transform: translateY(-1px);
@@ -129,9 +187,135 @@ select {
   outline-offset: 2px;
 }
 
+.auth-field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.auth-label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.auth-input {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: 0 var(--space-3);
+  border: 1px solid rgba(31, 29, 24, 0.12);
+  border-radius: 16px;
+  background: rgba(247, 247, 242, 0.92);
+  color: inherit;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.auth-input::placeholder {
+  color: rgba(31, 29, 24, 0.45);
+}
+
+.auth-input:hover {
+  background: rgba(247, 247, 242, 1);
+}
+
+.auth-input:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(194, 106, 61, 0.18);
+}
+
+.auth-input.is-error {
+  border-color: var(--color-danger);
+}
+
+.auth-field-error,
+.auth-form-error,
+.auth-footer {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.auth-field-error,
+.auth-form-error {
+  color: var(--color-danger);
+}
+
+.auth-form-error {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(180, 35, 24, 0.18);
+  background: rgba(180, 35, 24, 0.08);
+}
+
+.auth-submit {
+  justify-content: center;
+}
+
+.auth-submit__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.auth-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 18px;
+  block-size: 18px;
+}
+
+.auth-spinner__circle {
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: 999px;
+  border: 2px solid rgba(194, 106, 61, 0.22);
+  border-top-color: #C26A3D;
+  animation: auth-spin 0.85s linear infinite;
+}
+
+.auth-inline-link {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.session-loader-shell {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.session-loader,
+.app-home-card {
+  width: min(100%, 24rem);
+  padding: var(--space-5);
+  border-radius: 24px;
+  border: 1px solid rgba(31, 29, 24, 0.08);
+  background: rgba(247, 247, 242, 0.92);
+  box-shadow: 0 18px 40px rgba(31, 29, 24, 0.08);
+  justify-items: center;
+  text-align: center;
+}
+
+@keyframes auth-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 640px) {
   .app-shell {
     padding: var(--space-5) var(--space-3);
+  }
+
+  .auth-screen,
+  .app-home-card,
+  .session-loader {
+    width: 100%;
   }
 
   .auth-card {

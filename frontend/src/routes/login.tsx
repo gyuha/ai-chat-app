@@ -1,18 +1,29 @@
-import { Link, createRoute } from "@tanstack/react-router";
+import { Navigate, createRoute } from "@tanstack/react-router";
+
+import { AuthCard } from "@/components/auth/auth-card";
+import { LoginForm } from "@/components/auth/login-form";
+import { useAuthStore } from "@/features/auth/auth.store";
 
 import { rootRoute } from "./__root";
 
 function LoginRouteComponent() {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
+
   return (
-    <>
-      <h1>로그인 화면 준비 중</h1>
-      <p className="auth-copy">
-        Plan 01-07에서 실제 로그인 폼과 validation을 연결합니다.
-      </p>
-      <Link className="primary-action" to="/signup">
-        회원가입 화면 보기
-      </Link>
-    </>
+    <AuthCard
+      description="이메일과 비밀번호로 로그인하면 채팅을 시작할 수 있습니다."
+      footerAction="회원가입"
+      footerCopy="계정이 아직 없으신가요?"
+      footerTo="/signup"
+      mode="login"
+      title="로그인이 필요합니다"
+    >
+      <LoginForm />
+    </AuthCard>
   );
 }
 
