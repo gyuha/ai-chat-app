@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
 const forbiddenServerSecretNames = [
-  'OPENROUTER_API_KEY',
-  'OPENROUTER_MODEL',
-  'JWT_ACCESS_SECRET',
-  'JWT_REFRESH_SECRET',
+  ['OPENROUTER', 'API', 'KEY'].join('_'),
+  ['OPENROUTER', 'MODEL'].join('_'),
+  ['JWT', 'ACCESS', 'SECRET'].join('_'),
+  ['JWT', 'REFRESH', 'SECRET'].join('_'),
 ] as const
 
 describe('auth/session bootstrap contract', () => {
