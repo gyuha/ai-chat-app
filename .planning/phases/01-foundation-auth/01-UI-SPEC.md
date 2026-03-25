@@ -1,10 +1,11 @@
 ---
 phase: 01
 slug: foundation-auth
-status: draft
+status: approved
 shadcn_initialized: false
 preset: b1xS4xAK3M
 created: 2026-03-26
+reviewed_at: 2026-03-26T00:00:00+09:00
 ---
 
 > 한국어 우선 안내: 이 템플릿은 `UI-SPEC` 자산을 한국어 기준으로 먼저 읽을 수 있게 정리합니다. 아래 영문 원문은 upstream 동기화와 세부 의미 보존을 위해 함께 유지합니다.
@@ -85,6 +86,7 @@ Accent reserved for: primary CTA, active input focus ring, selected auth tab or 
 ## Interaction Contract (상호작용 계약)
 
 - Auth surface uses a single centered card on desktop and full-width stacked layout on mobile.
+- Primary focal point is the auth card heading plus the primary CTA, with form fields and helper/error text as the secondary hierarchy.
 - Provide two explicit modes only: `로그인` and `회원가입`. Do not expose password reset, social login, or OAuth entry points.
 - Required fields are `이메일` and `비밀번호`. 회원가입 화면 may add `비밀번호 확인` if planner chooses client-side confirmation.
 - Validate email format on blur and on submit. Validate password presence on submit. Show one inline error message per field below the field.
@@ -127,11 +129,11 @@ Accent reserved for: primary CTA, active input focus ring, selected auth tab or 
 
 ## Checker Sign-Off (검수 승인)
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved
