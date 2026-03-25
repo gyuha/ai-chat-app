@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: 실행 준비 완료
-stopped_at: Completed 01-foundation-auth-02-PLAN.md
-last_updated: "2026-03-25T15:37:35.155Z"
+stopped_at: Completed 01-03-PLAN.md
+last_updated: "2026-03-25T15:39:56.574Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 7
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 01 (foundation-auth) — EXECUTING
-Plan: 3 of 7
+Plan: 4 of 7
 
 ## Performance Metrics
 
@@ -46,6 +46,7 @@ Plan: 3 of 7
 - Trend: Stable
 
 | Phase 01-foundation-auth P02 | 2 | 2 tasks | 12 files |
+| Phase 01 P03 | 2 min | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -58,6 +59,8 @@ Plan: 3 of 7
 - [Phase 01]: Wave 0 auth validation files are created as explicit stubs around /auth/login and /auth/session before app bootstrap work.
 - [Phase 01-foundation-auth]: Backend secrets and OpenRouter settings are validated at Nest boot with a global Joi schema.
 - [Phase 01-foundation-auth]: Credentialed CORS is sourced from FRONTEND_ORIGIN so the backend keeps the browser boundary explicit.
+- [Phase 01]: Frontend build runs via vite build while typecheck stays separate
+- [Phase 01]: Frontend public env boundary remains limited to VITE_API_BASE_URL
 
 ### Pending Todos
 
@@ -69,6 +72,6 @@ Plan: 3 of 7
 
 ## Session Continuity
 
-Last session: 2026-03-25T15:37:35.153Z
-Stopped at: Completed 01-foundation-auth-02-PLAN.md
+Last session: 2026-03-25T15:39:56.572Z
+Stopped at: Completed 01-03-PLAN.md
 Resume file: None
