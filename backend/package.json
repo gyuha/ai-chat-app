@@ -1,11 +1,49 @@
 {
   "name": "backend",
   "private": true,
-  "type": "commonjs",
   "scripts": {
-    "build": "node -e \"console.log('backend build scaffold pending')\"",
-    "lint": "node -e \"console.log('backend lint scaffold pending')\"",
-    "typecheck": "node -e \"console.log('backend typecheck scaffold pending')\"",
-    "test": "node -e \"console.log('backend test scaffold pending')\""
+    "build": "nest build",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main.js",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "test:e2e": "jest --config ./test/jest-e2e.json --passWithNoTests"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.1.17",
+    "@nestjs/config": "4.0.3",
+    "@nestjs/core": "11.1.17",
+    "@nestjs/jwt": "11.0.2",
+    "@nestjs/passport": "11.0.5",
+    "@nestjs/platform-express": "11.1.17",
+    "bcrypt": "6.0.0",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.14.2",
+    "cookie-parser": "1.4.7",
+    "joi": "18.1.1",
+    "passport": "0.7.0",
+    "passport-jwt": "4.0.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "11.0.10",
+    "@nestjs/schematics": "11.0.9",
+    "@nestjs/testing": "11.1.17",
+    "@types/cookie-parser": "1.4.10",
+    "@types/express": "5.0.3",
+    "@types/jest": "30.0.0",
+    "@types/node": "24.6.0",
+    "@types/passport-jwt": "4.0.1",
+    "@types/supertest": "6.0.3",
+    "jest": "30.2.0",
+    "source-map-support": "0.5.21",
+    "supertest": "7.1.4",
+    "ts-jest": "29.4.4",
+    "ts-loader": "9.5.4",
+    "ts-node": "10.9.2",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "5.9.3"
   }
 }

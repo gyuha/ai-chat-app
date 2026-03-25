@@ -3,13 +3,9 @@
   "private": true,
   "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "build": "pnpm --filter backend run build && pnpm --filter frontend run build",
-    "lint": "pnpm --filter backend run lint && pnpm --filter frontend run lint",
-    "typecheck": "pnpm --filter backend run typecheck && pnpm --filter frontend run typecheck",
-    "test": "pnpm --filter backend run test && pnpm --filter frontend run test"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.4.9",
-    "typescript": "^5.9.3"
+    "build": "pnpm -r --if-present build",
+    "lint": "pnpm -r --if-present lint",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test"
   }
 }
