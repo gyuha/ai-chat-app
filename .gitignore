@@ -5,6 +5,7 @@ coverage
 *.tsbuildinfo
 backend/.env
 backend/.env.*
+backend/*.db
 frontend/.env
 frontend/.env.*
 !backend/.env.example
