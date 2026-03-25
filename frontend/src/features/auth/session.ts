@@ -11,6 +11,7 @@ export const sessionQueryKey = ["auth", "session"] as const;
 async function fetchSessionUser() {
   try {
     const response = await getSession();
+    setAuthenticated(response.user);
 
     return response.user;
   } catch (error) {

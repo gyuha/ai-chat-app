@@ -52,7 +52,7 @@ export async function apiRequest<T>(
     ...init,
     method,
     headers: requestHeaders,
-    credentials: "include",
+    credentials: 'include',
     body: body ? JSON.stringify(body) : undefined,
   });
 
