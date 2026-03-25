@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Post,
   Req,
   Res,
@@ -34,6 +35,7 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
+  @HttpCode(200)
   async login(
     @Body() _dto: LoginDto,
     @Req() request: Request & { user: SessionUserDto },
@@ -55,6 +57,7 @@ export class AuthController {
   }
 
   @Post('logout')
+  @HttpCode(200)
   logout(@Res({ passthrough: true }) response: Response) {
     const result = this.authService.clearSession();
     this.applyCookies(response, result.cookies);
@@ -62,6 +65,7 @@ export class AuthController {
   }
 
   @Post('refresh')
+  @HttpCode(200)
   async refresh(
     @Req() request: Request,
     @Res({ passthrough: true }) response: Response,
