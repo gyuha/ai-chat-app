@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: 실행 준비 완료
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-03-25T15:35:30.342Z"
+stopped_at: Completed 01-foundation-auth-02-PLAN.md
+last_updated: "2026-03-25T15:37:35.155Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 7
-  completed_plans: 1
+  completed_plans: 2
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 01 (foundation-auth) — EXECUTING
-Plan: 2 of 7
+Plan: 3 of 7
 
 ## Performance Metrics
 
@@ -45,6 +45,8 @@ Plan: 2 of 7
 - Last 5 plans: none
 - Trend: Stable
 
+| Phase 01-foundation-auth P02 | 2 | 2 tasks | 12 files |
+
 ## Accumulated Context
 
 ### Decisions
@@ -54,6 +56,8 @@ Plan: 2 of 7
 - [Phase 0]: 데이터 저장소는 SQLite를 사용한다
 - [Phase 0]: frontend/backend 분리 구조로 API 키를 숨긴다
 - [Phase 01]: Wave 0 auth validation files are created as explicit stubs around /auth/login and /auth/session before app bootstrap work.
+- [Phase 01-foundation-auth]: Backend secrets and OpenRouter settings are validated at Nest boot with a global Joi schema.
+- [Phase 01-foundation-auth]: Credentialed CORS is sourced from FRONTEND_ORIGIN so the backend keeps the browser boundary explicit.
 
 ### Pending Todos
 
@@ -65,6 +69,6 @@ Plan: 2 of 7
 
 ## Session Continuity
 
-Last session: 2026-03-25T15:14:27.394Z
-Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-foundation-auth/01-UI-SPEC.md
+Last session: 2026-03-25T15:37:35.153Z
+Stopped at: Completed 01-foundation-auth-02-PLAN.md
+Resume file: None
