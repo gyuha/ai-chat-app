@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: 실행 준비 완료
-stopped_at: Completed 01-06-PLAN.md
-last_updated: "2026-03-25T15:46:21.567Z"
+stopped_at: Completed 01-07-PLAN.md
+last_updated: "2026-03-25T15:54:30.852Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 7
-  completed_plans: 5
+  completed_plans: 6
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 01 (foundation-auth) — EXECUTING
-Plan: 6 of 7
+Plan: 7 of 7
 
 ## Performance Metrics
 
@@ -49,6 +49,7 @@ Plan: 6 of 7
 | Phase 01 P03 | 2 min | 2 tasks | 12 files |
 | Phase 01 P04 | 2 | 2 tasks | 12 files |
 | Phase 01 P06 | 3 min | 2 tasks | 15 files |
+| Phase 01 P07 | 2 min | 2 tasks | 15 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,8 @@ Plan: 6 of 7
 - [Phase 01-foundation-auth]: Frontend auth requests now flow through one credentialed fetch wrapper rooted at VITE_API_BASE_URL.
 - [Phase 01-foundation-auth]: The root router owns shared session bootstrap and the protected index route redirects unauthenticated users to /login.
 - [Phase 01-foundation-auth]: Login and signup remain placeholder routes in plan 01-06 so plan 01-07 can focus on form UI and mutations.
+- [Phase 01-foundation-auth]: Login and signup now ship as the only public auth entry points through one shared centered auth card.
+- [Phase 01-foundation-auth]: Frontend auth route tests use createAppRouter with memory history so redirect and session-expiry behavior is verified against the real route tree.
 
 ### Pending Todos
 
@@ -79,6 +82,6 @@ Plan: 6 of 7
 
 ## Session Continuity
 
-Last session: 2026-03-25T15:46:21.566Z
-Stopped at: Completed 01-06-PLAN.md
+Last session: 2026-03-25T15:54:30.850Z
+Stopped at: Completed 01-07-PLAN.md
 Resume file: None

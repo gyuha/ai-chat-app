@@ -36,7 +36,7 @@ Plans:
 - [x] 01-04-PLAN.md — Prisma SQLite 사용자 저장소와 Nest 모듈 계약을 정의한다
 - [ ] 01-05-PLAN.md — NestJS 쿠키 JWT 인증 API와 backend auth 테스트를 구현한다
 - [x] 01-06-PLAN.md — frontend auth API/session bootstrap/protected routing 인프라를 구현한다
-- [ ] 01-07-PLAN.md — React 인증 화면과 frontend auth 테스트를 구현한다
+- [x] 01-07-PLAN.md — React 인증 화면과 frontend auth 테스트를 구현한다
 
 ### Phase 2: Conversation Persistence
 **Goal**: 인증된 사용자 기준으로 대화와 메시지를 안전하게 저장하고 조회할 수 있게 한다
@@ -85,7 +85,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Auth | 4/7 | In Progress | - |
+| 1. Foundation & Auth | 6/7 | In Progress | - |
 | 2. Conversation Persistence | 0/2 | Not started | - |
 | 3. OpenRouter Streaming Chat | 0/2 | Not started | - |
 | 4. App UX Completion | 0/2 | Not started | - |
