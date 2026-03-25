@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: 실행 준비 완료
-stopped_at: Completed 01-04-PLAN.md
-last_updated: "2026-03-25T15:44:50.595Z"
+stopped_at: Completed 01-06-PLAN.md
+last_updated: "2026-03-25T15:46:21.567Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 7
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 01 (foundation-auth) — EXECUTING
-Plan: 5 of 7
+Plan: 6 of 7
 
 ## Performance Metrics
 
@@ -48,6 +48,7 @@ Plan: 5 of 7
 | Phase 01-foundation-auth P02 | 2 | 2 tasks | 12 files |
 | Phase 01 P03 | 2 min | 2 tasks | 12 files |
 | Phase 01 P04 | 2 | 2 tasks | 12 files |
+| Phase 01 P06 | 3 min | 2 tasks | 15 files |
 
 ## Accumulated Context
 
@@ -64,6 +65,9 @@ Plan: 5 of 7
 - [Phase 01]: Frontend public env boundary remains limited to VITE_API_BASE_URL
 - [Phase 01-foundation-auth]: Prisma datasource URLs are configured through backend/prisma.config.ts to match Prisma 7 CLI requirements.
 - [Phase 01-foundation-auth]: PrismaModule remains global and explicitly registered in AppModule alongside UsersModule and AuthModule.
+- [Phase 01-foundation-auth]: Frontend auth requests now flow through one credentialed fetch wrapper rooted at VITE_API_BASE_URL.
+- [Phase 01-foundation-auth]: The root router owns shared session bootstrap and the protected index route redirects unauthenticated users to /login.
+- [Phase 01-foundation-auth]: Login and signup remain placeholder routes in plan 01-06 so plan 01-07 can focus on form UI and mutations.
 
 ### Pending Todos
 
@@ -75,6 +79,6 @@ Plan: 5 of 7
 
 ## Session Continuity
 
-Last session: 2026-03-25T15:44:50.593Z
-Stopped at: Completed 01-04-PLAN.md
+Last session: 2026-03-25T15:46:21.566Z
+Stopped at: Completed 01-06-PLAN.md
 Resume file: None
