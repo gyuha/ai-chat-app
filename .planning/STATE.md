@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: 실행 준비 완료
-stopped_at: Completed 01-07-PLAN.md
-last_updated: "2026-03-25T15:54:30.852Z"
+status: Phase 완료 — verification 준비됨
+stopped_at: Completed 01-05-PLAN.md
+last_updated: "2026-03-25T16:02:35.047Z"
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -50,6 +50,7 @@ Plan: 7 of 7
 | Phase 01 P04 | 2 | 2 tasks | 12 files |
 | Phase 01 P06 | 3 min | 2 tasks | 15 files |
 | Phase 01 P07 | 2 min | 2 tasks | 15 files |
+| Phase 01-foundation-auth P05 | 451 | 2 tasks | 19 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,9 @@ Plan: 7 of 7
 - [Phase 01-foundation-auth]: Login and signup remain placeholder routes in plan 01-06 so plan 01-07 can focus on form UI and mutations.
 - [Phase 01-foundation-auth]: Login and signup now ship as the only public auth entry points through one shared centered auth card.
 - [Phase 01-foundation-auth]: Frontend auth route tests use createAppRouter with memory history so redirect and session-expiry behavior is verified against the real route tree.
+- [Phase 01-foundation-auth]: Auth responses return only user-safe payloads while JWTs stay in httpOnly cookies.
+- [Phase 01-foundation-auth]: Backend auth sessions use access_token and refresh_token cookies with SameSite=Lax and production-only secure.
+- [Phase 01-foundation-auth]: Prisma 7 SQLite runtime is adapter-backed via PrismaBetterSqlite3 and generated before test/build commands.
 
 ### Pending Todos
 
@@ -82,6 +86,6 @@ Plan: 7 of 7
 
 ## Session Continuity
 
-Last session: 2026-03-25T15:54:30.850Z
-Stopped at: Completed 01-07-PLAN.md
+Last session: 2026-03-25T16:02:35.045Z
+Stopped at: Completed 01-05-PLAN.md
 Resume file: None
