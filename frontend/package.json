@@ -1,11 +1,32 @@
 {
   "name": "frontend",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "node -e \"console.log('frontend build scaffold pending')\"",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
     "lint": "node -e \"console.log('frontend lint scaffold pending')\"",
-    "typecheck": "node -e \"console.log('frontend typecheck scaffold pending')\"",
-    "test": "node -e \"console.log('frontend test scaffold pending')\""
+    "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.95.2",
+    "@tanstack/react-router": "1.168.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "24.6.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "5.1.0",
+    "jsdom": "27.0.1",
+    "typescript": "5.9.3",
+    "vite": "8.0.2",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "4.1.1"
   }
 }
