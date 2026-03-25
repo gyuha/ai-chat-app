@@ -4,11 +4,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { createAppQueryClient } from "@/app/query-client";
+import { createAppRouter } from "@/app/router";
 import { clearAuthState, getAuthState, resetAuthState } from "@/features/auth/auth.store";
-import { rootRoute } from "@/routes/__root";
-import { indexRoute } from "@/routes/index";
-import { loginRoute } from "@/routes/login";
-import { signupRoute } from "@/routes/signup";
+import { ApiError } from "@/lib/api/client";
 
 import * as authApi from "@/features/auth/api";
 
@@ -28,17 +26,15 @@ function renderApp(initialPath = "/") {
   const history = createMemoryHistory({
     initialEntries: [initialPath],
   });
-  const routeTree = rootRoute.addChildren([indexRoute, loginRoute, signupRoute]);
-  const router = authApi.getSession
-    ? undefined
-    : undefined;
-
-  const appRouter = router ?? undefined;
+  const router = createAppRouter({
+    history,
+    queryClient,
+  });
 
   render(
     <QueryClientProvider client={queryClient}>
       <RouterProvider
-        router={appRouter}
+        router={router}
         context={{
           queryClient,
         }}
@@ -47,8 +43,8 @@ function renderApp(initialPath = "/") {
   );
 
   return {
-    history,
     queryClient,
+    router,
   };
 }
 
@@ -56,7 +52,6 @@ describe("auth routing", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     resetAuthState();
-    window.history.replaceState({}, "", "/");
   });
 
   afterEach(() => {
@@ -65,16 +60,18 @@ describe("auth routing", () => {
   });
 
   it("redirects unauthenticated visits to /login", async () => {
-    vi.mocked(authApi.getSession).mockResolvedValueOnce(null as never);
+    vi.mocked(authApi.getSession).mockRejectedValueOnce(
+      new ApiError("Request failed with status 401", 401),
+    );
 
-    renderApp("/");
+    const { router } = renderApp("/");
 
     await waitFor(() => {
-      expect(window.location.pathname).toBe("/login");
+      expect(screen.getByRole("heading", { name: "로그인이 필요합니다" })).toBeTruthy();
     });
 
-    expect(screen.getByRole("heading", { name: "로그인이 필요합니다" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "로그인하기" })).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe("/login");
+    expect(screen.getByRole("button", { name: "로그인하기" })).toBeTruthy();
   });
 
   it("restores a mocked session through /auth/session and keeps the protected route", async () => {
@@ -82,14 +79,14 @@ describe("auth routing", () => {
       user: { id: "user-1", email: "hello@example.com" },
     });
 
-    renderApp("/");
+    const { router } = renderApp("/");
 
     await waitFor(() => {
-      expect(screen.getByText("hello@example.com 계정으로 인증되었습니다.")).toBeInTheDocument();
+      expect(screen.getByText("hello@example.com 계정으로 인증되었습니다.")).toBeTruthy();
     });
 
     expect(authApi.getSession).toHaveBeenCalledTimes(1);
-    expect(window.location.pathname).toBe("/");
+    expect(router.state.location.pathname).toBe("/");
   });
 
   it("returns the app to /login when the session expires with 401", async () => {
@@ -97,19 +94,19 @@ describe("auth routing", () => {
       .mockResolvedValueOnce({
         user: { id: "user-1", email: "hello@example.com" },
       })
-      .mockRejectedValueOnce(new Response(null, { status: 401 }) as never);
+      .mockRejectedValueOnce(new ApiError("Request failed with status 401", 401));
 
-    const { queryClient } = renderApp("/");
+    const { queryClient, router } = renderApp("/");
 
     await waitFor(() => {
-      expect(screen.getByText("hello@example.com 계정으로 인증되었습니다.")).toBeInTheDocument();
+      expect(screen.getByText("hello@example.com 계정으로 인증되었습니다.")).toBeTruthy();
     });
 
     await queryClient.invalidateQueries({ queryKey: ["auth", "session"] });
     await queryClient.refetchQueries({ queryKey: ["auth", "session"] });
 
     await waitFor(() => {
-      expect(window.location.pathname).toBe("/login");
+      expect(router.state.location.pathname).toBe("/login");
     });
 
     expect(getAuthState().status).toBe("anonymous");
