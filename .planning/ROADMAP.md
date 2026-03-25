@@ -27,12 +27,16 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. 사용자가 이메일과 비밀번호로 가입하고 로그인할 수 있다
   2. 사용자가 새로고침 후에도 인증 상태를 유지한 채 앱에 다시 진입할 수 있다
   3. OpenRouter API 키와 모델 ID가 서버 환경 변수로만 관리되고 클라이언트 코드에 나타나지 않는다
-**Plans**: 3 plans
+**Plans**: 7 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — pnpm 워크스페이스, backend env 경계, frontend auth 토큰 셸을 만든다
-- [ ] 01-02-PLAN.md — Prisma SQLite 사용자 저장소와 NestJS 쿠키 JWT 인증 API를 구현한다
-- [ ] 01-03-PLAN.md — React 인증 화면, 세션 복원, 보호 라우트를 연결한다
+- [ ] 01-01-PLAN.md — Wave 0 루트 워크스페이스와 auth 테스트/config 자산을 만든다
+- [ ] 01-02-PLAN.md — NestJS backend 셸과 backend-only env 경계를 부트스트랩한다
+- [ ] 01-03-PLAN.md — React/Vite frontend 셸과 auth 디자인 토큰을 부트스트랩한다
+- [ ] 01-04-PLAN.md — Prisma SQLite 사용자 저장소와 Nest 모듈 계약을 정의한다
+- [ ] 01-05-PLAN.md — NestJS 쿠키 JWT 인증 API와 backend auth 테스트를 구현한다
+- [ ] 01-06-PLAN.md — frontend auth API/session bootstrap/protected routing 인프라를 구현한다
+- [ ] 01-07-PLAN.md — React 인증 화면과 frontend auth 테스트를 구현한다
 
 ### Phase 2: Conversation Persistence
 **Goal**: 인증된 사용자 기준으로 대화와 메시지를 안전하게 저장하고 조회할 수 있게 한다
@@ -81,7 +85,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Auth | 0/3 | Not started | - |
+| 1. Foundation & Auth | 0/7 | Not started | - |
 | 2. Conversation Persistence | 0/2 | Not started | - |
 | 3. OpenRouter Streaming Chat | 0/2 | Not started | - |
 | 4. App UX Completion | 0/2 | Not started | - |

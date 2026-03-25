@@ -2,8 +2,8 @@
 phase: 01
 slug: foundation-auth
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-26
 ---
 
@@ -21,8 +21,8 @@ created: 2026-03-26
 | Property | Value |
 |----------|-------|
 | **Framework** | Backend: Jest 30.3.0 + `@nestjs/testing` 11.1.17; Frontend: Vitest 4.1.1 + Testing Library |
-| **Config file** | none — Wave 0 installs |
-| **Quick run command** | `pnpm --filter backend test -- auth` and `pnpm --filter frontend vitest run auth` |
+| **Config file** | `backend/test/jest-e2e.json`, `frontend/vitest.config.ts` |
+| **Quick run command** | `pnpm --filter backend test -- auth.e2e-spec.ts` and `pnpm --filter frontend test -- src/features/auth/session.test.tsx` |
 | **Full suite command** | `pnpm -r test` |
 | **Estimated runtime** | ~30 seconds |
 
@@ -41,13 +41,14 @@ created: 2026-03-26
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 01-01-01 | 01 | 0 | AUTH-01 | workspace/bootstrap smoke | `test -f package.json && test -f pnpm-workspace.yaml && test -f backend/package.json && test -f frontend/package.json` | ❌ W0 | ⬜ pending |
-| 01-01-02 | 01 | 0 | CHAT-04 | static config grep | `pnpm -r exec rg -n "OPENROUTER_(API_KEY|MODEL)" frontend backend` | ❌ W0 | ⬜ pending |
-| 01-02-01 | 02 | 1 | AUTH-01 | backend e2e + service unit | `pnpm --filter backend test -- auth.e2e-spec.ts -t signup` | ❌ W0 | ⬜ pending |
-| 01-02-02 | 02 | 1 | AUTH-02 | backend e2e | `pnpm --filter backend test -- auth.e2e-spec.ts -t login` | ❌ W0 | ⬜ pending |
-| 01-02-03 | 02 | 1 | AUTH-03 | backend e2e | `pnpm --filter backend test -- auth.e2e-spec.ts -t session` | ❌ W0 | ⬜ pending |
-| 01-03-01 | 03 | 1 | AUTH-03 | frontend integration | `pnpm --filter frontend vitest run src/features/auth` | ❌ W0 | ⬜ pending |
-| 01-03-02 | 03 | 1 | CHAT-04 | frontend static grep | `pnpm --filter frontend exec rg -n "OPENROUTER_(API_KEY|MODEL)|JWT_(ACCESS|REFRESH)_SECRET" src .` | ❌ W0 | ⬜ pending |
+| 01-01-01 | 01 | 0 | AUTH-01 | workspace/bootstrap smoke | `test -f package.json && test -f pnpm-workspace.yaml && test -f backend/package.json && test -f frontend/package.json` | ✅ W0 | ⬜ pending |
+| 01-01-02 | 01 | 0 | AUTH-03 | wave-0 asset smoke | `test -f backend/test/auth.e2e-spec.ts && test -f backend/src/auth/auth.service.spec.ts && test -f frontend/vitest.config.ts && test -f frontend/src/features/auth/session.test.tsx` | ✅ W0 | ⬜ pending |
+| 01-02-02 | 02 | 1 | CHAT-04 | backend build + env grep | `pnpm --filter backend build && rg -n "OPENROUTER_(API_KEY|MODEL)|JWT_(ACCESS|REFRESH)_SECRET" backend/src backend/.env.example` | ✅ plan | ⬜ pending |
+| 01-03-02 | 03 | 1 | CHAT-04 | frontend build + secret-boundary grep | `pnpm --filter frontend build && ! rg -n "OPENROUTER_(API_KEY|MODEL)|JWT_(ACCESS|REFRESH)_SECRET" frontend --glob '!**/*.md'` | ✅ plan | ⬜ pending |
+| 01-05-01 | 05 | 3 | AUTH-01 | backend service contract | `pnpm --filter backend test -- auth.service.spec.ts` | ✅ W0 | ⬜ pending |
+| 01-05-02 | 05 | 3 | AUTH-02 | backend e2e login/signup | `pnpm --filter backend test -- auth.e2e-spec.ts` | ✅ W0 | ⬜ pending |
+| 01-06-01 | 06 | 2 | AUTH-03 | frontend session bootstrap | `pnpm --filter frontend test -- src/features/auth/session.test.tsx` | ✅ W0 | ⬜ pending |
+| 01-07-02 | 07 | 3 | AUTH-03 | frontend auth routing/forms | `pnpm --filter frontend test -- frontend/tests/auth-routing.test.tsx frontend/tests/auth-forms.test.tsx` | ✅ plan | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -55,12 +56,12 @@ created: 2026-03-26
 
 ## Wave 0 Requirements (Wave 0 요구사항)
 
-- [ ] `backend/test/auth.e2e-spec.ts` — stubs for AUTH-01, AUTH-02, AUTH-03
-- [ ] `backend/src/auth/auth.service.spec.ts` — shared service-level auth verification
-- [ ] `frontend/src/features/auth/session.test.tsx` — bootstrap and redirect behavior
-- [ ] `frontend/vitest.config.ts` or `vite.config.ts` test section — frontend test framework wiring
-- [ ] `backend/test/jest-e2e.json` or equivalent Jest config — backend e2e wiring
-- [ ] workspace/root `test` scripts in `package.json` files — stable commands for planner/executor
+- [x] `backend/test/auth.e2e-spec.ts` — stubs for AUTH-01, AUTH-02, AUTH-03
+- [x] `backend/src/auth/auth.service.spec.ts` — shared service-level auth verification
+- [x] `frontend/src/features/auth/session.test.tsx` — bootstrap and redirect behavior
+- [x] `frontend/vitest.config.ts` or `vite.config.ts` test section — frontend test framework wiring
+- [x] `backend/test/jest-e2e.json` or equivalent Jest config — backend e2e wiring
+- [x] workspace/root `test` scripts in `package.json` files — stable commands for planner/executor
 
 ---
 
@@ -75,11 +76,11 @@ created: 2026-03-26
 
 ## Validation Sign-Off (검증 승인)
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 30s
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references
+- [x] No watch-mode flags
+- [x] Feedback latency < 30s
+- [x] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending
