@@ -9,9 +9,9 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: 사용자가 이메일과 비밀번호로 가입할 수 있다
-- [ ] **AUTH-02**: 사용자가 이메일과 비밀번호로 로그인할 수 있다
-- [ ] **AUTH-03**: 사용자가 브라우저를 새로고침해도 로그인 세션이 유지된다
+- [x] **AUTH-01**: 사용자가 이메일과 비밀번호로 가입할 수 있다
+- [x] **AUTH-02**: 사용자가 이메일과 비밀번호로 로그인할 수 있다
+- [x] **AUTH-03**: 사용자가 브라우저를 새로고침해도 로그인 세션이 유지된다
 - [ ] **AUTH-04**: 인증되지 않은 사용자는 채팅 앱 화면에 접근할 수 없다
 
 ### Conversations
@@ -26,7 +26,7 @@
 - [ ] **CHAT-01**: 로그인한 사용자가 메시지를 보내면 서버가 OpenRouter 무료 모델에 요청을 전달할 수 있다
 - [ ] **CHAT-02**: 사용자가 assistant 응답을 스트리밍 형태로 볼 수 있다
 - [ ] **CHAT-03**: 스트리밍이 완료되면 assistant 응답이 해당 대화 히스토리에 저장된다
-- [ ] **CHAT-04**: OpenRouter API 키와 모델 ID는 서버 환경 변수로만 관리되고 클라이언트에 노출되지 않는다
+- [x] **CHAT-04**: OpenRouter API 키와 모델 ID는 서버 환경 변수로만 관리되고 클라이언트에 노출되지 않는다
 
 ## v2 Requirements
 
@@ -63,9 +63,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Complete |
+| AUTH-02 | Phase 1 | Complete |
+| AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 4 | Pending |
 | CONV-01 | Phase 2 | Pending |
 | CONV-02 | Phase 2 | Pending |
@@ -74,7 +74,7 @@
 | CHAT-01 | Phase 3 | Pending |
 | CHAT-02 | Phase 3 | Pending |
 | CHAT-03 | Phase 3 | Pending |
-| CHAT-04 | Phase 1 | Pending |
+| CHAT-04 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 12 total

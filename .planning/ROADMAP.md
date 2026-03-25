@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 7 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Wave 0 루트 워크스페이스와 auth 테스트/config 자산을 만든다
+- [x] 01-01-PLAN.md — Wave 0 루트 워크스페이스와 auth 테스트/config 자산을 만든다
 - [ ] 01-02-PLAN.md — NestJS backend 셸과 backend-only env 경계를 부트스트랩한다
 - [ ] 01-03-PLAN.md — React/Vite frontend 셸과 auth 디자인 토큰을 부트스트랩한다
 - [ ] 01-04-PLAN.md — Prisma SQLite 사용자 저장소와 Nest 모듈 계약을 정의한다
