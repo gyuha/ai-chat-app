@@ -30,9 +30,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: pnpm 기반 워크스페이스와 frontend/backend 기본 실행 구조를 설정한다
-- [ ] 01-02: NestJS 인증 모듈과 사용자 저장 구조를 만든다
-- [ ] 01-03: React 앱의 인증 화면과 세션 복원 흐름을 연결한다
+- [ ] 01-01-PLAN.md — pnpm 워크스페이스, backend env 경계, frontend auth 토큰 셸을 만든다
+- [ ] 01-02-PLAN.md — Prisma SQLite 사용자 저장소와 NestJS 쿠키 JWT 인증 API를 구현한다
+- [ ] 01-03-PLAN.md — React 인증 화면, 세션 복원, 보호 라우트를 연결한다
 
 ### Phase 2: Conversation Persistence
 **Goal**: 인증된 사용자 기준으로 대화와 메시지를 안전하게 저장하고 조회할 수 있게 한다
