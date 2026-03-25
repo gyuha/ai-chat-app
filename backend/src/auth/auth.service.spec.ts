@@ -43,6 +43,13 @@ describe('AuthService', () => {
 
       return value;
     }),
+    get: jest.fn((key: string) => {
+      if (key === 'NODE_ENV') {
+        return 'test';
+      }
+
+      return undefined;
+    }),
   };
 
   let service: AuthService;
