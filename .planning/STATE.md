@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-26T11:24:30.913Z"
+status: 실행 준비 완료
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-26T12:00:26.666Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 9
-  completed_plans: 9
+  total_plans: 11
+  completed_plans: 10
 ---
 
 # Project State
@@ -20,12 +20,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-25)
 
 **Core value:** OpenRouter API 키를 노출하지 않으면서 여러 사용자가 안정적으로 로그인하고 채팅 히스토리를 이어서 사용할 수 있어야 한다.
-**Current focus:** Phase 02 — conversation-persistence
+**Current focus:** Phase 03 — openrouter-streaming-chat
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
+Phase: 03 (openrouter-streaming-chat) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -54,6 +54,7 @@ Plan: Not started
 | Phase 01-foundation-auth P05 | 451 | 2 tasks | 19 files |
 | Phase 02 P01 | 3 | 2 tasks | 10 files |
 | Phase 02 P02 | 4 | 2 tasks | 7 files |
+| Phase 03-openrouter-streaming-chat P01 | 2m | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,8 @@ Plan: Not started
 - [Phase 02]: Conversation selection remains route-local UI state in Phase 2; no persistent client-side conversation store was added.
 - [Phase 02]: Auth routing tests now pin the protected shell at the conversation list level instead of the old placeholder copy.
 - [Phase 02]: Bootstrap creation runs exactly once after an authenticated empty-list fetch and writes the returned conversation into the React Query cache.
+- [Phase 03]: OpenRouter streaming is isolated in a dedicated conversation service while the controller only handles authenticated routing.
+- [Phase 03]: User messages are written before upstream proxying and assistant messages are written exactly once after successful stream completion.
 
 ### Pending Todos
 
@@ -103,6 +106,6 @@ Plan: Not started
 
 Last activity: 2026-03-26
 
-Last session: 2026-03-26T11:23:33.369Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-26T12:00:26.658Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None

@@ -63,7 +63,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: NestJS OpenRouter 프록시와 스트리밍 응답 중계 로직을 구현한다
+- [x] 03-01: NestJS OpenRouter 프록시와 스트리밍 응답 중계 로직을 구현한다
 - [ ] 03-02: React 채팅 입력/메시지 패널에서 스트리밍 UI를 연결한다
 
 ### Phase 4: App UX Completion
