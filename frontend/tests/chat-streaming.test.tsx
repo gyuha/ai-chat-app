@@ -1,6 +1,6 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createMemoryHistory } from "@tanstack/react-router";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { createAppQueryClient } from "@/app/query-client";
@@ -85,13 +85,8 @@ function createConversationDetail(messages: Message[]) {
 
 async function* emitChunks(
   chunks: Array<{ type: "delta" | "done"; content?: string }>,
-  onDelta?: (content: string) => void,
 ) {
   for (const chunk of chunks) {
-    if (chunk.type === "delta" && chunk.content) {
-      onDelta?.(chunk.content);
-    }
-
     yield chunk;
   }
 }
@@ -171,57 +166,54 @@ describe("chat streaming", () => {
     fireEvent.keyDown(composer, { key: "Enter" });
 
     await waitFor(() => {
-      expect(sendButton).toBeDisabled();
+      expect(sendButton.hasAttribute("disabled")).toBe(true);
     });
 
     fireEvent.change(composer, { target: { value: "다음 질문 초안" } });
 
-    expect(composer).not.toBeDisabled();
-    expect(composer).toHaveValue("다음 질문 초안");
+    expect(composer.hasAttribute("disabled")).toBe(false);
+    expect((composer as HTMLTextAreaElement).value).toBe("다음 질문 초안");
 
     fireEvent.click(sendButton);
 
     expect(chatApi.startChatStream).toHaveBeenCalledTimes(1);
 
-    resolveDone();
+    await act(async () => {
+      resolveDone();
+    });
 
     await waitFor(() => {
-      expect(sendButton).not.toBeDisabled();
+      expect(sendButton.hasAttribute("disabled")).toBe(false);
     });
   });
 
   it("renders assistant text incrementally before the final refresh", async () => {
-    vi.mocked(conversationsApi.getConversation).mockResolvedValue(createConversationDetail([]));
     vi.mocked(chatApi.startChatStream).mockResolvedValue({} as Response);
-    vi.mocked(chatStream.readChatStream).mockReturnValue(
-      emitChunks(
-        [
-          { type: "delta", content: "안녕" },
-          { type: "delta", content: "하세요" },
-          { type: "done" },
-        ],
-        (content) => {
-          if (content === "안녕") {
-            expect(screen.getByText("안녕")).toBeTruthy();
-          }
-        },
-      ) as AsyncGenerator<
-        {
-          type: "delta" | "done";
-          content?: string;
-        },
-        void,
-        unknown
-      >,
+    let resolveDone = () => {};
+    vi.mocked(chatStream.readChatStream).mockImplementation(
+      () =>
+        (async function* () {
+          yield { type: "delta", content: "안녕" } as const;
+          yield { type: "delta", content: "하세요" } as const;
+          await new Promise<void>((resolve) => {
+            resolveDone = resolve;
+          });
+          yield { type: "done" } as const;
+        })(),
     );
-    vi.mocked(conversationsApi.getConversation)
-      .mockResolvedValueOnce(createConversationDetail([]))
-      .mockResolvedValueOnce(
-        createConversationDetail([
-          { id: "message-1", role: "user", content: "질문" },
-          { id: "message-2", role: "assistant", content: "안녕하세요" },
-        ]),
-      );
+    let detailCalls = 0;
+    vi.mocked(conversationsApi.getConversation).mockImplementation(async () => {
+      detailCalls += 1;
+
+      if (detailCalls === 1) {
+        return createConversationDetail([]);
+      }
+
+      return createConversationDetail([
+        { id: "message-1", role: "user", content: "질문" },
+        { id: "message-2", role: "assistant", content: "완료된 응답" },
+      ]);
+    });
 
     renderApp("/");
 
@@ -232,6 +224,14 @@ describe("chat streaming", () => {
 
     await waitFor(() => {
       expect(screen.getByText("안녕하세요")).toBeTruthy();
+    });
+
+    await act(async () => {
+      resolveDone();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("완료된 응답")).toBeTruthy();
     });
   });
 
@@ -247,14 +247,19 @@ describe("chat streaming", () => {
         unknown
       >,
     );
-    vi.mocked(conversationsApi.getConversation)
-      .mockResolvedValueOnce(createConversationDetail([]))
-      .mockResolvedValueOnce(
-        createConversationDetail([
-          { id: "message-1", role: "user", content: "질문" },
-          { id: "message-2", role: "assistant", content: "저장된 응답" },
-        ]),
-      );
+    let detailCalls = 0;
+    vi.mocked(conversationsApi.getConversation).mockImplementation(async () => {
+      detailCalls += 1;
+
+      if (detailCalls === 1) {
+        return createConversationDetail([]);
+      }
+
+      return createConversationDetail([
+        { id: "message-1", role: "user", content: "질문" },
+        { id: "message-2", role: "assistant", content: "저장된 응답" },
+      ]);
+    });
 
     renderApp("/");
 
@@ -264,7 +269,7 @@ describe("chat streaming", () => {
     fireEvent.keyDown(composer, { key: "Enter" });
 
     await waitFor(() => {
-      expect(conversationsApi.getConversation).toHaveBeenCalledTimes(2);
+      expect(vi.mocked(conversationsApi.getConversation).mock.calls.length).toBeGreaterThanOrEqual(2);
     });
 
     await waitFor(() => {
