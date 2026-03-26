@@ -20,20 +20,20 @@ created: 2026-03-26
 
 | Property | Value |
 |----------|-------|
-| **Framework** | jest 30.x + vitest 4.x |
-| **Config file** | `backend/jest.config.ts`, `backend/test/jest-e2e.json`, `frontend/vitest.config.ts` |
-| **Quick run command** | `pnpm --filter backend test -- conversation && pnpm --filter frontend test -- conversation` |
-| **Full suite command** | `pnpm test` |
-| **Estimated runtime** | ~20 seconds |
+| **Framework** | Jest e2e for backend + Vitest for frontend |
+| **Config file** | `backend/test/jest-e2e.json`, `backend/jest.config.ts`, `frontend/vitest.config.ts` |
+| **Quick run command** | `pnpm --dir backend test:e2e -- --runInBand conversations.e2e-spec.ts && pnpm --dir frontend test -- conversation-routing.test.tsx` |
+| **Full suite command** | `pnpm --dir backend test:e2e && pnpm --dir backend test && pnpm --dir frontend test && pnpm --dir frontend typecheck` |
+| **Estimated runtime** | ~45 seconds |
 
 ---
 
 ## Sampling Rate (샘플링 빈도)
 
-- **After every task commit:** Run `pnpm --filter backend test -- conversation && pnpm --filter frontend test -- conversation`
-- **After every plan wave:** Run `pnpm test`
+- **After every task commit:** Run `pnpm --dir backend test:e2e -- --runInBand conversations.e2e-spec.ts` or `pnpm --dir frontend test -- conversation-routing.test.tsx`
+- **After every plan wave:** Run `pnpm --dir backend test:e2e && pnpm --dir frontend test`
 - **Before `$gsd-verify-work`:** Full suite must be green
-- **Max feedback latency:** 20 seconds
+- **Max feedback latency:** 45 seconds
 
 ---
 
@@ -41,12 +41,10 @@ created: 2026-03-26
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 02-01-01 | 01 | 1 | CONV-01 | unit/e2e | `pnpm --filter backend test -- conversation` | ❌ W0 | ⬜ pending |
-| 02-01-02 | 01 | 1 | CONV-02 | unit/e2e | `pnpm --filter backend test -- conversation` | ❌ W0 | ⬜ pending |
-| 02-01-03 | 01 | 1 | CONV-04 | unit/e2e | `pnpm --filter backend test -- conversation` | ❌ W0 | ⬜ pending |
-| 02-02-01 | 02 | 2 | CONV-01 | component/integration | `pnpm --filter frontend test -- conversation` | ❌ W0 | ⬜ pending |
-| 02-02-02 | 02 | 2 | CONV-02 | component/integration | `pnpm --filter frontend test -- conversation` | ❌ W0 | ⬜ pending |
-| 02-02-03 | 02 | 2 | CONV-04 | integration | `pnpm --filter frontend test -- conversation` | ❌ W0 | ⬜ pending |
+| 02-01-01 | 01 | 1 | CONV-01 | backend e2e | `pnpm --dir backend test:e2e -- --runInBand conversations.e2e-spec.ts` | ❌ W0 | ⬜ pending |
+| 02-01-02 | 01 | 1 | CONV-04 | backend e2e | `pnpm --dir backend test:e2e -- --runInBand conversations.e2e-spec.ts` | ❌ W0 | ⬜ pending |
+| 02-02-01 | 02 | 2 | CONV-02 | frontend integration | `pnpm --dir frontend test -- conversation-routing.test.tsx` | ❌ W0 | ⬜ pending |
+| 02-02-02 | 02 | 2 | CONV-01 | backend e2e + frontend integration | `pnpm --dir backend test:e2e -- --runInBand conversations.e2e-spec.ts && pnpm --dir frontend test -- conversation-routing.test.tsx` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -54,10 +52,10 @@ created: 2026-03-26
 
 ## Wave 0 Requirements (Wave 0 요구사항)
 
-- [ ] `backend/src/conversations/*.spec.ts` — conversation service/controller ownership tests for CONV-01, CONV-02, CONV-04
-- [ ] `backend/test/conversations.e2e-spec.ts` — authenticated create/list/isolation API tests
-- [ ] `frontend/tests/conversation-home.test.tsx` — first-entry auto-create and title-only list rendering checks
-- [ ] `frontend/src/features/conversations/*.test.ts` — query/mutation bootstrap behavior where logic is extracted
+- [ ] `backend/test/conversations.e2e-spec.ts` — stubs for CONV-01, CONV-02, CONV-04
+- [ ] `frontend/tests/conversation-routing.test.tsx` — shared frontend coverage for empty-list bootstrap and title-only rendering
+- [ ] Shared backend test DB bootstrap for `Conversation` and `Message` tables — current auth e2e setup creates only `User`
+- [ ] Conversation API fixture helpers for two-user ownership tests — current frontend/backend tests only model auth flows
 
 ---
 
@@ -65,7 +63,7 @@ created: 2026-03-26
 
 | Behavior | Requirement | Why Manual | Test Instructions |
 |----------|-------------|------------|-------------------|
-| first authenticated visit feels immediate and does not visually flicker through multiple empty states | CONV-01 | automated tests can prove calls/render states but not perceived smoothness | log in with a fresh user, land on `/`, confirm exactly one `새 대화` appears and the UI settles without duplicate entries |
+| Empty-state first visit immediately shows the auto-created `새 대화` as selected in the protected shell | CONV-01 | Requires observing route bootstrap, query timing, and selected-state UX together | Log in with a fresh account, land on `/`, verify there is no CTA gate, and confirm one `새 대화` item is selected automatically |
 
 ---
 
@@ -75,7 +73,7 @@ created: 2026-03-26
 - [ ] Sampling continuity: no 3 consecutive tasks without automated verify
 - [ ] Wave 0 covers all MISSING references
 - [ ] No watch-mode flags
-- [ ] Feedback latency < 20s
+- [ ] Feedback latency < 45s
 - [ ] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending

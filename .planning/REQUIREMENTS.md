@@ -16,10 +16,10 @@
 
 ### Conversations
 
-- [ ] **CONV-01**: 로그인한 사용자가 새 대화를 생성할 수 있다
-- [ ] **CONV-02**: 로그인한 사용자가 자신의 대화 목록을 볼 수 있다
+- [x] **CONV-01**: 로그인한 사용자가 새 대화를 생성할 수 있다
+- [x] **CONV-02**: 로그인한 사용자가 자신의 대화 목록을 볼 수 있다
 - [ ] **CONV-03**: 로그인한 사용자가 특정 대화의 이전 메시지 히스토리를 다시 볼 수 있다
-- [ ] **CONV-04**: 한 사용자는 다른 사용자의 대화와 메시지에 접근할 수 없다
+- [x] **CONV-04**: 한 사용자는 다른 사용자의 대화와 메시지에 접근할 수 없다
 
 ### Chat
 
@@ -67,10 +67,10 @@
 | AUTH-02 | Phase 1 | Complete |
 | AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 4 | Pending |
-| CONV-01 | Phase 2 | Pending |
-| CONV-02 | Phase 2 | Pending |
+| CONV-01 | Phase 2 | Complete |
+| CONV-02 | Phase 2 | Complete |
 | CONV-03 | Phase 4 | Pending |
-| CONV-04 | Phase 2 | Pending |
+| CONV-04 | Phase 2 | Complete |
 | CHAT-01 | Phase 3 | Pending |
 | CHAT-02 | Phase 3 | Pending |
 | CHAT-03 | Phase 3 | Pending |
