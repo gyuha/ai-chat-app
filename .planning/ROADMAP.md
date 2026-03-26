@@ -50,7 +50,7 @@ Plans:
 
 Plans:
 - [x] 02-01: SQLite 스키마와 conversation/message 도메인 모델을 정의한다
-- [ ] 02-02: 대화 생성 및 목록 조회 API와 프론트 목록 UI를 연결한다
+- [x] 02-02: 대화 생성 및 목록 조회 API와 프론트 목록 UI를 연결한다
 
 ### Phase 3: OpenRouter Streaming Chat
 **Goal**: 서버 고정 무료 모델을 사용한 스트리밍 채팅과 메시지 저장을 구현한다
@@ -86,6 +86,6 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Auth | 6/7 | In Progress | - |
-| 2. Conversation Persistence | 1/2 | In Progress | - |
+| 2. Conversation Persistence | 2/2 | Complete | - |
 | 3. OpenRouter Streaming Chat | 0/2 | Not started | - |
 | 4. App UX Completion | 0/2 | Not started | - |

@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Executing Phase 02
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-26T11:18:56.612Z"
-last_activity: 2026-03-26
+status: Phase 완료 — verification 준비됨
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-26T11:23:52.188Z"
+last_activity: 2026-03-26 - Completed 02-02-PLAN.md
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 9
-  completed_plans: 8
+  completed_plans: 9
 ---
 
 # Project State
@@ -53,6 +53,7 @@ Plan: 2 of 2
 | Phase 01 P07 | 2 min | 2 tasks | 15 files |
 | Phase 01-foundation-auth P05 | 451 | 2 tasks | 19 files |
 | Phase 02 P01 | 3 | 2 tasks | 10 files |
+| Phase 02 P02 | 4 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,10 @@ Plan: 2 of 2
 - [Phase 01-foundation-auth]: Prisma 7 SQLite runtime is adapter-backed via PrismaBetterSqlite3 and generated before test/build commands.
 - [Phase 02]: Conversation detail stays title-only in Phase 2 so ownership and bootstrap can ship without pulling full history restore into scope.
 - [Phase 02]: Bootstrap creation uses a short Prisma transaction that returns an existing latest conversation before creating a new `새 대화`.
+- [Phase 02]: The protected home route bootstraps exactly one conversation by calling createConversation({ mode: "bootstrap" }) only after an empty list fetch succeeds.
+- [Phase 02]: Conversation selection remains route-local UI state in Phase 2; no persistent client-side conversation store was added.
+- [Phase 02]: Auth routing tests now pin the protected shell at the conversation list level instead of the old placeholder copy.
+- [Phase 02]: Bootstrap creation runs exactly once after an authenticated empty-list fetch and writes the returned conversation into the React Query cache.
 
 ### Pending Todos
 
@@ -96,8 +101,8 @@ Plan: 2 of 2
 
 ## Session Continuity
 
-Last activity: 2026-03-26 - Completed 02-01-PLAN.md
+Last activity: 2026-03-26 - Completed 02-02-PLAN.md
 
-Last session: 2026-03-26T10:45:26.498Z
-Stopped at: Completed 02-01-PLAN.md
-Resume file: .planning/phases/02-conversation-persistence/02-02-PLAN.md
+Last session: 2026-03-26T11:23:33.369Z
+Stopped at: Completed 02-02-PLAN.md
+Resume file: None
