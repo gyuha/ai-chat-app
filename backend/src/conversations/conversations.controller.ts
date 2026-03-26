@@ -8,12 +8,16 @@ import { ConversationDetailDto } from './dto/conversation-detail.dto';
 import { ConversationsService } from './conversations.service';
 import { ConversationSummaryDto } from './dto/conversation-summary.dto';
 import { CreateConversationDto } from './dto/create-conversation.dto';
+import { OpenrouterChatService } from './openrouter-chat.service';
 import { SendMessageDto } from './dto/send-message.dto';
 
 @Controller('conversations')
 @UseGuards(JwtAuthGuard)
 export class ConversationsController {
-  constructor(private readonly conversationsService: ConversationsService) {}
+  constructor(
+    private readonly conversationsService: ConversationsService,
+    private readonly openrouterChatService: OpenrouterChatService,
+  ) {}
 
   @Post()
   create(
@@ -43,6 +47,11 @@ export class ConversationsController {
     @Body() dto: SendMessageDto,
     @Res() response: Response,
   ): Promise<void> {
-    return this.conversationsService.streamChatForUser(user.id, id, dto.content, response);
+    return this.openrouterChatService.streamConversation({
+      response,
+      userId: user.id,
+      conversationId: id,
+      content: dto.content,
+    });
   }
 }
