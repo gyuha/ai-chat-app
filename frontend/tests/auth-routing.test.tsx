@@ -9,6 +9,7 @@ import { clearAuthState, getAuthState, resetAuthState } from "@/features/auth/au
 import { ApiError } from "@/lib/api/client";
 
 import * as authApi from "@/features/auth/api";
+import * as conversationsApi from "@/features/conversations/api";
 
 vi.mock("@/features/auth/api", async () => {
   const actual = await vi.importActual<typeof import("@/features/auth/api")>("@/features/auth/api");
@@ -18,6 +19,19 @@ vi.mock("@/features/auth/api", async () => {
     getSession: vi.fn(),
     login: vi.fn(),
     signup: vi.fn(),
+  };
+});
+
+vi.mock("@/features/conversations/api", async () => {
+  const actual = await vi.importActual<typeof import("@/features/conversations/api")>(
+    "@/features/conversations/api",
+  );
+
+  return {
+    ...actual,
+    listConversations: vi.fn(),
+    createConversation: vi.fn(),
+    getConversation: vi.fn(),
   };
 });
 
@@ -52,6 +66,9 @@ describe("auth routing", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     resetAuthState();
+    vi.mocked(conversationsApi.listConversations).mockResolvedValue([
+      { id: "conversation-1", title: "새 대화" },
+    ]);
   });
 
   afterEach(() => {
@@ -82,10 +99,11 @@ describe("auth routing", () => {
     const { router } = renderApp("/");
 
     await waitFor(() => {
-      expect(screen.getByText("hello@example.com 계정으로 인증되었습니다.")).toBeTruthy();
+      expect(screen.getByRole("button", { name: "새 대화" })).toBeTruthy();
     });
 
     expect(authApi.getSession).toHaveBeenCalledTimes(1);
+    expect(conversationsApi.listConversations).toHaveBeenCalledTimes(1);
     expect(router.state.location.pathname).toBe("/");
   });
 
@@ -99,7 +117,7 @@ describe("auth routing", () => {
     const { queryClient, router } = renderApp("/");
 
     await waitFor(() => {
-      expect(screen.getByText("hello@example.com 계정으로 인증되었습니다.")).toBeTruthy();
+      expect(screen.getByRole("button", { name: "새 대화" })).toBeTruthy();
     });
 
     await queryClient.invalidateQueries({ queryKey: ["auth", "session"] });
