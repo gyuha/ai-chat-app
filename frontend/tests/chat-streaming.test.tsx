@@ -194,10 +194,10 @@ describe("chat streaming", () => {
       () =>
         (async function* () {
           yield { type: "delta", content: "안녕" } as const;
-          yield { type: "delta", content: "하세요" } as const;
           await new Promise<void>((resolve) => {
             resolveDone = resolve;
           });
+          yield { type: "delta", content: "하세요" } as const;
           yield { type: "done" } as const;
         })(),
     );
@@ -223,7 +223,7 @@ describe("chat streaming", () => {
     fireEvent.keyDown(composer, { key: "Enter" });
 
     await waitFor(() => {
-      expect(screen.getByText("안녕하세요")).toBeTruthy();
+      expect(screen.getByText("안녕")).toBeTruthy();
     });
 
     await act(async () => {
