@@ -123,14 +123,20 @@ describe('Conversations API contract (e2e)', () => {
     const primaryAgent = request.agent(app.getHttpServer());
     const secondaryAgent = request.agent(app.getHttpServer());
 
-    await primaryAgent.post('/auth/signup').send({
+    const primaryCredentials = {
       email: 'primary@example.com',
       password: 'password1234',
-    });
-    await secondaryAgent.post('/auth/signup').send({
+    };
+    const secondaryCredentials = {
       email: 'secondary@example.com',
       password: 'password1234',
-    });
+    };
+
+    await primaryAgent.post('/auth/signup').send(primaryCredentials).expect(201);
+    await secondaryAgent.post('/auth/signup').send(secondaryCredentials).expect(201);
+
+    await primaryAgent.post('/auth/login').send(primaryCredentials).expect(200);
+    await secondaryAgent.post('/auth/login').send(secondaryCredentials).expect(200);
 
     const createResponse = await primaryAgent
       .post('/conversations')
