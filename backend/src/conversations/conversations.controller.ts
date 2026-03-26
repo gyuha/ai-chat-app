@@ -1,11 +1,14 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res, UseGuards } from '@nestjs/common';
+import type { Response } from 'express';
 
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import type { SessionUser } from '../auth/auth.constants';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ConversationDetailDto } from './dto/conversation-detail.dto';
 import { ConversationsService } from './conversations.service';
 import { ConversationSummaryDto } from './dto/conversation-summary.dto';
 import { CreateConversationDto } from './dto/create-conversation.dto';
+import { SendMessageDto } from './dto/send-message.dto';
 
 @Controller('conversations')
 @UseGuards(JwtAuthGuard)
@@ -29,7 +32,17 @@ export class ConversationsController {
   get(
     @CurrentUser() user: SessionUser,
     @Param('id') id: string,
-  ): Promise<ConversationSummaryDto> {
+  ): Promise<ConversationDetailDto> {
     return this.conversationsService.getForUser(user.id, id);
+  }
+
+  @Post(':id/chat')
+  chat(
+    @CurrentUser() user: SessionUser,
+    @Param('id') id: string,
+    @Body() dto: SendMessageDto,
+    @Res() response: Response,
+  ): Promise<void> {
+    return this.conversationsService.streamChatForUser(user.id, id, dto.content, response);
   }
 }
