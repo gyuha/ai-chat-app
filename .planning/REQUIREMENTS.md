@@ -23,9 +23,9 @@
 
 ### Chat
 
-- [ ] **CHAT-01**: 로그인한 사용자가 메시지를 보내면 서버가 OpenRouter 무료 모델에 요청을 전달할 수 있다
-- [ ] **CHAT-02**: 사용자가 assistant 응답을 스트리밍 형태로 볼 수 있다
-- [ ] **CHAT-03**: 스트리밍이 완료되면 assistant 응답이 해당 대화 히스토리에 저장된다
+- [x] **CHAT-01**: 로그인한 사용자가 메시지를 보내면 서버가 OpenRouter 무료 모델에 요청을 전달할 수 있다
+- [x] **CHAT-02**: 사용자가 assistant 응답을 스트리밍 형태로 볼 수 있다
+- [x] **CHAT-03**: 스트리밍이 완료되면 assistant 응답이 해당 대화 히스토리에 저장된다
 - [x] **CHAT-04**: OpenRouter API 키와 모델 ID는 서버 환경 변수로만 관리되고 클라이언트에 노출되지 않는다
 
 ## v2 Requirements
@@ -71,9 +71,9 @@
 | CONV-02 | Phase 2 | Complete |
 | CONV-03 | Phase 4 | Pending |
 | CONV-04 | Phase 2 | Complete |
-| CHAT-01 | Phase 3 | Pending |
-| CHAT-02 | Phase 3 | Pending |
-| CHAT-03 | Phase 3 | Pending |
+| CHAT-01 | Phase 3 | Complete |
+| CHAT-02 | Phase 3 | Complete |
+| CHAT-03 | Phase 3 | Complete |
 | CHAT-04 | Phase 1 | Complete |
 
 **Coverage:**
@@ -83,4 +83,4 @@
 
 ---
 *Requirements defined: 2026-03-25*
-*Last updated: 2026-03-25 after initialization*
+*Last updated: 2026-03-26 after Phase 03 implementation*

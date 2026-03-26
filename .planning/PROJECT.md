@@ -14,10 +14,10 @@ OpenRouter API 키를 노출하지 않으면서 여러 사용자가 안정적으
 
 - [x] 이메일/비밀번호 기반 계정 생성과 로그인, 세션 복원이 작동한다
 - [x] 인증된 사용자의 대화 생성, title-only 목록 조회, 사용자별 소유권 경계가 SQLite 기반으로 작동한다
+- [x] 인증된 사용자가 서버 고정 OpenRouter 무료 모델로 스트리밍 채팅하고, 완료된 assistant 응답이 대화에 저장된다
 
 ### Active
 
-- [ ] 로그인한 사용자가 서버에 저장된 OpenRouter 무료 모델로 스트리밍 채팅을 할 수 있어야 한다
 - [ ] 로그인한 사용자가 대화 목록과 대화별 메시지 히스토리를 다시 볼 수 있어야 한다
 
 ### Out of Scope
@@ -30,7 +30,7 @@ OpenRouter API 키를 노출하지 않으면서 여러 사용자가 안정적으
 
 ## Context
 
-- 인증, 세션 복원, conversation persistence까지는 동작하는 앱 골격이 준비되었다
+- 인증, 세션 복원, conversation persistence, OpenRouter streaming chat까지는 동작하는 앱 골격이 준비되었다
 - 웹 앱과 서버를 분리해 OpenRouter API 키를 브라우저에 노출하지 않는 것이 핵심 전제다
 - 백엔드는 NestJS + TypeScript, 프론트엔드는 React + TypeScript + shadcn/ui + Zustand + TanStack Query + TanStack Router + pnpm + Biome를 사용한다
 - 인증은 이메일/비밀번호 방식으로 시작하고, 히스토리는 SQLite에 저장한다
@@ -71,4 +71,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-26 after Phase 02 completion*
+*Last updated: 2026-03-26 after Phase 03 completion*
