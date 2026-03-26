@@ -12,9 +12,9 @@
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Auth** - 워크스페이스, 공통 설정, 인증 기반, 서버 비밀값 경계를 준비한다
-- [ ] **Phase 2: Conversation Persistence** - 사용자별 대화와 메시지 저장 구조를 만든다
-- [ ] **Phase 3: OpenRouter Streaming Chat** - 서버 프록시 기반 스트리밍 채팅과 저장 연계를 완성한다
+- [x] **Phase 1: Foundation & Auth** - 워크스페이스, 공통 설정, 인증 기반, 서버 비밀값 경계를 준비한다
+- [x] **Phase 2: Conversation Persistence** - 사용자별 대화와 메시지 저장 구조를 만든다
+- [x] **Phase 3: OpenRouter Streaming Chat** - 서버 프록시 기반 스트리밍 채팅과 저장 연계를 완성한다
 - [ ] **Phase 4: App UX Completion** - 보호 라우트, 히스토리 복원, 에러 흐름을 정리해 사용 가능한 MVP로 마무리한다
 
 ## Phase Details
@@ -64,7 +64,7 @@ Plans:
 
 Plans:
 - [x] 03-01: NestJS OpenRouter 프록시와 스트리밍 응답 중계 로직을 구현한다
-- [ ] 03-02: React 채팅 입력/메시지 패널에서 스트리밍 UI를 연결한다
+- [x] 03-02: React 채팅 입력/메시지 패널에서 스트리밍 UI를 연결한다
 
 ### Phase 4: App UX Completion
 **Goal**: 보호 라우트, 히스토리 복원, 오류 처리까지 포함해 실제 사용 가능한 MVP로 정리한다
@@ -85,7 +85,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Auth | 6/7 | In Progress | - |
+| 1. Foundation & Auth | 7/7 | Complete | - |
 | 2. Conversation Persistence | 2/2 | Complete | - |
-| 3. OpenRouter Streaming Chat | 0/2 | Not started | - |
+| 3. OpenRouter Streaming Chat | 2/2 | Complete | - |
 | 4. App UX Completion | 0/2 | Not started | - |

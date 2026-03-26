@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: 실행 준비 완료
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-26T12:00:26.666Z"
+status: Phase 완료 — verification 준비됨
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-26T12:05:39.008Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 11
-  completed_plans: 10
+  completed_plans: 11
 ---
 
 # Project State
@@ -20,12 +20,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-25)
 
 **Core value:** OpenRouter API 키를 노출하지 않으면서 여러 사용자가 안정적으로 로그인하고 채팅 히스토리를 이어서 사용할 수 있어야 한다.
-**Current focus:** Phase 03 — openrouter-streaming-chat
+**Current focus:** Phase 04 — App UX Completion
 
 ## Current Position
 
-Phase: 03 (openrouter-streaming-chat) — EXECUTING
-Plan: 2 of 2
+Phase: 03 (openrouter-streaming-chat) — COMPLETE
+Plan: 2 of 2 (completed)
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Plan: 2 of 2
 | Phase 02 P01 | 3 | 2 tasks | 10 files |
 | Phase 02 P02 | 4 | 2 tasks | 7 files |
 | Phase 03-openrouter-streaming-chat P01 | 2m | 2 tasks | 8 files |
+| Phase 03 P02 | 35m | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -87,10 +88,12 @@ Plan: 2 of 2
 - [Phase 02]: Bootstrap creation runs exactly once after an authenticated empty-list fetch and writes the returned conversation into the React Query cache.
 - [Phase 03]: OpenRouter streaming is isolated in a dedicated conversation service while the controller only handles authenticated routing.
 - [Phase 03]: User messages are written before upstream proxying and assistant messages are written exactly once after successful stream completion.
+- [Phase 03]: Keep the composer editable during streaming while blocking re-submit via isStreaming.
+- [Phase 03]: Refresh the selected conversation after stream completion so persisted messages replace temporary streaming UI.
 
 ### Pending Todos
 
-- Phase 1 계획 수립
+- Phase 4 계획 수립 및 verification 준비
 
 ### Quick Tasks Completed
 
@@ -106,6 +109,6 @@ Plan: 2 of 2
 
 Last activity: 2026-03-26
 
-Last session: 2026-03-26T12:00:26.658Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-26T12:05:39.006Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
