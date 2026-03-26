@@ -2,14 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Phase 완료 — verification 준비됨
+status: Executing Phase 02
 stopped_at: Phase 2 context gathered
-last_updated: "2026-03-26T10:45:26.501Z"
+last_updated: "2026-03-26T11:18:56.612Z"
+last_activity: 2026-03-26
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 7
-  completed_plans: 7
+  total_plans: 9
+  completed_plans: 8
 ---
 
 # Project State
@@ -19,12 +20,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-25)
 
 **Core value:** OpenRouter API 키를 노출하지 않으면서 여러 사용자가 안정적으로 로그인하고 채팅 히스토리를 이어서 사용할 수 있어야 한다.
-**Current focus:** Phase 01 — foundation-auth
+**Current focus:** Phase 02 — conversation-persistence
 
 ## Current Position
 
-Phase: 01 (foundation-auth) — EXECUTING
-Plan: 7 of 7
+Phase: 02 (conversation-persistence) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -51,6 +52,7 @@ Plan: 7 of 7
 | Phase 01 P06 | 3 min | 2 tasks | 15 files |
 | Phase 01 P07 | 2 min | 2 tasks | 15 files |
 | Phase 01-foundation-auth P05 | 451 | 2 tasks | 19 files |
+| Phase 02 P01 | 3 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -75,6 +77,8 @@ Plan: 7 of 7
 - [Phase 01-foundation-auth]: Auth responses return only user-safe payloads while JWTs stay in httpOnly cookies.
 - [Phase 01-foundation-auth]: Backend auth sessions use access_token and refresh_token cookies with SameSite=Lax and production-only secure.
 - [Phase 01-foundation-auth]: Prisma 7 SQLite runtime is adapter-backed via PrismaBetterSqlite3 and generated before test/build commands.
+- [Phase 02]: Conversation detail stays title-only in Phase 2 so ownership and bootstrap can ship without pulling full history restore into scope.
+- [Phase 02]: Bootstrap creation uses a short Prisma transaction that returns an existing latest conversation before creating a new `새 대화`.
 
 ### Pending Todos
 
@@ -92,8 +96,8 @@ Plan: 7 of 7
 
 ## Session Continuity
 
-Last activity: 2026-03-26 - Completed quick task 260326-rt1: Initialize a Ralph PRD for the OpenRouter Free Chat App MVP based on current planning docs
+Last activity: 2026-03-26 - Completed 02-01-PLAN.md
 
 Last session: 2026-03-26T10:45:26.498Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-conversation-persistence/02-CONTEXT.md
+Stopped at: Completed 02-01-PLAN.md
+Resume file: .planning/phases/02-conversation-persistence/02-02-PLAN.md
