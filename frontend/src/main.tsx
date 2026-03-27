@@ -4,8 +4,16 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './styles/globals.css';
 
-// Import the generated route tree
-import { routeTree } from './routeTree.gen';
+// Import routes
+import { Route as rootRoute } from './routes/__root';
+import { Route as indexRoute } from './routes/index';
+import { Route as chatRoute } from './routes/chat';
+
+// Create the route tree
+const routeTree = rootRoute.addChildren({
+  index: indexRoute,
+  chat: chatRoute,
+});
 
 // Create a new router instance
 const router = createRouter({ routeTree });
