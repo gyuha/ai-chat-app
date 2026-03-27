@@ -1,36 +1,12 @@
-import { ApiError } from "@/lib/api/client";
+import { ApiError, buildApiUrl } from "@/lib/api/client";
 
 import type { SendChatMessagePayload } from "./types";
-
-function trimTrailingSlash(value: string) {
-  return value.replace(/\/+$/, "");
-}
-
-function resolveApiBaseUrl() {
-  const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL;
-
-  if (configuredBaseUrl) {
-    return trimTrailingSlash(configuredBaseUrl);
-  }
-
-  if (typeof window !== "undefined") {
-    return trimTrailingSlash(window.location.origin);
-  }
-
-  return "";
-}
-
-function buildUrl(path: string) {
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-
-  return `${resolveApiBaseUrl()}${normalizedPath}`;
-}
 
 export async function startChatStream(
   conversationId: string,
   payload: SendChatMessagePayload,
 ) {
-  const response = await fetch(buildUrl(`/conversations/${conversationId}/chat`), {
+  const response = await fetch(buildApiUrl(`/conversations/${conversationId}/chat`), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -40,7 +16,22 @@ export async function startChatStream(
   });
 
   if (!response.ok) {
-    throw new ApiError(`Request failed with status ${response.status}`, response.status);
+    const contentType = response.headers.get("content-type") ?? "";
+
+    if (contentType.includes("application/json")) {
+      const errorPayload = (await response.json()) as {
+        message?: string | string[];
+        error?: string;
+      };
+      const message = Array.isArray(errorPayload.message)
+        ? errorPayload.message.join(", ")
+        : errorPayload.message || errorPayload.error || `Request failed with status ${response.status}`;
+
+      throw new ApiError(message, response.status);
+    }
+
+    const errorText = await response.text();
+    throw new ApiError(errorText || `Request failed with status ${response.status}`, response.status);
   }
 
   return response;

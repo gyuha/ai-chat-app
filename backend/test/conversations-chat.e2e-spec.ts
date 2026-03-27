@@ -232,4 +232,44 @@ describe('Conversations chat API contract (e2e)', () => {
       .send({ content: '침범 시도' })
       .expect(404);
   });
+
+  it('returns the upstream OpenRouter error message when chat setup fails', async () => {
+    fetchMock.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          error: {
+            message: 'Invalid OpenRouter API key',
+          },
+        }),
+        {
+          status: 401,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      ),
+    );
+
+    const agent = request.agent(app.getHttpServer());
+    const credentials = {
+      email: 'upstream-error@example.com',
+      password: 'password1234',
+    };
+
+    await agent.post('/auth/signup').send(credentials).expect(201);
+    await agent.post('/auth/login').send(credentials).expect(200);
+
+    const conversation = await agent.post('/conversations').send({}).expect(201);
+
+    const response = await agent
+      .post(`/conversations/${conversation.body.id}/chat`)
+      .send({ content: '안녕하세요?' })
+      .expect(502);
+
+    expect(response.body).toMatchObject({
+      message: 'Invalid OpenRouter API key',
+      error: 'Bad Gateway',
+      statusCode: 502,
+    });
+  });
 });

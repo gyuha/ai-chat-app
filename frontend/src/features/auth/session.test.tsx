@@ -28,7 +28,7 @@ function SessionProbe() {
 
 describe("auth/session bootstrap", () => {
   beforeEach(() => {
-    vi.stubEnv("VITE_API_BASE_URL", "http://localhost:3000");
+    vi.stubEnv("VITE_API_BASE_URL", "http://localhost:3001");
     resetAuthState();
     vi.restoreAllMocks();
   });
@@ -61,7 +61,7 @@ describe("auth/session bootstrap", () => {
     expect(screen.getByTestId("email").textContent).toBe("a@test.dev");
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock).toHaveBeenCalledWith(
-      "http://localhost:3000/auth/session",
+      "http://localhost:3001/auth/session",
       expect.objectContaining({
         credentials: "include",
         method: "GET",

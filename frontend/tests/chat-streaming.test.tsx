@@ -11,6 +11,7 @@ import * as authApi from "@/features/auth/api";
 import * as chatApi from "@/features/chat/api";
 import * as chatStream from "@/features/chat/stream";
 import * as conversationsApi from "@/features/conversations/api";
+import { ApiError } from "@/lib/api/client";
 
 vi.mock("@/features/auth/api", async () => {
   const actual = await vi.importActual<typeof import("@/features/auth/api")>("@/features/auth/api");
@@ -274,6 +275,24 @@ describe("chat streaming", () => {
 
     await waitFor(() => {
       expect(screen.getByText("저장된 응답")).toBeTruthy();
+    });
+  });
+
+  it("shows the upstream error message when chat setup fails before streaming", async () => {
+    vi.mocked(conversationsApi.getConversation).mockResolvedValue(createConversationDetail([]));
+    vi.mocked(chatApi.startChatStream).mockRejectedValueOnce(
+      new ApiError("Invalid OpenRouter API key", 502),
+    );
+
+    renderApp("/");
+
+    const composer = await screen.findByRole("textbox", { name: "메시지 입력" });
+
+    fireEvent.change(composer, { target: { value: "질문" } });
+    fireEvent.keyDown(composer, { key: "Enter" });
+
+    await waitFor(() => {
+      expect(screen.getByText("Invalid OpenRouter API key")).toBeTruthy();
     });
   });
 });

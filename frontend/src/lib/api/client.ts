@@ -10,6 +10,37 @@ export class ApiError extends Error {
   }
 }
 
+async function readResponseMessage(response: Response) {
+  const contentType = response.headers.get("content-type") ?? "";
+
+  if (contentType.includes("application/json")) {
+    const payload = (await response.json()) as {
+      message?: string | string[];
+      error?: string;
+    };
+
+    if (Array.isArray(payload.message)) {
+      return payload.message.join(", ");
+    }
+
+    if (typeof payload.message === "string" && payload.message.trim()) {
+      return payload.message;
+    }
+
+    if (typeof payload.error === "string" && payload.error.trim()) {
+      return payload.error;
+    }
+  }
+
+  const text = await response.text();
+
+  if (text.trim()) {
+    return text.trim();
+  }
+
+  return `Request failed with status ${response.status}`;
+}
+
 function trimTrailingSlash(value: string) {
   return value.replace(/\/+$/, "");
 }
@@ -20,18 +51,14 @@ function resolveApiBaseUrl() {
   if (configuredBaseUrl) {
     return trimTrailingSlash(configuredBaseUrl);
   }
-
-  if (typeof window !== "undefined") {
-    return trimTrailingSlash(window.location.origin);
-  }
-
   return "";
 }
 
-function buildUrl(path: string) {
+export function buildApiUrl(path: string) {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const baseUrl = resolveApiBaseUrl();
 
-  return `${resolveApiBaseUrl()}${normalizedPath}`;
+  return baseUrl ? `${baseUrl}${normalizedPath}` : normalizedPath;
 }
 
 type ApiRequestOptions = Omit<RequestInit, "body" | "credentials"> & {
@@ -48,7 +75,7 @@ export async function apiRequest<T>(
     requestHeaders.set("Content-Type", "application/json");
   }
 
-  const response = await fetch(buildUrl(path), {
+  const response = await fetch(buildApiUrl(path), {
     ...init,
     method,
     headers: requestHeaders,
@@ -57,11 +84,20 @@ export async function apiRequest<T>(
   });
 
   if (!response.ok) {
-    throw new ApiError(`Request failed with status ${response.status}`, response.status);
+    throw new ApiError(await readResponseMessage(response), response.status);
   }
 
   if (response.status === 204) {
     return undefined as T;
+  }
+
+  const contentType = response.headers.get("content-type") ?? "";
+
+  if (!contentType.includes("application/json")) {
+    throw new ApiError(
+      `Expected JSON response but received ${contentType || "unknown content type"}`,
+      response.status,
+    );
   }
 
   return (await response.json()) as T;

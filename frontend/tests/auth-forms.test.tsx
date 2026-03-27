@@ -48,7 +48,7 @@ function renderAt(pathname: "/login" | "/signup") {
 describe("auth forms", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.stubEnv("VITE_API_BASE_URL", "http://localhost:3000");
+    vi.stubEnv("VITE_API_BASE_URL", "http://localhost:3001");
     vi.mocked(authApi.getSession).mockRejectedValue(
       new ApiError("Request failed with status 401", 401),
     );
@@ -95,7 +95,29 @@ describe("auth forms", () => {
     await apiRequest("/auth/session");
 
     expect(fetchMock).toHaveBeenCalledWith(
-      "http://localhost:3000/auth/session",
+      "http://localhost:3001/auth/session",
+      expect.objectContaining({
+        credentials: "include",
+      }),
+    );
+  });
+
+  it("uses a relative path when no api base url is configured", async () => {
+    vi.unstubAllEnvs();
+
+    const fetchMock = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ user: { id: "user-1", email: "hello@example.com" } }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        }),
+      );
+
+    await apiRequest("/auth/session");
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/auth/session",
       expect.objectContaining({
         credentials: "include",
       }),

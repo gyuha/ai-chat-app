@@ -1,11 +1,11 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import type { Response } from 'express';
+import { BadGatewayException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import type { Response as ExpressResponse } from 'express';
 
 import { PrismaService } from '../prisma/prisma.service';
 import { ConversationsService } from './conversations.service';
 
 type StreamConversationParams = {
-  response: Response;
+  response: ExpressResponse;
   userId: string;
   conversationId: string;
   content: string;
@@ -17,6 +17,33 @@ export class OpenrouterChatService {
     private readonly prisma: PrismaService,
     private readonly conversationsService: ConversationsService,
   ) {}
+
+  private async readUpstreamError(response: globalThis.Response) {
+    const contentType = response.headers.get('content-type') ?? '';
+
+    if (contentType.includes('application/json')) {
+      const payload = (await response.json()) as {
+        error?: { message?: string };
+        message?: string;
+      };
+
+      if (payload.error?.message) {
+        return payload.error.message;
+      }
+
+      if (payload.message) {
+        return payload.message;
+      }
+    }
+
+    const text = await response.text();
+
+    if (text.trim()) {
+      return text.trim();
+    }
+
+    return `OpenRouter request failed with status ${response.status}`;
+  }
 
   async streamConversation({
     response,
@@ -39,9 +66,10 @@ export class OpenrouterChatService {
       },
     });
 
-    const upstreamResponse = await fetch(
-      'https://openrouter.ai/api/v1/chat/completions',
-      {
+    let upstreamResponse: globalThis.Response;
+
+    try {
+      upstreamResponse = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
@@ -61,11 +89,17 @@ export class OpenrouterChatService {
             },
           ],
         }),
-      },
-    );
+      });
+    } catch {
+      throw new BadGatewayException('OpenRouter 요청에 도달하지 못했습니다.');
+    }
 
-    if (!upstreamResponse.ok || !upstreamResponse.body) {
-      throw new InternalServerErrorException('OpenRouter request failed');
+    if (!upstreamResponse.ok) {
+      throw new BadGatewayException(await this.readUpstreamError(upstreamResponse));
+    }
+
+    if (!upstreamResponse.body) {
+      throw new InternalServerErrorException('OpenRouter stream body is missing');
     }
 
     response.status(201);
