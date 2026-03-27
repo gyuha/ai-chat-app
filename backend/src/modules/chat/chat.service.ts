@@ -74,7 +74,7 @@ export class ChatService {
       const openRouterResponse = await this.callOpenRouter(
         selectedModel,
         message,
-        await this.getChatHistory(chat.id),
+        await this.getChatMessagesForOpenRouter(chat.id),
       );
 
       // 어시스턴트 메시지 저장
@@ -110,7 +110,7 @@ export class ChatService {
     });
   }
 
-  private async getChatHistory(chatId: string): Promise<OpenRouterMessage[]> {
+  private async getChatMessagesForOpenRouter(chatId: string): Promise<OpenRouterMessage[]> {
     const messages = await this.prisma.message.findMany({
       where: { chatId },
       orderBy: { createdAt: 'asc' },

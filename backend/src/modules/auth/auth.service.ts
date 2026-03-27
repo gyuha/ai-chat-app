@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../common/prisma/prisma.service';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
@@ -34,10 +34,10 @@ export class AuthService {
 
     // JWT 토큰 생성
     const payload = { sub: user.id, email: user.email };
-    const accessToken = await this.jwtService.signAsync(payload);
+    const token = await this.jwtService.signAsync(payload);
 
     return {
-      accessToken,
+      token,
       user: {
         id: user.id,
         email: user.email,
@@ -65,15 +65,32 @@ export class AuthService {
 
     // JWT 토큰 생성
     const payload = { sub: user.id, email: user.email };
-    const accessToken = await this.jwtService.signAsync(payload);
+    const token = await this.jwtService.signAsync(payload);
 
     return {
-      accessToken,
+      token,
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
       },
     };
+  }
+
+  async me(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+      },
+    });
+
+    if (!user) {
+      throw new UnauthorizedException('사용자를 찾을 수 없습니다.');
+    }
+
+    return user;
   }
 }

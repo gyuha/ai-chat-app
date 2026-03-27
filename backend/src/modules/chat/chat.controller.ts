@@ -13,12 +13,12 @@ import { ChatCompletionDto } from './dto/chat-completion.dto';
 import { User } from '../../common/decorators/user.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
-@Controller('api/chat')
+@Controller('chat')
 @UseGuards(JwtAuthGuard)
 export class ChatController {
   constructor(private chatService: ChatService) {}
 
-  @Post('completions')
+  @Post()
   @HttpCode(HttpStatus.OK)
   async chatCompletion(
     @User() user: any,
@@ -32,7 +32,7 @@ export class ChatController {
     );
   }
 
-  @Get('history')
+  @Get()
   async getChatHistory(@User() user: any) {
     return this.chatService.getChatHistory(user.userId);
   }

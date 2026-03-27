@@ -18,7 +18,6 @@ ai-chat-app/
 
 - Node.js 18+
 - pnpm
-- PostgreSQL (데이터베이스)
 
 ### 설치
 
@@ -43,7 +42,7 @@ pnpm run dev
 **Backend (.env):**
 ```
 OPENROUTER_API_KEY=your_openrouter_api_key
-DATABASE_URL=postgresql://user:password@localhost:5432/ai_chat_app
+DATABASE_URL=file:./dev.db
 JWT_SECRET=your_jwt_secret
 ```
 
@@ -54,7 +53,7 @@ VITE_API_URL=http://localhost:3000
 
 ## 기술 스택
 
-- **Backend:** NestJS, Prisma, PostgreSQL
+- **Backend:** NestJS, Prisma, SQLite
 - **Frontend:** React, Vite, TypeScript
 - **UI:** shadcn/ui
 - **State:** zustand, @tanstack-query
