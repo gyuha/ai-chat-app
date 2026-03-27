@@ -1,6 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createRoute } from '@tanstack/react-router';
 import LoginPage from '@/pages/login';
 
-export const Route = createFileRoute('/')({
+export const Route = createRoute({
+  getParentRoute: () => import('./__root').then(m => m.Route),
+  path: '/',
   component: LoginPage,
-}) as never;
+}).update({
+  id: '/',
+});

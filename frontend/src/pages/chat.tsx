@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate } from '@/lib/router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,7 +22,7 @@ export default function ChatPage() {
   // 인증 확인
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate({ to: '/' });
+      navigate('/');
     }
   }, [isAuthenticated, navigate]);
 

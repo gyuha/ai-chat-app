@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate } from '@/lib/router';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -24,7 +24,7 @@ export default function LoginPage() {
     try {
       const response = await authApi.login({ email, password });
       setAuth(response.user, response.token);
-      navigate({ to: '/chat' });
+      navigate('/chat');
     } catch (err) {
       setError('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.');
     } finally {

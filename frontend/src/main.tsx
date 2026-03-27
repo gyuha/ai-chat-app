@@ -1,22 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './styles/globals.css';
-
-// Import routes
-import { Route as rootRoute } from './routes/__root';
-import { Route as indexRoute } from './routes/index';
-import { Route as chatRoute } from './routes/chat';
-
-// Create the route tree
-const routeTree = rootRoute.addChildren({
-  index: indexRoute,
-  chat: chatRoute,
-});
-
-// Create a new router instance
-const router = createRouter({ routeTree });
+import LoginPage from './pages/login';
+import ChatPage from './pages/chat';
+import { useEffect, useState } from 'react';
 
 // Create a client for TanStack Query
 const queryClient = new QueryClient({
@@ -28,17 +16,31 @@ const queryClient = new QueryClient({
   },
 });
 
-// Register the router instance for type safety
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router;
+// Simple router component
+function App() {
+  const [path, setPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => setPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigate = (newPath: string) => {
+    window.history.pushState({}, '', newPath);
+    setPath(newPath);
+  };
+
+  if (path === '/chat') {
+    return <ChatPage />;
   }
+  return <LoginPage />;
 }
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <App />
     </QueryClientProvider>
   </StrictMode>,
 );
