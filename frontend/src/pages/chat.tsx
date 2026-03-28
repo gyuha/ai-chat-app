@@ -57,6 +57,7 @@ export default function ChatPage() {
     mutationFn: chatApi.sendMessage,
     onSuccess: (data) => {
       addMessage(data.message);
+      setCurrentChat(data.chatId);
       updateChat(data.chatId, { updatedAt: new Date().toISOString() });
       queryClient.invalidateQueries({ queryKey: ['chats'] });
     },
@@ -85,7 +86,7 @@ export default function ChatPage() {
 
     setLoading(true);
     try {
-      await sendMessageMutation.mutateAsync({ message });
+      await sendMessageMutation.mutateAsync({ message, chatId: currentChatId ?? undefined });
     } finally {
       setLoading(false);
     }

@@ -31,83 +31,55 @@ export class ChatService {
   ) {}
 
   async chatCompletion(userId: string, message: string, chatId?: string, model?: string) {
-    const defaultModel = 'google/gemma-2-9b-it:free';
+    const defaultModel = 'openrouter/auto:free';
     const selectedModel = model || defaultModel;
 
-    // 트랜잭션으로 처리
-    return this.prisma.$transaction(async (prisma) => {
-      let chat;
+    let chat;
 
-      if (chatId) {
-        // 기존 채팅 확인
-        chat = await prisma.chat.findUnique({
-          where: { id: chatId },
-        });
-
-        if (!chat) {
-          throw new NotFoundException('채팅을 찾을 수 없습니다.');
-        }
-
-        if (chat.userId !== userId) {
-          throw new ForbiddenException('접근 권한이 없습니다.');
-        }
-      } else {
-        // 새 채팅 생성
-        chat = await prisma.chat.create({
-          data: {
-            userId,
-            title: message.substring(0, 30) + '...', // 첫 메시지 약 30자로 제목 생성
-          },
-        });
-      }
-
-      // 사용자 메시지 저장
-      await prisma.message.create({
-        data: {
-          chatId: chat.id,
-          role: 'user',
-          content: message,
-        },
+    if (chatId) {
+      chat = await this.prisma.chat.findUnique({ where: { id: chatId } });
+      if (!chat) throw new NotFoundException('채팅을 찾을 수 없습니다.');
+      if (chat.userId !== userId) throw new ForbiddenException('접근 권한이 없습니다.');
+    } else {
+      chat = await this.prisma.chat.create({
+        data: { userId, title: message.substring(0, 30) + '...' },
       });
+    }
 
-      // OpenRouter API 호출
-      const openRouterResponse = await this.callOpenRouter(
-        selectedModel,
-        message,
-        await this.getChatMessagesForOpenRouter(chat.id),
-      );
+    // 히스토리 조회 (유저 메시지 저장 전)
+    const history = await this.getChatMessagesForOpenRouter(chat.id);
 
-      // 어시스턴트 메시지 저장
-      const assistantMessage = openRouterResponse.choices[0]?.message?.content;
-
-      if (!assistantMessage) {
-        throw new Error('OpenRouter 응답이 없습니다.');
-      }
-
-      await prisma.message.create({
-        data: {
-          chatId: chat.id,
-          role: 'assistant',
-          content: assistantMessage,
-        },
-      });
-
-      // 채팅 업데이트
-      await prisma.chat.update({
-        where: { id: chat.id },
-        data: { updatedAt: new Date() },
-      });
-
-      return {
-        chatId: chat.id,
-        message: {
-          id: crypto.randomUUID(),
-          role: 'assistant' as const,
-          content: assistantMessage,
-          createdAt: new Date().toISOString(),
-        },
-      };
+    // 사용자 메시지 저장
+    await this.prisma.message.create({
+      data: { chatId: chat.id, role: 'user', content: message },
     });
+
+    // OpenRouter API 호출 (트랜잭션 밖에서 수행 - DB 락 방지)
+    const openRouterResponse = await this.callOpenRouter(selectedModel, message, history);
+    const assistantMessage = openRouterResponse.choices[0]?.message?.content;
+
+    if (!assistantMessage) {
+      throw new Error('OpenRouter 응답이 없습니다.');
+    }
+
+    // 어시스턴트 메시지 저장 및 채팅 업데이트
+    await this.prisma.message.create({
+      data: { chatId: chat.id, role: 'assistant', content: assistantMessage },
+    });
+    await this.prisma.chat.update({
+      where: { id: chat.id },
+      data: { updatedAt: new Date() },
+    });
+
+    return {
+      chatId: chat.id,
+      message: {
+        id: crypto.randomUUID(),
+        role: 'assistant' as const,
+        content: assistantMessage,
+        createdAt: new Date().toISOString(),
+      },
+    };
   }
 
   private async getChatMessagesForOpenRouter(chatId: string): Promise<OpenRouterMessage[]> {
