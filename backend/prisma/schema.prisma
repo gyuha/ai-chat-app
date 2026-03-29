@@ -32,6 +32,7 @@ model Message {
   id        String   @id @default(uuid())
   content   String
   role      String
+  status    String   @default("completed")
   chatId    String
   chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())

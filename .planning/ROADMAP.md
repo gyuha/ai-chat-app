@@ -84,7 +84,11 @@
 7. 사용자가 대화별 시스템 프롬프트를 설정할 수 있다
 8. API rate limit(429) 발생 시 사용자 친화적 메시지와 재시도 버튼이 표시된다
 
-**계획:** TBD
+**계획:** 4개
+- [ ] [03-01-PLAN.md](.planning/phases/03-chat-core/03-01-PLAN.md) — 백엔드 채팅 기초 및 OpenRouter 통합
+- [ ] [03-02-PLAN.md](.planning/phases/03-chat-core/03-02-PLAN.md) — 스트리밍 메시징 API 구현
+- [ ] [03-03-PLAN.md](.planning/phases/03-chat-core/03-03-PLAN.md) — 프론트엔드 채팅 UI 구현
+- [ ] [03-04-PLAN.md](.planning/phases/03-chat-core/03-04-PLAN.md) — 고급 기능 구현 (제목 생성, 시스템 프롬프트, Rate Limit 처리)
 
 **UI 힌트:** yes
 
