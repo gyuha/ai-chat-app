@@ -1,0 +1,17 @@
+{
+  "name": "gsd-glm",
+  "private": true,
+  "version": "0.1.0",
+  "description": "OpenRouter Free Chat Web App",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\"",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "install:all": "pnpm install"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.0",
+    "typescript": "^6.0.0",
+    "concurrently": "^9.1.2"
+  }
+}
