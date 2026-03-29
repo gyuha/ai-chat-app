@@ -7,7 +7,7 @@
 ## 단계
 
 - [x] **1단계: 프로젝트 설정** - pnpm workspace, 공통 의존성, Prisma 스키마, 개발 환경 구성
-- [ ] **2단계: 인증 시스템** - 이메일/비밀번호 회원가입, JWT 기반 세션 관리, 인증 UI
+- [x] **2단계: 인증 시스템** - 이메일/비밀번호 회원가입, JWT 기반 세션 관리, 인증 UI
 - [ ] **3단계: 채팅 핵심** - SSE 스트리밍, 대화/메시지 CRUD, OpenRouter 프록시, Stop/Regenerate
 - [ ] **4단계: UI/UX 구현** - 반응형 레이아웃, 마크다운 렌더링, 다크 모드, 상태 UI, 자동 스크롤
 - [ ] **5단계: 보안 및 안정화** - API 키 보안, JWT 자동 갱신, Rate Limiting 처리, DTO 검증
@@ -17,7 +17,7 @@
 | 단계 | 계획 완료 | 상태 | 완료일 |
 |------|-----------|------|--------|
 | 1. 프로젝트 설정 | 2/2 | 완료 | 2026-03-29 |
-| 2. 인증 시스템 | 2/2 | 계획 완료 | - |
+| 2. 인증 시스템 | 2/2 | 완료 | 2026-03-29 |
 | 3. 채팅 핵심 | 0/3 | 시작 안 함 | - |
 | 4. UI/UX 구현 | 0/2 | 시작 안 함 | - |
 | 5. 보안 및 안정화 | 0/2 | 시작 안 함 | - |
@@ -59,8 +59,8 @@
 4. JWT 토큰이 만료 5분 전에 자동 갱신되어 긴 대화 중 세션이 끊기지 않는다
 
 **계획:** 2개
-- [ ] [02-01-PLAN.md](.planning/phases/02-auth-system/02-01-PLAN.md) — NestJS Passport/JWT 기반 백엔드 인증 시스템 구축
-- [ ] [02-02-PLAN.md](.planning/phases/02-auth-system/02-02-PLAN.md) — React + Zustand 기반 프론트엔드 인증 UI 및 상태 관리
+- [x] [02-01-PLAN.md](.planning/phases/02-auth-system/02-01-PLAN.md) — NestJS Passport/JWT 기반 백엔드 인증 시스템 구축
+- [x] [02-02-PLAN.md](.planning/phases/02-auth-system/02-02-PLAN.md) — React + Zustand 기반 프론트엔드 인증 UI 및 상태 관리
 
 **UI 힌트:** yes
 
@@ -147,4 +147,4 @@
 
 ## 다음 단계
 
-계획 완료 후: `/gsd:execute-phase 02`
+계획 수립 필요: `/gsd:plan-phase 03` (채팅 핵심)
