@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 1 execution documented
-last_updated: "2026-03-29T14:23:24Z"
-last_activity: 2026-03-29 — Phase 1 구현, 검증, 문서화 완료
+stopped_at: Phase 2 discussion and planning complete
+last_updated: "2026-03-29T14:29:10Z"
+last_activity: 2026-03-29 — Phase 2 discuss-phase auto와 plan 생성 완료
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 3
+  total_plans: 6
   completed_plans: 3
   percent: 17
 ---
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-03-29)
 ## Current Position
 
 Phase: 2 of 6 (Conversational Shell UI)
-Plan: 0 of 3 in current phase
-Status: Ready to discuss
-Last activity: 2026-03-29 — Phase 1 구현, 검증, 문서화 완료
+Plan: 1 of 3 in current phase
+Status: Ready to execute
+Last activity: 2026-03-29 — Phase 2 discuss-phase auto와 plan 생성 완료
 
 Progress: [██░░░░░░░░] 17%
 
@@ -75,6 +75,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T14:23:24Z
-Stopped at: Phase 1 execution documented
-Resume file: .planning/ROADMAP.md
+Last session: 2026-03-29T14:29:10Z
+Stopped at: Phase 2 discussion and planning complete
+Resume file: .planning/phases/02-conversational-shell-ui/02-01-PLAN.md
