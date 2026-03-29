@@ -71,4 +71,36 @@ export class OpenRouterService {
       return 'New Chat';
     }
   }
+
+  private handleOpenRouterError(error: any): string {
+    if (error.status === 429) {
+      const retryAfter = error.headers?.['retry-after'];
+      const waitTime = retryAfter ? `${retryAfter}초` : '잠시';
+      return `요청이 너무 많습니다. ${waitTime} 후 다시 시도해주세요.`;
+    }
+
+    if (error.status === 401) {
+      return 'API 인증에 실패했습니다. 관리자에게 문의해주세요.';
+    }
+
+    if (error.status === 500) {
+      return '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+    }
+
+    return error.message || '알 수 없는 오류가 발생했습니다.';
+  }
+
+  async streamChatWithErrorHandling(
+    messages: Array<{ role: string; content: string }>,
+    model?: string,
+    abortSignal?: AbortSignal,
+  ) {
+    try {
+      return await this.streamChat(messages, model, abortSignal);
+    } catch (error) {
+      const userMessage = this.handleOpenRouterError(error);
+      this.logger.error(`OpenRouter error: ${userMessage}`, error);
+      throw new Error(userMessage);
+    }
+  }
 }
