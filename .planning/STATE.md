@@ -1,3 +1,16 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: unknown
+last_updated: "2026-03-29T12:09:12.298Z"
+progress:
+  total_phases: 1
+  completed_phases: 1
+  total_plans: 2
+  completed_plans: 2
+---
+
 # 프로젝트 상태: OpenRouter Free Chat Web App
 
 **마지막 업데이트:** 2026-03-29
@@ -5,9 +18,11 @@
 ## 프로젝트 참조
 
 ### 핵심 가치
+
 사용자가 무료 AI 모델과 실시간 스트리밍으로 자연스럽게 대화할 수 있는 채팅 경험. 모든 기능은 이 핵심 흐름 — 질문하고 스트리밍 응답을 받는 것 — 을 방해하지 않아야 한다.
 
 ### 현재 초점
+
 프로젝트 인프라 설정과 인증 시스템 구현. pnpm workspace 모노레po 아키텍처로 NestJS 백엔드(OpenRouter 프록시, 인증)와 React 프론트엔드(채팅 UI)를 동시에 개발 중입니다.
 
 ## 현재 위치
@@ -17,6 +32,7 @@
 **상태:** 진행 중
 
 **진행률:**
+
 ```
 1단계: [██░░░░░░░░] 20% (2/10 계획 완료)
 2단계: [░░░░░░░░░░] 0%
@@ -62,12 +78,15 @@
 5. **모노레포 의존성 호이스팅 충돌** — 루트 package.json에 공통 의존성 선언 필요
 
 ### 해결된 차단 요소
+
 없음 (프로젝트 초기)
 
 ### 활성 차단 요소
+
 없음
 
 ### 할 일 목록
+
 - ~~1단계: pnpm workspace 설정~~ (완료)
 - ~~1단계: NestJS 기본 구조 생성 (main.ts, app.module.ts)~~ (완료)
 - ~~1단계: Prisma 스키마 정의~~ (완료)
@@ -81,6 +100,7 @@
 **다음 작업:** 01-03 계획 실행 (인증 모듈 구현)
 
 ### 컨텍스트 메모
+
 - OpenRouter 무료 API 활용 채팅 앱
 - NestJS 백엔드로 API 키 보호
 - React + shadcn/ui 프론트엔드
