@@ -19,7 +19,8 @@
       "@nestjs/core",
       "@prisma/engines",
       "prisma",
-      "bcrypt"
+      "bcrypt",
+      "better-sqlite3"
     ]
   }
 }

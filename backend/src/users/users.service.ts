@@ -30,6 +30,10 @@ export class UsersService {
     });
   }
 
+  async findByRefreshToken(refreshToken: string) {
+    return this.prisma.user.findUnique({ where: { refreshToken } });
+  }
+
   async updateRefreshToken(userId: string, refreshToken: string | null) {
     return this.prisma.user.update({
       where: { id: userId },

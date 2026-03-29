@@ -1,9 +1,13 @@
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
+import cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Cookie parser 미들웨어 (리프레시 토큰 쿠키 파싱용)
+  app.use(cookieParser());
 
   // BACK-04: DTO 기반 검증 활성화
   app.useGlobalPipes(
@@ -11,7 +15,7 @@ async function bootstrap() {
       whitelist: true, // DTO에 정의되지 않은 속성 제거
       forbidNonWhitelisted: true, // 정의되지 않은 속성 있으면 에러
       transform: true, // 타입 변환 활성화
-    })
+    }),
   );
 
   // CORS 설정

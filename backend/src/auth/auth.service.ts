@@ -50,6 +50,17 @@ export class AuthService {
     return tokens;
   }
 
+  async refreshWithToken(refreshToken: string) {
+    // DB에서 리프레시 토큰으로 사용자 조회
+    const user = await this.usersService.findByRefreshToken(refreshToken);
+    if (!user) {
+      throw new UnauthorizedException("유효하지 않은 리프레시 토큰입니다");
+    }
+    const tokens = await this.generateTokens(user.id, user.email);
+    await this.saveRefreshToken(user.id, tokens.refreshToken);
+    return tokens;
+  }
+
   async logout(userId: string) {
     await this.usersService.updateRefreshToken(userId, null);
   }
