@@ -7,7 +7,7 @@
         "noExplicitAny": "warn"
       },
       "style": {
-        "noVar": "error"
+        "noNamespace": "error"
       },
       "correctness": {
         "noUnusedVariables": "warn"
@@ -42,11 +42,15 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": [
-      "node_modules",
-      "dist",
-      ".next",
-      "coverage"
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/.next",
+      "!**/coverage",
+      "!.claude",
+      "!frontend",
+      "!.planning"
     ]
   }
 }
