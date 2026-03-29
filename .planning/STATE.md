@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-29T12:09:12.298Z"
+status: Executing Phase 02
+last_updated: "2026-03-29T13:05:16.566Z"
 progress:
-  total_phases: 1
+  total_phases: 2
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 4
+  completed_plans: 3
 ---
 
 # 프로젝트 상태: OpenRouter Free Chat Web App
@@ -23,19 +23,19 @@ progress:
 
 ### 현재 초점
 
-프로젝트 인프라 설정과 인증 시스템 구현. pnpm workspace 모노레po 아키텍처로 NestJS 백엔드(OpenRouter 프록시, 인증)와 React 프론트엔드(채팅 UI)를 동시에 개발 중입니다.
+Phase 02 인증 시스템 구현 완료. 백엔드 인증 API가 모두 구현됨. 프론트엔드 인증 연동 진행 예정.
 
 ## 현재 위치
 
-**현재 단계:** 1단계 - 프로젝트 설정
-**현재 계획:** 01-02 (완료)
+**현재 단계:** 2단계 - 인증 시스템
+**현재 계획:** 02-01 (완료)
 **상태:** 진행 중
 
 **진행률:**
 
 ```
 1단계: [██░░░░░░░░] 20% (2/10 계획 완료)
-2단계: [░░░░░░░░░░] 0%
+2단계: [████████░░] 75% (3/4 계획 완료)
 3단계: [░░░░░░░░░░] 0%
 4단계: [░░░░░░░░░░] 0%
 5단계: [░░░░░░░░░░] 0%
@@ -44,11 +44,12 @@ progress:
 ## 성능 지표
 
 **단계 완료:** 0/5
-**계획 완료:** 2/11
-**요구사항 충족:** 1/29 (BACK-04)
+**계획 완료:** 3/4
+**요구사항 충족:** 5/29 (BACK-04, AUTH-01, AUTH-02, AUTH-03, SEC-02)
 
 **Phase 01-01 완료 시간:** 48초 (2026-03-29)
 **Phase 01-02 완료 시간:** 13분 (2026-03-29)
+**Phase 02-01 완료 시간:** 27분 (2026-03-29)
 
 ## 누적 컨텍스트
 
@@ -65,9 +66,12 @@ progress:
 | Biome (ESLint/Prettier 대체) | 빠르고 통합된 린트/포맷팅 | 구현 예정 |
 | 다크 모드 우선 | 채팅 앱 사용자 선호도 반영 | 구현 예정 |
 | SSE 기반 스트리밍 | 구현 단순성, 브라우저 호환성 | 구현 예정 |
-| Prisma v7 설정 | schema.prisma에서 url 제거, prisma.config.ts 사용 | 완료 (01-02) |
-| Biome v2 호환 | noNamespace, includes 패턴 사용 | 완료 (01-02) |
-| 인증 v1 포함 | 사용자별 대화 분리, 실서비스 수준 | 구현 예정 |
+| Prisma v7 설정 | schema.prisma에서 url 제거, prisma.config.ts 사용 | ✅ 완료 (01-02) |
+| Biome v2 호환 | noNamespace, includes 패턴 사용 | ✅ 완료 (01-02) |
+| 인증 v1 포함 | 사용자별 대화 분리, 실서비스 수준 | ✅ 완료 (02-01) |
+| Prisma v7 library 엔진 + better-sqlite3 adapter | client 엔진은 adapter/accelerate 필수, library + adapter로 해결 | ✅ 완료 (02-01) |
+| opaque 리프레시 토큰 | JWT 대신 DB 저장 방식으로 서버 사이드 무효화 지원 | ✅ 완료 (02-01) |
+| httpOnly 쿠키 경로 제한 | /api/auth/refresh로 제한하여 CSRF 방어 | ✅ 완료 (02-01) |
 
 ### 주요 위험 요소
 
@@ -79,7 +83,7 @@ progress:
 
 ### 해결된 차단 요소
 
-없음 (프로젝트 초기)
+- **Prisma v7 client 엔진 호환성** (02-01): engineType="library" + @prisma/adapter-better-sqlite3로 해결
 
 ### 활성 차단 요소
 
@@ -92,12 +96,14 @@ progress:
 - ~~1단계: Prisma 스키마 정의~~ (완료)
 - ~~1단계: Biome 구성~~ (완료)
 - ~~1단계: 환경변수 관리 설정~~ (완료)
+- ~~2단계: 백엔드 인증 API (register, login, refresh, logout, me)~~ (완료)
+- ~~2단계: Passport/JWT 전략 및 가드 구현~~ (완료)
 
 ## 세션 연속성
 
 **마지막 세션:** 2026-03-29
-**마지막 작업:** 01-02 완료 (NestJS 백엔드 기본 구조)
-**다음 작업:** 01-03 계획 실행 (인증 모듈 구현)
+**마지막 작업:** 02-01 완료 (백엔드 인증 시스템)
+**다음 작업:** 02-02 계획 실행 (프론트엔드 인증 연동)
 
 ### 컨텍스트 메모
 
@@ -107,9 +113,11 @@ progress:
 - SSE 기반 토큰 단위 스트리밍
 - 인증 시스템 포함 (이메일/비밀번호)
 - 다크 모드 우선, 반응형 레이아웃
+- JWT 듀얼 토큰 (액세스 15분 / 리프레시 7일)
+- httpOnly 쿠키로 리프레시 토큰 전달
 
 ---
 
 이 문서는 각 단계 전환과 마일스톤 완료 시 업데이트됩니다.
 
-*Last updated: 2026-03-29 after 01-02 completion*
+*Last updated: 2026-03-29 after 02-01 completion*

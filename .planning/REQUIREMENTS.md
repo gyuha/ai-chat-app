@@ -9,9 +9,9 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: 사용자는 이메일/비밀번호로 회원가입할 수 있다
-- [ ] **AUTH-02**: 사용자는 로그인 후 브라우저 새로고침 시에도 세션이 유지된다
-- [ ] **AUTH-03**: 사용자는 모든 페이지에서 로그아웃할 수 있다
+- [x] **AUTH-01**: 사용자는 이메일/비밀번호로 회원가입할 수 있다
+- [x] **AUTH-02**: 사용자는 로그인 후 브라우저 새로고침 시에도 세션이 유지된다
+- [x] **AUTH-03**: 사용자는 모든 페이지에서 로그아웃할 수 있다
 
 ### Chat Core
 
@@ -55,7 +55,7 @@
 ### Security
 
 - [ ] **SEC-01**: API 키가 환경변수로 관리되며 클라이언트에 절대 노출되지 않는다
-- [ ] **SEC-02**: JWT 토큰이 자동 갱신되어 긴 대화 중 세션 만료를 방지한다
+- [x] **SEC-02**: JWT 토큰이 자동 갱신되어 긴 대화 중 세션 만료를 방지한다
 
 ## v2 요구사항
 
@@ -95,9 +95,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | 2단계 | Pending |
-| AUTH-02 | 2단계 | Pending |
-| AUTH-03 | 2단계 | Pending |
+| AUTH-01 | 2단계 | Complete |
+| AUTH-02 | 2단계 | Complete |
+| AUTH-03 | 2단계 | Complete |
 | CHAT-01 | 3단계 | Pending |
 | CHAT-02 | 3단계 | Pending |
 | CHAT-03 | 3단계 | Pending |
@@ -123,7 +123,7 @@
 | BACK-05 | 3단계 | Pending |
 | BACK-06 | 5단계 | Pending |
 | SEC-01 | 5단계 | Pending |
-| SEC-02 | 2단계 | Pending |
+| SEC-02 | 2단계 | Complete |
 
 **Coverage:**
 - v1 요구사항: 29개 전체
