@@ -1,0 +1,135 @@
+# Requirements: OpenRouter Free Chat Web App
+
+**Defined:** 2026-03-29
+**Core Value:** 사용자가 무료 AI 모델과 실시간 스트리밍으로 자연스럽게 대화할 수 있는 채팅 경험
+
+## v1 Requirements
+
+초기 릴리즈 요구사항. 각 요구사항은 로드맵 phase에 매핑됨.
+
+### Authentication
+
+- [ ] **AUTH-01**: 사용자는 이메일/비밀번호로 회원가입할 수 있다
+- [ ] **AUTH-02**: 사용자는 로그인 후 브라우저 새로고침 시에도 세션이 유지된다
+- [ ] **AUTH-03**: 사용자는 모든 페이지에서 로그아웃할 수 있다
+
+### Chat Core
+
+- [ ] **CHAT-01**: 사용자는 메시지를 전송하고 SSE 기반 토큰 단위 스트리밍 응답을 받을 수 있다
+- [ ] **CHAT-02**: 사용자는 AI 응답 생성 중 "Stop generating"으로 중단할 수 있다
+- [ ] **CHAT-03**: 사용자는 마지막 AI 응답을 재생성(Regenerate)할 수 있다
+- [ ] **CHAT-04**: 사용자는 대화별 시스템 프롬프트를 설정할 수 있다
+
+### Conversation Management
+
+- [ ] **CONV-01**: 사용자는 새 대화를 생성할 수 있다
+- [ ] **CONV-02**: 사용자는 사이드바에서 대화 목록을 최근 순으로 조회할 수 있다
+- [ ] **CONV-03**: 사용자는 대화를 삭제할 수 있다 (확인 다이얼로그 포함)
+- [ ] **CONV-04**: 대화 제목이 첫 메시지를 기반으로 자동 생성된다
+
+### Content Display
+
+- [ ] **DISP-01**: AI 응답이 마크다운으로 렌더링된다 (코드 블록, 표, 목록 포함)
+- [ ] **DISP-02**: 사용자는 코드 블록을 원클릭으로 복사할 수 있다
+- [ ] **DISP-03**: 다크 모드가 기본이며 토글 전환이 가능하다
+- [ ] **DISP-04**: 사용자는 AI 전체 응답을 복사할 수 있다
+
+### UI/UX
+
+- [ ] **UIUX-01**: 레이아웃이 반응형이다 (모바일 지원, 사이드바 접기/펴기)
+- [ ] **UIUX-02**: AI 응답 생성 중 로딩 상태가 표시된다
+- [ ] **UIUX-03**: 새 대화 빈 화면에 온보딩 안내/추천 프롬프트가 표시된다
+- [ ] **UIUX-04**: 에러 발생 시 사용자 친화적 메시지와 재시도 버튼이 표시된다
+- [ ] **UIUX-05**: 멀티라인 입력창이 자동 높이 조절된다 (Enter 전송, Shift+Enter 줄바꿈)
+- [ ] **UIUX-06**: 스트리밍 중 자동 스크롤, 사용자 스크롤 시 일시 정지, 하단 이동 버튼
+
+### Backend
+
+- [ ] **BACK-01**: 백엔드가 OpenRouter API를 프록시한다 (클라이언트에 API 키 노출 금지)
+- [ ] **BACK-02**: 서버에서 사용 가능 모델 allowlist를 관리한다
+- [ ] **BACK-03**: API rate limit 에러(429)를 사용자 친화적으로 처리한다
+- [ ] **BACK-04**: 모든 API 입력이 DTO 기반으로 검증된다
+- [ ] **BACK-05**: SSE/chunked streaming으로 토큰 단위 응답을 전달한다
+- [ ] **BACK-06**: 에러 메시지가 사용자 친화적으로 변환된다
+
+### Security
+
+- [ ] **SEC-01**: API 키가 환경변수로 관리되며 클라이언트에 절대 노출되지 않는다
+- [ ] **SEC-02**: JWT 토큰이 자동 갱신되어 긴 대화 중 세션 만료를 방지한다
+
+## v2 Requirements
+
+향후 릴리즈로 연기. 현재 로드맵에 포함되지 않음.
+
+### Model
+
+- **MODEL-01**: 사용자가 대화 중 모델을 전환할 수 있다
+- **MODEL-02**: 모델 선택 UI에서 모델 설명과 컨텍스트 길이를 확인할 수 있다
+
+### Authentication Extended
+
+- **AUTH-04**: 사용자가 OAuth로 소셜 로그인할 수 있다 (Google, GitHub)
+- **AUTH-05**: 사용자가 2FA를 설정할 수 있다
+
+### Advanced UX
+
+- **UXADV-01**: 토큰 사용량이 메시지별로 시각화된다
+- **UXADV-02**: 키보드 단축키가 지원된다 (Cmd+K 새 대화 등)
+- **UXADV-03**: 파일 업로드/이미지 분석이 가능하다
+- **UXADV-04**: 음성 입력/출력이 가능하다
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| 실시간 다자 채팅 (WebSocket) | 복잡도 폭증, 단일 사용자 채팅에 집중 |
+| 커스텀 모델 파인튜닝 | OpenRouter 제공 모델 사용에 집중 |
+| 결제/구독 시스템 | 무료 모델 v1 목적과 상충 |
+| 모바일 네이티브 앱 | 웹 우선, 반응형으로 모바일 대응 |
+| 대화 폴더/아카이빙 | 기본 대화 관리로 충분 |
+| 관리자 대시보드 | 단일 사용자/소규모 서비스에 불필요 |
+
+## Traceability
+
+각 요구사항이 어느 phase에 포함되는지. 로드맵 생성 시 업데이트.
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| AUTH-01 | — | Pending |
+| AUTH-02 | — | Pending |
+| AUTH-03 | — | Pending |
+| CHAT-01 | — | Pending |
+| CHAT-02 | — | Pending |
+| CHAT-03 | — | Pending |
+| CHAT-04 | — | Pending |
+| CONV-01 | — | Pending |
+| CONV-02 | — | Pending |
+| CONV-03 | — | Pending |
+| CONV-04 | — | Pending |
+| DISP-01 | — | Pending |
+| DISP-02 | — | Pending |
+| DISP-03 | — | Pending |
+| DISP-04 | — | Pending |
+| UIUX-01 | — | Pending |
+| UIUX-02 | — | Pending |
+| UIUX-03 | — | Pending |
+| UIUX-04 | — | Pending |
+| UIUX-05 | — | Pending |
+| UIUX-06 | — | Pending |
+| BACK-01 | — | Pending |
+| BACK-02 | — | Pending |
+| BACK-03 | — | Pending |
+| BACK-04 | — | Pending |
+| BACK-05 | — | Pending |
+| BACK-06 | — | Pending |
+| SEC-01 | — | Pending |
+| SEC-02 | — | Pending |
+
+**Coverage:**
+- v1 requirements: 29 total
+- Mapped to phases: 0
+- Unmapped: 29 ⚠️
+
+---
+*Requirements defined: 2026-03-29*
+*Last updated: 2026-03-29 after initial definition*
