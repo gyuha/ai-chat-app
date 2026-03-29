@@ -49,6 +49,13 @@ export class MemoryChatRepository implements ChatRepository {
     chat.updatedAt = this.nextTimestamp();
   }
 
+  async replaceMessages(chatId: string, messages: ChatMessage[]) {
+    const chat = this.chats.get(chatId);
+    if (!chat) return;
+    chat.messages = messages;
+    chat.updatedAt = this.nextTimestamp();
+  }
+
   async updateTitle(chatId: string, title: string) {
     const chat = this.chats.get(chatId);
     if (!chat) return;

@@ -1,22 +1,37 @@
-import type { ChatMessage } from '@repo/contracts';
+import type { ChatMessage, StreamMode } from '@repo/contracts';
 import { create } from 'zustand';
+
+export interface ChatStreamSession {
+  mode: StreamMode;
+  status: 'streaming' | 'stopped' | 'error';
+  abortController: AbortController | null;
+  optimisticUser?: ChatMessage;
+  assistantDraft?: ChatMessage;
+  replaceMessageId?: string;
+  error?: string;
+  liveMessage: string;
+  shouldAutoScroll: boolean;
+}
 
 interface ChatShellState {
   drafts: Record<string, string>;
-  localMessages: Record<string, ChatMessage[]>;
   pendingPrompt: string | null;
+  streamSessions: Record<string, ChatStreamSession | undefined>;
   setDraft: (chatId: string, value: string) => void;
   queuePrompt: (prompt: string | null) => void;
-  consumePendingPrompt: (chatId: string) => void;
-  appendLocalMessage: (chatId: string, content: string) => void;
+  consumePendingPrompt: () => string | null;
+  setStreamSession: (chatId: string, session: ChatStreamSession) => void;
+  updateStreamSession: (
+    chatId: string,
+    updater: (session: ChatStreamSession) => ChatStreamSession,
+  ) => void;
+  clearStreamSession: (chatId: string) => void;
 }
-
-const createMessageId = () => crypto.randomUUID();
 
 export const useChatShellStore = create<ChatShellState>((set) => ({
   drafts: {},
-  localMessages: {},
   pendingPrompt: null,
+  streamSessions: {},
   setDraft: (chatId, value) =>
     set((state) => ({
       drafts: {
@@ -25,41 +40,45 @@ export const useChatShellStore = create<ChatShellState>((set) => ({
       },
     })),
   queuePrompt: (prompt) => set({ pendingPrompt: prompt }),
-  consumePendingPrompt: (chatId) =>
+  consumePendingPrompt: () => {
+    let nextPrompt: string | null = null;
+
     set((state) => {
-      if (!state.pendingPrompt) {
+      nextPrompt = state.pendingPrompt;
+      return {
+        pendingPrompt: null,
+      };
+    });
+
+    return nextPrompt;
+  },
+  setStreamSession: (chatId, session) =>
+    set((state) => ({
+      streamSessions: {
+        ...state.streamSessions,
+        [chatId]: session,
+      },
+    })),
+  updateStreamSession: (chatId, updater) =>
+    set((state) => {
+      const current = state.streamSessions[chatId];
+      if (!current) {
         return state;
       }
 
-      const existingDraft = state.drafts[chatId];
-      if (existingDraft?.trim()) {
-        return {
-          pendingPrompt: null,
-        };
-      }
-
       return {
-        drafts: {
-          ...state.drafts,
-          [chatId]: state.pendingPrompt,
+        streamSessions: {
+          ...state.streamSessions,
+          [chatId]: updater(current),
         },
-        pendingPrompt: null,
       };
     }),
-  appendLocalMessage: (chatId, content) =>
-    set((state) => ({
-      localMessages: {
-        ...state.localMessages,
-        [chatId]: [
-          ...(state.localMessages[chatId] ?? []),
-          {
-            id: createMessageId(),
-            role: 'user',
-            content,
-            createdAt: new Date().toISOString(),
-            status: 'complete',
-          },
-        ],
-      },
-    })),
+  clearStreamSession: (chatId) =>
+    set((state) => {
+      const next = { ...state.streamSessions };
+      delete next[chatId];
+      return {
+        streamSessions: next,
+      };
+    }),
 }));

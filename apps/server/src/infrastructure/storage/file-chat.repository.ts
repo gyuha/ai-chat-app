@@ -91,6 +91,14 @@ export class FileChatRepository implements ChatRepository {
     await this.save(chat);
   }
 
+  async replaceMessages(chatId: string, messages: ChatMessage[]) {
+    const chat = await this.load(chatId);
+    if (!chat) return;
+    chat.messages = messages;
+    chat.updatedAt = this.nextTimestamp();
+    await this.save(chat);
+  }
+
   async updateTitle(chatId: string, title: string) {
     const chat = await this.load(chatId);
     if (!chat) return;

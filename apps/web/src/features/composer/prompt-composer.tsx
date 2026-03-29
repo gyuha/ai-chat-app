@@ -5,6 +5,8 @@ import { useChatShellStore } from '../../store/ui/chat-shell-store';
 
 interface PromptComposerProps {
   chatId: string;
+  isStreaming?: boolean;
+  onAbort?: () => void;
   onSubmit: (value: string) => void;
 }
 
@@ -14,7 +16,12 @@ const resizeTextarea = (textarea: HTMLTextAreaElement) => {
   textarea.style.height = `${Math.max(nextHeight, 72)}px`;
 };
 
-export const PromptComposer = ({ chatId, onSubmit }: PromptComposerProps) => {
+export const PromptComposer = ({
+  chatId,
+  isStreaming = false,
+  onAbort,
+  onSubmit,
+}: PromptComposerProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const draft = useChatShellStore((state) => state.drafts[chatId] ?? '');
   const setDraft = useChatShellStore((state) => state.setDraft);
@@ -46,6 +53,7 @@ export const PromptComposer = ({ chatId, onSubmit }: PromptComposerProps) => {
       <textarea
         aria-label="메시지 입력"
         className="min-h-[72px] w-full resize-none border-0 bg-transparent px-2 py-2 text-[15px] leading-7 text-slate-100 placeholder:text-slate-500 focus:outline-none"
+        disabled={isStreaming}
         id={`prompt-composer-${chatId}`}
         onChange={(event) => {
           setDraft(chatId, event.target.value);
@@ -68,11 +76,19 @@ export const PromptComposer = ({ chatId, onSubmit }: PromptComposerProps) => {
 
       <div className="flex items-center justify-between gap-3 border-t border-slate-900 px-2 pt-3">
         <p className="text-xs text-slate-500">
-          Internal API only. Streaming controls arrive in Phase 3.
+          {isStreaming
+            ? 'Streaming response from the internal API proxy.'
+            : 'Internal API only. Stop and regenerate are available now.'}
         </p>
-        <Button onClick={submit} size="sm" type="button">
-          Send
-        </Button>
+        {isStreaming ? (
+          <Button onClick={onAbort} size="sm" type="button" variant="secondary">
+            Stop generating
+          </Button>
+        ) : (
+          <Button onClick={submit} size="sm" type="button">
+            Send
+          </Button>
+        )}
       </div>
     </div>
   );

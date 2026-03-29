@@ -21,4 +21,16 @@ describe('PromptComposer', () => {
 
     expect(onSubmit).toHaveBeenCalledWith('Hello\nWorld');
   });
+
+  it('shows stop action while streaming', async () => {
+    const user = userEvent.setup();
+    const onAbort = vi.fn();
+
+    render(<PromptComposer chatId="chat-1" isStreaming onAbort={onAbort} onSubmit={vi.fn()} />);
+
+    const stopButton = screen.getByRole('button', { name: 'Stop generating' });
+    await user.click(stopButton);
+
+    expect(onAbort).toHaveBeenCalledTimes(1);
+  });
 });

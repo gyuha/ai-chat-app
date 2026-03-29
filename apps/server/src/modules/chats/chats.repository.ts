@@ -11,5 +11,6 @@ export interface ChatRepository {
   create(input: CreateChatInput): Promise<ChatDetail>;
   delete(chatId: string): Promise<void>;
   appendMessage(chatId: string, message: ChatMessage): Promise<void>;
+  replaceMessages(chatId: string, messages: ChatMessage[]): Promise<void>;
   updateTitle(chatId: string, title: string): Promise<void>;
 }

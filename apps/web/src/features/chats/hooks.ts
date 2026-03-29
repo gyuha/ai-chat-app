@@ -1,16 +1,25 @@
 import type { ChatDetail, ChatSummary } from '@repo/contracts';
+import type { QueryClient } from '@tanstack/react-query';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 
 import { createChat, fetchChatDetail, fetchChats, fetchModels } from '../../lib/api';
 import { useChatShellStore } from '../../store/ui/chat-shell-store';
 
-const toSummary = (chat: ChatDetail): ChatSummary => ({
+export const toChatSummary = (chat: ChatDetail): ChatSummary => ({
   id: chat.id,
   title: chat.title,
   updatedAt: chat.updatedAt,
   settings: chat.settings,
 });
+
+export const applyChatToCache = (queryClient: QueryClient, chat: ChatDetail) => {
+  queryClient.setQueryData(['chat', chat.id], chat);
+  queryClient.setQueryData<ChatSummary[]>(['chats'], (current = []) => [
+    toChatSummary(chat),
+    ...current.filter((item) => item.id !== chat.id),
+  ]);
+};
 
 export const useModelsQuery = () =>
   useQuery({
@@ -36,11 +45,7 @@ export const useCreateChatMutation = () => {
   return useMutation({
     mutationFn: createChat,
     onSuccess: (chat) => {
-      queryClient.setQueryData(['chat', chat.id], chat);
-      queryClient.setQueryData<ChatSummary[]>(['chats'], (current = []) => [
-        toSummary(chat),
-        ...current.filter((item) => item.id !== chat.id),
-      ]);
+      applyChatToCache(queryClient, chat);
     },
   });
 };
