@@ -1,0 +1,32 @@
+{
+  "name": "web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.2.3",
+    "@tailwindcss/vite": "4.1.14",
+    "@tanstack/react-query": "5.95.2",
+    "@tanstack/react-router": "1.168.8",
+    "@repo/contracts": "workspace:*",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tailwind-merge": "3.3.1",
+    "tailwindcss": "4.2.2",
+    "zustand": "5.0.12"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "5.1.0",
+    "vitest": "3.2.4",
+    "vite": "8.0.3"
+  }
+}

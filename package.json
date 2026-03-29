@@ -1,0 +1,19 @@
+{
+  "name": "openrouter-free-chat-web-app",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter web --filter server dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:server": "pnpm --filter server dev",
+    "build": "pnpm -r --filter web --filter server build",
+    "lint": "biome check package.json pnpm-workspace.yaml tsconfig.base.json biome.json apps/web/src apps/web/package.json apps/web/tsconfig.json apps/web/vite.config.ts apps/server/src apps/server/package.json apps/server/tsconfig.json apps/server/tsconfig.build.json packages/contracts/src packages/contracts/package.json packages/contracts/tsconfig.json packages/config/package.json",
+    "format": "biome format --write package.json pnpm-workspace.yaml tsconfig.base.json biome.json apps/web/src apps/web/package.json apps/web/tsconfig.json apps/web/vite.config.ts apps/server/src apps/server/package.json apps/server/tsconfig.json apps/server/tsconfig.build.json packages/contracts/src packages/contracts/package.json packages/contracts/tsconfig.json packages/config/package.json",
+    "typecheck": "pnpm -r --filter @repo/contracts --filter web --filter server typecheck",
+    "test": "pnpm -r --filter web --filter server test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.9",
+    "typescript": "6.0.2"
+  }
+}

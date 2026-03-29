@@ -6,7 +6,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation & Secure Proxy** - 모노레포, 공통 설정, NestJS 프록시, 모델 allowlist, 저장소 추상화 기반 구축
+- [x] **Phase 1: Foundation & Secure Proxy** - 모노레포, 공통 설정, NestJS 프록시, 모델 allowlist, 저장소 추상화 기반 구축
 - [ ] **Phase 2: Conversational Shell UI** - 사이드바, 빈 상태, 대화 라우팅, composer, 기본 메시지 화면 구현
 - [ ] **Phase 3: Streaming Chat Experience** - 스트리밍, stop, regenerate, markdown/code rendering 구현
 - [ ] **Phase 4: Conversation Management & Settings** - 제목 자동 생성, 대화 삭제/복원 흐름, 모델/시스템 프롬프트 설정 구현
@@ -28,9 +28,9 @@
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: pnpm workspace, Biome, 공통 tsconfig, contracts 패키지 스캐폴드
-- [ ] 01-02: NestJS app skeleton, env schema, health/models/chats module 생성
-- [ ] 01-03: OpenRouter proxy client, allowlist 설정, repository interface 연결
+- [x] 01-01: pnpm workspace, Biome, 공통 tsconfig, contracts 패키지 스캐폴드
+- [x] 01-02: NestJS app skeleton, env schema, health/models/chats module 생성
+- [x] 01-03: OpenRouter proxy client, allowlist 설정, repository interface 연결
 
 ### Phase 2: Conversational Shell UI
 **Goal**: 채팅 제품으로 보이는 기본 shell과 빈 상태 UX를 구현한다.
@@ -119,7 +119,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Secure Proxy | 0/3 | Not started | - |
+| 1. Foundation & Secure Proxy | 3/3 | Complete | 2026-03-29 |
 | 2. Conversational Shell UI | 0/3 | Not started | - |
 | 3. Streaming Chat Experience | 0/3 | Not started | - |
 | 4. Conversation Management & Settings | 0/3 | Not started | - |

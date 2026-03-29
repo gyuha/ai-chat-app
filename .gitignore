@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+dist
+coverage
+.env
+.env.local
+apps/web/dist
+apps/server/dist
+apps/server/data
+

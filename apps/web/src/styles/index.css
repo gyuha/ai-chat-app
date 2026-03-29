@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(34, 197, 94, 0.12), transparent 24%),
+    linear-gradient(180deg, #020617 0%, #020617 100%);
+  font-family: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.75);
+}
+
+#root {
+  min-height: 100vh;
+}
