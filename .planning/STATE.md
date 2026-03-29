@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: execution_complete
-stopped_at: Phase 2 execution documented
-last_updated: "2026-03-29T14:49:57Z"
-last_activity: 2026-03-29 — Phase 2 구현, 검증, 문서화 완료
+status: planning_complete
+stopped_at: Phase 3 planning documented
+last_updated: "2026-03-29T14:55:49Z"
+last_activity: 2026-03-29 — Phase 3 discuss auto, research, planning 완료
 progress:
   total_phases: 6
   completed_phases: 2
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-29)
 
 **Core value:** 사용자는 키 노출 없이 빠르고 읽기 좋은 스트리밍 채팅 경험을 즉시 사용할 수 있어야 한다.
-**Current focus:** Phase 2 complete — Phase 3 discuss 준비
+**Current focus:** Phase 3 planning complete — execute 준비
 
 ## Current Position
 
-Phase: 2 of 6 (Conversational Shell UI)
-Plan: 3 of 3 in current phase
-Status: Complete
-Last activity: 2026-03-29 — Phase 2 구현, 검증, 문서화 완료
+Phase: 3 of 6 (Streaming Chat Experience)
+Plan: 0 of 3 in current phase
+Status: Planned
+Last activity: 2026-03-29 — Phase 3 discuss auto, research, planning 완료
 
 Progress: [███░░░░░░░] 33%
 
@@ -67,6 +67,9 @@ Recent decisions affecting current work:
 - [Phase 2]: active chat source of truth는 route param으로 유지
 - [Phase 2]: composer draft와 local preview 메시지는 Zustand UI 상태로 유지
 - [Phase 2]: `/`는 latest chat redirect 또는 onboarding empty state만 담당
+- [Phase 3]: stream transport는 `POST + text/event-stream + fetch parser`로 유지
+- [Phase 3]: Query는 persisted chat state, Zustand는 active stream session state만 담당
+- [Phase 3]: stop은 composer primary action slot에서 send를 대체한다
 
 ### Pending Todos
 
@@ -79,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-29T14:49:57Z
-Stopped at: Phase 2 execution documented
-Resume file: .planning/phases/02-conversational-shell-ui/02-03-SUMMARY.md
+Last session: 2026-03-29T14:55:49Z
+Stopped at: Phase 3 planning documented
+Resume file: .planning/phases/03-streaming-chat-experience/03-01-PLAN.md
