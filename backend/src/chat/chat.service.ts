@@ -62,4 +62,23 @@ export class ChatService {
       data: dto,
     });
   }
+
+  async generateTitleAsync(chatId: string, firstMessage: string) {
+    // 비동기로 제목 생성 (사용자 요청을 차단하지 않음)
+    setImmediate(async () => {
+      try {
+        this.logger.log(`Generating title for chat ${chatId}`);
+        const title = await this.openRouterService.generateChatTitle(firstMessage);
+
+        await this.prisma.chat.update({
+          where: { id: chatId },
+          data: { title },
+        });
+
+        this.logger.log(`Title generated for chat ${chatId}: ${title}`);
+      } catch (error) {
+        this.logger.error(`Failed to generate title for chat ${chatId}:`, error);
+      }
+    });
+  }
 }
