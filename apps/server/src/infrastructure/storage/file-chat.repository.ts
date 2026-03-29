@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import type { ChatDetail, ChatMessage } from '@repo/contracts';
@@ -8,10 +8,18 @@ import type { ChatRepository, CreateChatInput } from '../../modules/chats/chats.
 const createId = () => crypto.randomUUID();
 
 export class FileChatRepository implements ChatRepository {
+  private lastTimestamp = 0;
+
   constructor(private readonly directory: string) {}
 
   private getPath(chatId: string) {
     return join(this.directory, `${chatId}.json`);
+  }
+
+  private nextTimestamp() {
+    const now = Date.now();
+    this.lastTimestamp = now > this.lastTimestamp ? now : this.lastTimestamp + 1;
+    return new Date(this.lastTimestamp).toISOString();
   }
 
   private async ensureDir() {
@@ -34,13 +42,24 @@ export class FileChatRepository implements ChatRepository {
 
   async list() {
     await this.ensureDir();
-    const indexPath = join(this.directory, 'index.json');
-    try {
-      const content = await readFile(indexPath, 'utf8');
-      return JSON.parse(content) as ChatDetail[];
-    } catch {
-      return [];
-    }
+    const entries = await readdir(this.directory);
+    const chats = await Promise.all(
+      entries
+        .filter((entry) => entry.endsWith('.json'))
+        .map(async (entry) => {
+          try {
+            const content = await readFile(join(this.directory, entry), 'utf8');
+            return JSON.parse(content) as ChatDetail;
+          } catch {
+            return null;
+          }
+        }),
+    );
+
+    return chats
+      .filter((chat): chat is ChatDetail => chat !== null)
+      .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+      .map(({ messages: _messages, ...summary }) => summary);
   }
 
   async get(chatId: string) {
@@ -48,7 +67,7 @@ export class FileChatRepository implements ChatRepository {
   }
 
   async create(input: CreateChatInput) {
-    const now = new Date().toISOString();
+    const now = this.nextTimestamp();
     const chat: ChatDetail = {
       id: createId(),
       title: input.title ?? 'New chat',
@@ -68,7 +87,7 @@ export class FileChatRepository implements ChatRepository {
     const chat = await this.load(chatId);
     if (!chat) return;
     chat.messages.push(message);
-    chat.updatedAt = new Date().toISOString();
+    chat.updatedAt = this.nextTimestamp();
     await this.save(chat);
   }
 
@@ -76,7 +95,7 @@ export class FileChatRepository implements ChatRepository {
     const chat = await this.load(chatId);
     if (!chat) return;
     chat.title = title;
-    chat.updatedAt = new Date().toISOString();
+    chat.updatedAt = this.nextTimestamp();
     await this.save(chat);
   }
 }

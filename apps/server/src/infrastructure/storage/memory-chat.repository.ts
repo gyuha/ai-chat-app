@@ -6,6 +6,13 @@ const createId = () => crypto.randomUUID();
 
 export class MemoryChatRepository implements ChatRepository {
   private readonly chats = new Map<string, ChatDetail>();
+  private lastTimestamp = 0;
+
+  private nextTimestamp() {
+    const now = Date.now();
+    this.lastTimestamp = now > this.lastTimestamp ? now : this.lastTimestamp + 1;
+    return new Date(this.lastTimestamp).toISOString();
+  }
 
   async list() {
     return [...this.chats.values()]
@@ -18,7 +25,7 @@ export class MemoryChatRepository implements ChatRepository {
   }
 
   async create(input: CreateChatInput) {
-    const now = new Date().toISOString();
+    const now = this.nextTimestamp();
     const chat: ChatDetail = {
       id: createId(),
       title: input.title ?? 'New chat',
@@ -39,13 +46,13 @@ export class MemoryChatRepository implements ChatRepository {
     const chat = this.chats.get(chatId);
     if (!chat) return;
     chat.messages.push(message);
-    chat.updatedAt = new Date().toISOString();
+    chat.updatedAt = this.nextTimestamp();
   }
 
   async updateTitle(chatId: string, title: string) {
     const chat = this.chats.get(chatId);
     if (!chat) return;
     chat.title = title;
-    chat.updatedAt = new Date().toISOString();
+    chat.updatedAt = this.nextTimestamp();
   }
 }

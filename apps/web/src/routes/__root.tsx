@@ -1,9 +1,11 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 
+import { AppShell } from '../components/shell/app-shell';
+
 export const rootRoute = createRootRoute({
   component: () => (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
+    <AppShell>
       <Outlet />
-    </div>
+    </AppShell>
   ),
 });

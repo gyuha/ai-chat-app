@@ -7,7 +7,7 @@
 ## Phases
 
 - [x] **Phase 1: Foundation & Secure Proxy** - 모노레포, 공통 설정, NestJS 프록시, 모델 allowlist, 저장소 추상화 기반 구축
-- [ ] **Phase 2: Conversational Shell UI** - 사이드바, 빈 상태, 대화 라우팅, composer, 기본 메시지 화면 구현
+- [x] **Phase 2: Conversational Shell UI** - 사이드바, 빈 상태, 대화 라우팅, composer, 기본 메시지 화면 구현
 - [ ] **Phase 3: Streaming Chat Experience** - 스트리밍, stop, regenerate, markdown/code rendering 구현
 - [ ] **Phase 4: Conversation Management & Settings** - 제목 자동 생성, 대화 삭제/복원 흐름, 모델/시스템 프롬프트 설정 구현
 - [ ] **Phase 5: Reliability, Mobile & A11y Polish** - 에러 상태, 빈 상태 개선, 모바일 최적화, 접근성 보강
@@ -45,9 +45,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: app shell, sidebar, route scaffold, theme tokens 구현
-- [ ] 02-02: empty state, chat header, composer, draft state 구현
-- [ ] 02-03: chats query/mutation 연결과 route-driven active chat 처리
+- [x] 02-01: app shell, sidebar, route scaffold, theme tokens 구현
+- [x] 02-02: empty state, chat header, composer, draft state 구현
+- [x] 02-03: chats query/mutation 연결과 route-driven active chat 처리
 
 ### Phase 3: Streaming Chat Experience
 **Goal**: 이 제품의 핵심 가치인 스트리밍 대화 경험을 구현한다.
@@ -120,7 +120,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Secure Proxy | 3/3 | Complete | 2026-03-29 |
-| 2. Conversational Shell UI | 0/3 | Not started | - |
+| 2. Conversational Shell UI | 3/3 | Complete | 2026-03-29 |
 | 3. Streaming Chat Experience | 0/3 | Not started | - |
 | 4. Conversation Management & Settings | 0/3 | Not started | - |
 | 5. Reliability, Mobile & A11y Polish | 0/3 | Not started | - |
