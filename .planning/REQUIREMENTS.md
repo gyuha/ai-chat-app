@@ -48,7 +48,7 @@
 - [ ] **BACK-01**: 백엔드가 OpenRouter API를 프록시한다 (클라이언트에 API 키 노출 금지)
 - [ ] **BACK-02**: 서버에서 사용 가능 모델 allowlist를 관리한다
 - [ ] **BACK-03**: API rate limit 에러(429)를 사용자 친화적으로 처리한다
-- [ ] **BACK-04**: 모든 API 입력이 DTO 기반으로 검증된다
+- [x] **BACK-04**: 모든 API 입력이 DTO 기반으로 검증된다
 - [ ] **BACK-05**: SSE/chunked streaming으로 토큰 단위 응답을 전달한다
 - [ ] **BACK-06**: 에러 메시지가 사용자 친화적으로 변환된다
 
@@ -119,7 +119,7 @@
 | BACK-01 | 3단계 | Pending |
 | BACK-02 | 3단계 | Pending |
 | BACK-03 | 3단계 | Pending |
-| BACK-04 | 1단계 | Pending |
+| BACK-04 | 1단계 | Complete |
 | BACK-05 | 3단계 | Pending |
 | BACK-06 | 5단계 | Pending |
 | SEC-01 | 5단계 | Pending |
