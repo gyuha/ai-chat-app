@@ -16,7 +16,12 @@ const queryClient = new QueryClient({
 });
 
 // 라우터 생성
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  context: {
+    auth: undefined!,
+  },
+});
 
 // 타입 안전성을 위한 라우터 타입 선언
 declare module '@tanstack/react-router' {
