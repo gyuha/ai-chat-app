@@ -1,11 +1,11 @@
-# Requirements: OpenRouter Free Chat Web App
+# 요구사항: OpenRouter Free Chat Web App
 
-**Defined:** 2026-03-29
-**Core Value:** 사용자가 무료 AI 모델과 실시간 스트리밍으로 자연스럽게 대화할 수 있는 채팅 경험
+**정의일:** 2026-03-29
+**핵심 가치:** 사용자가 무료 AI 모델과 실시간 스트리밍으로 자연스럽게 대화할 수 있는 채팅 경험
 
-## v1 Requirements
+## v1 요구사항
 
-초기 릴리즈 요구사항. 각 요구사항은 로드맵 phase에 매핑됨.
+초기 릴리즈 요구사항. 각 요구사항은 로드맵 단계에 매핑됨.
 
 ### Authentication
 
@@ -57,7 +57,7 @@
 - [ ] **SEC-01**: API 키가 환경변수로 관리되며 클라이언트에 절대 노출되지 않는다
 - [ ] **SEC-02**: JWT 토큰이 자동 갱신되어 긴 대화 중 세션 만료를 방지한다
 
-## v2 Requirements
+## v2 요구사항
 
 향후 릴리즈로 연기. 현재 로드맵에 포함되지 않음.
 
@@ -78,9 +78,9 @@
 - **UXADV-03**: 파일 업로드/이미지 분석이 가능하다
 - **UXADV-04**: 음성 입력/출력이 가능하다
 
-## Out of Scope
+## 범위 외
 
-| Feature | Reason |
+| 기능 | 사유 |
 |---------|--------|
 | 실시간 다자 채팅 (WebSocket) | 복잡도 폭증, 단일 사용자 채팅에 집중 |
 | 커스텀 모델 파인튜닝 | OpenRouter 제공 모델 사용에 집중 |
@@ -89,47 +89,47 @@
 | 대화 폴더/아카이빙 | 기본 대화 관리로 충분 |
 | 관리자 대시보드 | 단일 사용자/소규모 서비스에 불필요 |
 
-## Traceability
+## 추적 가능성
 
-각 요구사항이 어느 phase에 포함되는지. 로드맵 생성 시 업데이트.
+각 요구사항이 어느 단계에 포함되는지. 로드맵 생성 시 업데이트.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | — | Pending |
-| AUTH-02 | — | Pending |
-| AUTH-03 | — | Pending |
-| CHAT-01 | — | Pending |
-| CHAT-02 | — | Pending |
-| CHAT-03 | — | Pending |
-| CHAT-04 | — | Pending |
-| CONV-01 | — | Pending |
-| CONV-02 | — | Pending |
-| CONV-03 | — | Pending |
-| CONV-04 | — | Pending |
-| DISP-01 | — | Pending |
-| DISP-02 | — | Pending |
-| DISP-03 | — | Pending |
-| DISP-04 | — | Pending |
-| UIUX-01 | — | Pending |
-| UIUX-02 | — | Pending |
-| UIUX-03 | — | Pending |
-| UIUX-04 | — | Pending |
-| UIUX-05 | — | Pending |
-| UIUX-06 | — | Pending |
-| BACK-01 | — | Pending |
-| BACK-02 | — | Pending |
-| BACK-03 | — | Pending |
-| BACK-04 | — | Pending |
-| BACK-05 | — | Pending |
-| BACK-06 | — | Pending |
-| SEC-01 | — | Pending |
-| SEC-02 | — | Pending |
+| AUTH-01 | 2단계 | Pending |
+| AUTH-02 | 2단계 | Pending |
+| AUTH-03 | 2단계 | Pending |
+| CHAT-01 | 3단계 | Pending |
+| CHAT-02 | 3단계 | Pending |
+| CHAT-03 | 3단계 | Pending |
+| CHAT-04 | 3단계 | Pending |
+| CONV-01 | 3단계 | Pending |
+| CONV-02 | 3단계 | Pending |
+| CONV-03 | 3단계 | Pending |
+| CONV-04 | 3단계 | Pending |
+| DISP-01 | 4단계 | Pending |
+| DISP-02 | 4단계 | Pending |
+| DISP-03 | 4단계 | Pending |
+| DISP-04 | 4단계 | Pending |
+| UIUX-01 | 4단계 | Pending |
+| UIUX-02 | 4단계 | Pending |
+| UIUX-03 | 4단계 | Pending |
+| UIUX-04 | 4단계 | Pending |
+| UIUX-05 | 4단계 | Pending |
+| UIUX-06 | 4단계 | Pending |
+| BACK-01 | 3단계 | Pending |
+| BACK-02 | 3단계 | Pending |
+| BACK-03 | 3단계 | Pending |
+| BACK-04 | 1단계 | Pending |
+| BACK-05 | 3단계 | Pending |
+| BACK-06 | 5단계 | Pending |
+| SEC-01 | 5단계 | Pending |
+| SEC-02 | 2단계 | Pending |
 
 **Coverage:**
-- v1 requirements: 29 total
-- Mapped to phases: 0
-- Unmapped: 29 ⚠️
+- v1 요구사항: 29개 전체
+- 단계에 매핑: 29개
+- 미매핑: 0개 ✓
 
 ---
-*Requirements defined: 2026-03-29*
-*Last updated: 2026-03-29 after initial definition*
+*요구사항 정의: 2026-03-29*
+*마지막 업데이트: 2026-03-29 로드맵 생성 후 추적 가능성 업데이트*
