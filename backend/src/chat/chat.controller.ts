@@ -54,6 +54,12 @@ export class ChatController {
     // 사용자 메시지 저장
     await this.messageService.createMessage(chatId, dto.content, 'user', 'completed');
 
+    // 첫 번째 메시지인 경우 제목 생성 트리거
+    const messages = await this.messageService.getMessages(chatId);
+    if (messages.length === 1) {
+      this.chatService.generateTitleAsync(chatId, dto.content);
+    }
+
     // AI 메시지를 streaming 상태로 생성
     const assistantMessage = await this.messageService.createMessage(
       chatId,
@@ -62,8 +68,7 @@ export class ChatController {
       'streaming',
     );
 
-    // 이전 대화 기록 로드
-    const messages = await this.messageService.getMessages(chatId);
+    // 이전 대화 기록 로드 (메시지 목록은 이미 가져옴)
 
     // OpenRouter API 호출을 위한 메시지 배열 구성
     const apiMessages = messages.map((msg) => ({
