@@ -13,14 +13,29 @@ export type SettingRecord = {
   value: string;
 };
 
+export type ConversationRecord = {
+  id: string;
+  createdAt: string;
+  modelId: string | null;
+  systemPrompt: string | null;
+  title: string;
+  updatedAt: string;
+};
+
 class AppDatabase extends Dexie {
   settings!: EntityTable<SettingRecord, 'key'>;
+  conversations!: EntityTable<ConversationRecord, 'id'>;
 
   constructor() {
     super('openrouter-chat-db');
 
     this.version(1).stores({
       settings: 'key',
+    });
+
+    this.version(2).stores({
+      settings: 'key',
+      conversations: 'id, updatedAt, createdAt',
     });
   }
 }
@@ -53,6 +68,7 @@ export async function removeSetting(key: SettingsKey) {
 
 export async function resetAppDb() {
   await appDb.settings.clear();
+  await appDb.conversations.clear();
 }
 
 export async function setSetting(key: SettingsKey, value: string) {
