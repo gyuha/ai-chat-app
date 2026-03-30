@@ -30,10 +30,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. 사용자는 주요 내비게이션과 빈 상태를 포함한 구조 UI를 한국어로 사용할 수 있다.
   3. 사용자는 데스크톱과 모바일에서 적절한 사이드바 동작을 사용할 수 있다.
   4. 사용자는 다크모드를 기본값으로 사용하고 시스템 테마를 반영한 전환을 사용할 수 있다.
-**Plans:** 0 plans
+**Plans:** 5 plans
 
 Plans:
-- [ ] TBD (run `$gsd-plan-phase 1` to break down)
+- [ ] 01-01-PLAN.md — Vite/TypeScript/Biome/Tailwind 기반 앱 골격과 엔트리 구성
+- [ ] 01-02-PLAN.md — shadcn/ui primitives와 공용 UI 기반 구성
+- [ ] 01-03-PLAN.md — TanStack Router, theme provider, UI store 기반 라우팅 골격 구성
+- [ ] 01-04-PLAN.md — ChatGPT 유사 앱 셸과 반응형 사이드바 인터랙션 구현
+- [ ] 01-05-PLAN.md — 한국어 빈 상태, 온보딩 카드, 설정 플레이스홀더 화면 구성
 
 ### Phase 2: API 키와 설정 관리
 **Goal:** 사용자가 OpenRouter API 키를 등록하고 검증하며 기본 설정을 저장할 수 있다.
@@ -98,7 +102,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. 앱 셸과 인터페이스 기반 | 0/0 | Not started | - |
+| 1. 앱 셸과 인터페이스 기반 | 0/5 | Not started | - |
 | 2. API 키와 설정 관리 | 0/0 | Not started | - |
 | 3. 무료 모델 선택과 대화 부트스트랩 | 0/0 | Not started | - |
 | 4. 스트리밍 채팅 경험 | 0/0 | Not started | - |
