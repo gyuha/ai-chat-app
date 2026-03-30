@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 5 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Vite/TypeScript/Biome/Tailwind 기반 앱 골격과 엔트리 구성
+- [x] 01-01-PLAN.md — Vite/TypeScript/Biome/Tailwind 기반 앱 골격과 엔트리 구성
 - [ ] 01-02-PLAN.md — shadcn/ui primitives와 공용 UI 기반 구성
 - [ ] 01-03-PLAN.md — TanStack Router, theme provider, UI store 기반 라우팅 골격 구성
 - [ ] 01-04-PLAN.md — ChatGPT 유사 앱 셸과 반응형 사이드바 인터랙션 구현

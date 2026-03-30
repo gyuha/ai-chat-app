@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
+status: executing
 stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-03-30T14:12:21.181Z"
-last_activity: 2026-03-30 — Phase 1 UI-SPEC 승인 완료
+last_updated: "2026-03-30T14:25:15.631Z"
+last_activity: 2026-03-30
 progress:
   total_phases: 5
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 5
+  completed_plans: 1
   percent: 0
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** 사용자가 서버 없이 자신의 OpenRouter API 키만으로 무료 모델과 안정적으로 대화하고, 대화 기록을 로컬에 안전하게 보관할 수 있어야 한다.
-**Current focus:** Phase 1 — 앱 셸과 인터페이스 기반
+**Current focus:** Phase 01 — app-shell-and-interface-foundation
 
 ## Current Position
 
-Phase: 1 of 5 (앱 셸과 인터페이스 기반)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-03-30 — Phase 1 UI-SPEC 승인 완료
+Phase: 01 (app-shell-and-interface-foundation) — EXECUTING
+Plan: 2 of 5
+Status: Ready to execute
+Last activity: 2026-03-30
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -64,6 +64,8 @@ Recent decisions affecting current work:
 - [Phase 1]: 앱 셸은 밸런스형 밀도, 280px 안팎 사이드바, 표준형 헤더 기준으로 설계한다.
 - [Phase 1]: 모바일은 좌측 `Sheet` 오버레이와 기본 닫힘 흐름을 사용한다.
 - [Phase 1]: 비주얼 톤은 ChatGPT 근접형, 거의 평면형, 제한적 강조색으로 유지한다.
+- [Phase 01]: Biome 검사 범위는 앱 소스와 루트 설정 파일로 제한해 vendored GSD 문서와 분리했다. — 프로젝트 저장소에는 앱 코드 외에 vendored workflow 파일이 함께 있어, baseline lint를 앱 범위로 제한해야 실행 품질을 안정적으로 유지할 수 있었다.
+- [Phase 01]: TypeScript 6 deprecation과 Vite ESM 경로 처리를 baseline 단계에서 바로 흡수했다. — 초기 부트스트랩 단계에서 빌드 체인을 통과시키지 못하면 이후 shadcn, router, shell 구현이 모두 막히므로 TS6/ESM 호환성을 바로 정리했다.
 
 ### Pending Todos
 
