@@ -9,10 +9,10 @@
 
 ### Interface
 
-- [ ] **UI-01**: 사용자는 좌측 사이드바와 메인 채팅 패널이 있는 ChatGPT 스타일 레이아웃을 사용할 수 있다.
-- [ ] **UI-02**: 사용자는 온보딩, 채팅, 설정, 빈 상태, 오류 상태 전반에서 한국어 UI를 사용할 수 있다.
-- [ ] **UI-03**: 사용자는 모바일과 데스크톱에서 반응형 사이드바 인터랙션을 사용할 수 있다.
-- [ ] **UI-04**: 사용자는 다크모드를 기본값으로 사용하고 시스템 테마를 존중하면서 수동 전환할 수 있다.
+- [x] **UI-01**: 사용자는 좌측 사이드바와 메인 채팅 패널이 있는 ChatGPT 스타일 레이아웃을 사용할 수 있다.
+- [x] **UI-02**: 사용자는 온보딩, 채팅, 설정, 빈 상태, 오류 상태 전반에서 한국어 UI를 사용할 수 있다.
+- [x] **UI-03**: 사용자는 모바일과 데스크톱에서 반응형 사이드바 인터랙션을 사용할 수 있다.
+- [x] **UI-04**: 사용자는 다크모드를 기본값으로 사용하고 시스템 테마를 존중하면서 수동 전환할 수 있다.
 
 ### Settings
 
@@ -90,10 +90,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| UI-01 | Phase 1 | Pending |
-| UI-02 | Phase 1 | Pending |
-| UI-03 | Phase 1 | Pending |
-| UI-04 | Phase 1 | Pending |
+| UI-01 | Phase 1 | Complete |
+| UI-02 | Phase 1 | Complete |
+| UI-03 | Phase 1 | Complete |
+| UI-04 | Phase 1 | Complete |
 | SETT-01 | Phase 2 | Pending |
 | SETT-02 | Phase 2 | Pending |
 | SETT-03 | Phase 2 | Pending |
@@ -122,4 +122,4 @@
 
 ---
 *Requirements defined: 2026-03-30*
-*Last updated: 2026-03-30 after initial definition*
+*Last updated: 2026-03-30 after Phase 1 completion*
