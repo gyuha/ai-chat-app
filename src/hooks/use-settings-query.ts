@@ -22,23 +22,32 @@ export function useSettingsActions() {
   const queryClient = useQueryClient();
 
   async function refreshSettings() {
-    await queryClient.invalidateQueries({
-      queryKey: settingsQueryKey,
-    });
+    const nextSettings = await getSettings();
+
+    queryClient.setQueryData(settingsQueryKey, nextSettings);
   }
 
   return {
     deleteApiKey: async () => {
       await deleteApiKey();
       await refreshSettings();
+      await queryClient.invalidateQueries({
+        queryKey: ['free-models'],
+      });
     },
     replaceApiKeyAfterValidation: async (apiKey: string) => {
       await replaceApiKeyAfterValidation(apiKey);
       await refreshSettings();
+      await queryClient.invalidateQueries({
+        queryKey: ['free-models'],
+      });
     },
     saveApiKeyAfterValidation: async (apiKey: string) => {
       await saveApiKeyAfterValidation(apiKey);
       await refreshSettings();
+      await queryClient.invalidateQueries({
+        queryKey: ['free-models'],
+      });
     },
     setDefaultModelId: async (modelId: string | null) => {
       await setDefaultModelId(modelId);
