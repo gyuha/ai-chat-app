@@ -23,13 +23,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### 데이터 관리 (Data)
 
-- [ ] **DATA-01**: 사용자가 새 대화를 생성할 수 있다
-- [ ] **DATA-02**: 사이드바에 대화 목록이 최신순으로 표시된다
-- [ ] **DATA-03**: 사용자가 대화를 삭제할 수 있다 (확인 다이얼로그 포함)
+- [x] **DATA-01**: 사용자가 새 대화를 생성할 수 있다
+- [x] **DATA-02**: 사이드바에 대화 목록이 최신순으로 표시된다
+- [x] **DATA-03**: 사용자가 대화를 삭제할 수 있다 (확인 다이얼로그 포함)
 - [ ] **DATA-04**: 대화 제목이 첫 메시지 기반으로 자동 생성된다
-- [ ] **DATA-05**: 사용자가 API 키를 등록/변경/삭제할 수 있다
-- [ ] **DATA-06**: 사용자가 기본 모델을 설정할 수 있다
-- [ ] **DATA-07**: 사용자가 시스템 프롬프트를 설정할 수 있다 (대화별/글로벌)
+- [x] **DATA-05**: 사용자가 API 키를 등록/변경/삭제할 수 있다
+- [x] **DATA-06**: 사용자가 기본 모델을 설정할 수 있다
+- [x] **DATA-07**: 사용자가 시스템 프롬프트를 설정할 수 있다 (대화별/글로벌)
 
 ### UI/UX
 
@@ -91,13 +91,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CHAT-09 | Phase 4 | Pending |
 | CHAT-10 | Phase 4 | Pending |
 | CHAT-11 | Phase 4 | Pending |
-| DATA-01 | Phase 1 | Pending |
-| DATA-02 | Phase 1 | Pending |
-| DATA-03 | Phase 1 | Pending |
+| DATA-01 | Phase 1 | Complete |
+| DATA-02 | Phase 1 | Complete |
+| DATA-03 | Phase 1 | Complete |
 | DATA-04 | Phase 3 | Pending |
-| DATA-05 | Phase 1 | Pending |
-| DATA-06 | Phase 1 | Pending |
-| DATA-07 | Phase 1 | Pending |
+| DATA-05 | Phase 1 | Complete |
+| DATA-06 | Phase 1 | Complete |
+| DATA-07 | Phase 1 | Complete |
 | UIUX-01 | Phase 3 | Pending |
 | UIUX-02 | Phase 3 | Pending |
 | UIUX-03 | Phase 3 | Pending |
