@@ -3,6 +3,7 @@
   "files": {
     "includes": [
       "src/**",
+      "!src/routeTree.gen.ts",
       "package.json",
       "vite.config.ts",
       "tsconfig.json",
