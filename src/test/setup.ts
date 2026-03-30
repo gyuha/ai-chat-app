@@ -1,7 +1,11 @@
+import 'fake-indexeddb/auto';
 import '@testing-library/jest-dom/vitest';
 
 import { cleanup } from '@testing-library/react';
 import { afterEach, vi } from 'vitest';
+
+import { resetAppDb } from '@/lib/app-db';
+import { resetAppQueryClient } from '@/providers/app-query-provider';
 
 type MatchMediaListener = (event: MediaQueryListEvent) => void;
 
@@ -73,8 +77,10 @@ Object.defineProperty(Element.prototype, 'scrollIntoView', {
   value: vi.fn(),
 });
 
-afterEach(() => {
+afterEach(async () => {
   cleanup();
+  resetAppQueryClient();
+  await resetAppDb();
   localStorage.clear();
   document.documentElement.className = '';
   document.documentElement.style.colorScheme = '';
