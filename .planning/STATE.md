@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: ready
-stopped_at: Completed 03-05-PLAN.md
-last_updated: "2026-03-31T01:00:00Z"
+stopped_at: Completed Phase 03 execution
+last_updated: "2026-03-31T02:12:00Z"
 last_activity: 2026-03-31
 progress:
   total_phases: 5
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 15
-  completed_plans: 10
-  percent: 67
+  completed_plans: 15
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** 사용자가 서버 없이 자신의 OpenRouter API 키만으로 무료 모델과 안정적으로 대화하고, 대화 기록을 로컬에 안전하게 보관할 수 있어야 한다.
-**Current focus:** Phase 3 실행 준비 — 무료 모델 선택과 대화 부트스트랩
+**Current focus:** Phase 4 준비 — 스트리밍 채팅 경험
 
 ## Current Position
 
-Phase: 3 (무료 모델 선택과 대화 부트스트랩) — PLANNED
+Phase: 3 (무료 모델 선택과 대화 부트스트랩) — COMPLETE
 Plan: 5 of 5
-Status: Ready to execute Phase 3
+Status: Ready for Phase 4 discussion
 Last activity: 2026-03-31
 
-Progress: [███████░░░] 67%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -45,17 +45,18 @@ Progress: [███████░░░] 67%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | Phase 02 | 5 | - | - |
+| Phase 03 | 5 | - | - |
 
 **Recent Trend:**
 
-- Last 5 plans: 02-01 → 02-02 → 02-03 → 02-04 → 02-05
+- Last 5 plans: 03-01 → 03-02 → 03-03 → 03-04 → 03-05
 - Trend: Stable
 
-| Phase 02 P01 | 1 min | 2 tasks | 6 files |
-| Phase 02 P02 | 6 min | 2 tasks | 5 files |
-| Phase 02 P03 | 9 min | 2 tasks | 3 files |
-| Phase 02 P04 | 14 min | 2 tasks | 6 files |
-| Phase 02 P05 | 24 min | 2 tasks | 11 files |
+| Phase 03 P01 | - | 2 tasks | 3 files |
+| Phase 03 P02 | - | 2 tasks | 5 files |
+| Phase 03 P03 | - | 2 tasks | 4 files |
+| Phase 03 P04 | - | 2 tasks | 3 files |
+| Phase 03 P05 | - | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,8 @@ Recent decisions affecting current work:
 - [Phase 02]: settings route tests는 memory router + fake IndexedDB + fetch mock 조합으로 실제 정책을 고정한다. — 브라우저 전용 persistence 앱에서 save/delete/default 흐름 회귀를 빠르게 검증하기 위해.
 - [Phase 03]: `새 대화 시작`은 conversation 레코드를 즉시 만들고, 미선택 모델 draft는 하나만 유지한다. — ChatGPT 유사한 라우팅/사이드바 흐름을 유지하면서 미완성 대화 누적을 막기 위해.
 - [Phase 03]: 모델 선택의 주 surface는 헤더 드롭다운으로 두고, draft 상태에서는 본문 CTA로만 보조한다. — 정상 상태와 미완성 상태 모두를 커버하면서 구조 중복을 최소화하기 위해.
+- [Phase 03]: conversation metadata는 Dexie `conversations` store에 저장하고, sidebar/home/chat는 같은 query/service 계층을 공유한다. — 대화 생성, 모델 변경, 다시 열기 동작을 한 저장소 규칙 위에 유지하기 위해.
+- [Phase 03]: draft conversation은 모델 선택 전까지 입력을 비활성화한다. — 실제 chat request 이전에 현재 대화의 모델이 확정되도록 강제하기 위해.
 
 ### Pending Todos
 
@@ -90,8 +93,7 @@ None yet.
 
 ### Blockers/Concerns
 
-- OpenRouter 무료 모델 조건과 rate limit은 Phase 3 구현 전에 다시 확인해야 한다.
-- 무료 모델 목록 탐색 정보 밀도와 메타데이터 초기화 세부 규칙은 아직 미확정이다.
+- OpenRouter 무료 모델 조건과 rate limit은 Phase 4의 실제 chat completion 구현 전에 다시 확인해야 한다.
 - route test file ignore pattern은 설정했지만, 새 route-adjacent test 파일도 `.test.tsx` 규칙을 유지해야 한다.
 
 ### Planning Notes
@@ -102,6 +104,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-31T01:00:00Z
-Stopped at: Completed 03-05-PLAN.md
-Resume file: .planning/phases/03-free-model-selection-and-conversation-bootstrap/03-05-PLAN.md
+Last session: 2026-03-31T02:12:00Z
+Stopped at: Completed Phase 03 execution
+Resume file: .planning/phases/03-free-model-selection-and-conversation-bootstrap/03-VERIFICATION.md

@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: 앱 셸과 인터페이스 기반** - ChatGPT 유사 레이아웃, 반응형 구조, 테마 기준을 확립한다.
 - [x] **Phase 2: API 키와 설정 관리** - API 키 온보딩, 검증, 기본 설정 저장 흐름을 완성한다.
-- [ ] **Phase 3: 무료 모델 선택과 대화 부트스트랩** - 무료 모델 목록, 대화 생성, 대화별 메타데이터 선택을 연결한다.
+- [x] **Phase 3: 무료 모델 선택과 대화 부트스트랩** - 무료 모델 목록, 대화 생성, 대화별 메타데이터 선택을 연결한다.
 - [ ] **Phase 4: 스트리밍 채팅 경험** - 메시지 전송, SSE 스트리밍, 중단, Markdown 렌더링을 구현한다.
 - [ ] **Phase 5: 대화 히스토리와 로컬 영속성** - 대화 목록 관리와 로컬 저장 복원을 마무리한다.
 
@@ -69,11 +69,11 @@ Plans:
 **Plans:** 5 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — conversations Dexie schema와 conversation query/service 기반을 추가한다.
-- [ ] 03-02-PLAN.md — 새 대화 bootstrap과 실제 사이드바 대화 목록을 연결한다.
-- [ ] 03-03-PLAN.md — 헤더 기반 무료 모델 selector와 현재 대화 active model surface를 구현한다.
-- [ ] 03-04-PLAN.md — draft conversation 배너와 composer gating을 구현한다.
-- [ ] 03-05-PLAN.md — 새 대화/모델 선택/metadata persistence 흐름을 integration test로 고정한다.
+- [x] 03-01-PLAN.md — conversations Dexie schema와 conversation query/service 기반을 추가한다.
+- [x] 03-02-PLAN.md — 새 대화 bootstrap과 실제 사이드바 대화 목록을 연결한다.
+- [x] 03-03-PLAN.md — 헤더 기반 무료 모델 selector와 현재 대화 active model surface를 구현한다.
+- [x] 03-04-PLAN.md — draft conversation 배너와 composer gating을 구현한다.
+- [x] 03-05-PLAN.md — 새 대화/모델 선택/metadata persistence 흐름을 integration test로 고정한다.
 
 ### Phase 4: 스트리밍 채팅 경험
 **Goal:** 사용자가 선택한 무료 모델과 실시간 스트리밍 채팅을 수행할 수 있다.
@@ -112,6 +112,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. 앱 셸과 인터페이스 기반 | 5/5 | Complete | 2026-03-30 |
 | 2. API 키와 설정 관리 | 5/5 | Complete | 2026-03-31 |
-| 3. 무료 모델 선택과 대화 부트스트랩 | 0/5 | Planned | - |
+| 3. 무료 모델 선택과 대화 부트스트랩 | 5/5 | Complete | 2026-03-31 |
 | 4. 스트리밍 채팅 경험 | 0/0 | Not started | - |
 | 5. 대화 히스토리와 로컬 영속성 | 0/0 | Not started | - |

@@ -16,16 +16,16 @@
 
 ### Settings
 
-- [ ] **SETT-01**: 저장된 OpenRouter API 키가 없을 때 사용자는 API 키 온보딩 화면을 본다.
-- [ ] **SETT-02**: 사용자는 설정 화면에서 OpenRouter API 키를 저장, 수정, 삭제할 수 있다.
-- [ ] **SETT-03**: 사용자는 채팅 전에 models endpoint를 통해 저장된 API 키를 검증할 수 있다.
-- [ ] **SETT-04**: 사용자는 설정에서 기본 무료 모델과 기본 시스템 프롬프트를 지정할 수 있다.
+- [x] **SETT-01**: 저장된 OpenRouter API 키가 없을 때 사용자는 API 키 온보딩 화면을 본다.
+- [x] **SETT-02**: 사용자는 설정 화면에서 OpenRouter API 키를 저장, 수정, 삭제할 수 있다.
+- [x] **SETT-03**: 사용자는 채팅 전에 models endpoint를 통해 저장된 API 키를 검증할 수 있다.
+- [x] **SETT-04**: 사용자는 설정에서 기본 무료 모델과 기본 시스템 프롬프트를 지정할 수 있다.
 
 ### Models
 
-- [ ] **MODL-01**: 사용자는 무료 모델만 필터링된 OpenRouter 모델 목록을 볼 수 있다.
-- [ ] **MODL-02**: 사용자는 대화마다 무료 모델을 선택할 수 있다.
-- [ ] **MODL-03**: 사용자는 현재 대화에 어떤 모델이 활성화되어 있는지 확인할 수 있다.
+- [x] **MODL-01**: 사용자는 무료 모델만 필터링된 OpenRouter 모델 목록을 볼 수 있다.
+- [x] **MODL-02**: 사용자는 대화마다 무료 모델을 선택할 수 있다.
+- [x] **MODL-03**: 사용자는 현재 대화에 어떤 모델이 활성화되어 있는지 확인할 수 있다.
 
 ### Chat
 
@@ -37,7 +37,7 @@
 
 ### Conversations
 
-- [ ] **CONV-01**: 사용자는 사이드바나 빈 상태 화면에서 새 대화를 시작할 수 있다.
+- [x] **CONV-01**: 사용자는 사이드바나 빈 상태 화면에서 새 대화를 시작할 수 있다.
 - [ ] **CONV-02**: 사용자는 최신 업데이트 순으로 저장된 대화 목록을 볼 수 있다.
 - [ ] **CONV-03**: 사용자는 기존 대화를 다시 열고 이전 메시지에서 이어서 사용할 수 있다.
 - [ ] **CONV-04**: 사용자는 대화 제목을 직접 수정할 수 있다.
@@ -46,8 +46,8 @@
 ### Persistence
 
 - [ ] **DATA-01**: 사용자의 대화와 메시지는 브라우저 새로고침 이후에도 유지된다.
-- [ ] **DATA-02**: 사용자의 설정은 브라우저 새로고침 이후에도 유지된다.
-- [ ] **DATA-03**: 선택한 모델과 시스템 프롬프트를 포함한 대화 메타데이터는 로컬에 유지된다.
+- [x] **DATA-02**: 사용자의 설정은 브라우저 새로고침 이후에도 유지된다.
+- [x] **DATA-03**: 선택한 모델과 시스템 프롬프트를 포함한 대화 메타데이터는 로컬에 유지된다.
 
 ## v2 Requirements
 
@@ -94,16 +94,16 @@
 | UI-02 | Phase 1 | Complete |
 | UI-03 | Phase 1 | Complete |
 | UI-04 | Phase 1 | Complete |
-| SETT-01 | Phase 2 | Pending |
-| SETT-02 | Phase 2 | Pending |
-| SETT-03 | Phase 2 | Pending |
-| SETT-04 | Phase 2 | Pending |
-| DATA-02 | Phase 2 | Pending |
-| MODL-01 | Phase 3 | Pending |
-| MODL-02 | Phase 3 | Pending |
-| MODL-03 | Phase 3 | Pending |
-| CONV-01 | Phase 3 | Pending |
-| DATA-03 | Phase 3 | Pending |
+| SETT-01 | Phase 2 | Complete |
+| SETT-02 | Phase 2 | Complete |
+| SETT-03 | Phase 2 | Complete |
+| SETT-04 | Phase 2 | Complete |
+| DATA-02 | Phase 2 | Complete |
+| MODL-01 | Phase 3 | Complete |
+| MODL-02 | Phase 3 | Complete |
+| MODL-03 | Phase 3 | Complete |
+| CONV-01 | Phase 3 | Complete |
+| DATA-03 | Phase 3 | Complete |
 | CHAT-01 | Phase 4 | Pending |
 | CHAT-02 | Phase 4 | Pending |
 | CHAT-03 | Phase 4 | Pending |
@@ -122,4 +122,4 @@
 
 ---
 *Requirements defined: 2026-03-30*
-*Last updated: 2026-03-30 after Phase 1 completion*
+*Last updated: 2026-03-31 after Phase 3 completion*
