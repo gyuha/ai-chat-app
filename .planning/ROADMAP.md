@@ -51,7 +51,7 @@ Plans:
 **Plans:** 5 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Dexie settings 저장소와 Query provider, 테스트용 IndexedDB 기반을 추가한다.
+- [x] 02-01-PLAN.md — Dexie settings 저장소와 Query provider, 테스트용 IndexedDB 기반을 추가한다.
 - [ ] 02-02-PLAN.md — OpenRouter validation/free-model service와 settings hooks를 만든다.
 - [ ] 02-03-PLAN.md — `/` 온보딩 카드의 검증/저장/빈 상태 전환 흐름을 구현한다.
 - [ ] 02-04-PLAN.md — `/settings`에서 API 키 관리, 기본 모델, 시스템 프롬프트 설정 UI를 구현한다.
@@ -107,7 +107,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. 앱 셸과 인터페이스 기반 | 5/5 | Complete | 2026-03-30 |
-| 2. API 키와 설정 관리 | 0/5 | Planned | - |
+| 2. API 키와 설정 관리 | 1/5 | In Progress | - |
 | 3. 무료 모델 선택과 대화 부트스트랩 | 0/0 | Not started | - |
 | 4. 스트리밍 채팅 경험 | 0/0 | Not started | - |
 | 5. 대화 히스토리와 로컬 영속성 | 0/0 | Not started | - |

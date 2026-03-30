@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-05-PLAN.md
-last_updated: "2026-03-30T16:06:54.298Z"
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-30T16:15:10.228Z"
 last_activity: 2026-03-31
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 10
-  completed_plans: 5
-  percent: 20
+  completed_plans: 6
+  percent: 60
 ---
 
 # Project State
@@ -21,22 +21,22 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** 사용자가 서버 없이 자신의 OpenRouter API 키만으로 무료 모델과 안정적으로 대화하고, 대화 기록을 로컬에 안전하게 보관할 수 있어야 한다.
-**Current focus:** Phase 02 — API 키와 설정 관리
+**Current focus:** Phase 2 — API 키와 설정 관리
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 2 (API 키와 설정 관리) — EXECUTING
+Plan: 2 of 5
 Status: Ready to execute
 Last activity: 2026-03-31
 
-Progress: [██░░░░░░░░] 20%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 5
+- Total plans completed: 6
 - Average duration: -
 - Total execution time: 0.0 hours
 
@@ -50,6 +50,8 @@ Progress: [██░░░░░░░░] 20%
 
 - Last 5 plans: -
 - Trend: Stable
+
+| Phase 02 P01 | 1 min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -71,6 +73,8 @@ Recent decisions affecting current work:
 - [Phase 01]: 앱 셸은 desktop fixed sidebar + mobile left Sheet 조합으로 고정한다. — ChatGPT 유사한 기본 흐름을 유지하면서 모바일에서는 기본 닫힘 내비게이션을 명시적으로 제어하기 위해.
 - [Phase 02]: API 키는 검증 성공 후에만 저장하고, 실패한 입력은 draft로만 유지한다. — 잘못된 key가 영속 설정을 덮어쓰지 않게 하면서 수정 흐름은 유지하기 위해.
 - [Phase 02]: 기본 모델과 글로벌 시스템 프롬프트는 기존 대화를 바꾸지 않고 새 대화의 초기값으로만 적용한다. — 기존 대화 컨텍스트를 보존하면서 기본 설정의 의미를 유지하기 위해.
+- [Phase 02]: settings persistence의 단일 source of truth는 Dexie settings store로 유지한다. — localStorage fallback을 만들지 않고 이후 settings/model 흐름을 한 저장소 위에 누적하기 위해.
+- [Phase 02]: QueryClient는 singleton으로 두고 테스트마다 cache를 clear한다. — settings/models query가 같은 cache 정책을 공유하면서 test 간 상태 오염을 막기 위해.
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T16:06:54.298Z
-Stopped at: Completed 02-05-PLAN.md
+Last session: 2026-03-30T16:15:10.228Z
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None
