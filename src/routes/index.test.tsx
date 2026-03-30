@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { getSetting, SETTINGS_KEYS } from '@/lib/app-db';
+import { appDb, getSetting, SETTINGS_KEYS, setSetting } from '@/lib/app-db';
 import {
   createOpenRouterModelsResponse,
   mockFetchResponses,
@@ -93,5 +93,72 @@ describe('index route', () => {
     ).toBeInTheDocument();
     expect(screen.getByDisplayValue(apiKey)).toBeInTheDocument();
     expect(await getSetting(SETTINGS_KEYS.openRouterApiKey)).toBeUndefined();
+  });
+
+  it('starts a draft conversation from the home empty state when an API key is saved', async () => {
+    const user = userEvent.setup();
+
+    await setSetting(SETTINGS_KEYS.openRouterApiKey, 'saved-key');
+    mockFetchResponses(createOpenRouterModelsResponse(FREE_MODELS));
+
+    const { router } = await renderAppRoute('/');
+    const startConversationButton = screen
+      .getAllByRole('button', { name: '새 대화 시작' })
+      .at(-1);
+
+    if (!startConversationButton) {
+      throw new Error('새 대화 시작 버튼을 찾지 못했습니다.');
+    }
+
+    await user.click(startConversationButton);
+
+    await waitFor(() => {
+      expect(router.state.location.pathname).toMatch(/^\/chat\//);
+    });
+
+    expect(screen.getByText('모델 선택 필요')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText(
+        '상단에서 모델을 선택하면 입력할 수 있습니다.',
+      ),
+    ).toBeDisabled();
+
+    await waitFor(async () => {
+      expect(await appDb.conversations.count()).toBe(1);
+    });
+  });
+
+  it('reuses the same draft conversation when a model is not selected yet', async () => {
+    const user = userEvent.setup();
+
+    await setSetting(SETTINGS_KEYS.openRouterApiKey, 'saved-key');
+    mockFetchResponses(createOpenRouterModelsResponse(FREE_MODELS));
+
+    const { router } = await renderAppRoute('/');
+    const startConversationButton = screen
+      .getAllByRole('button', { name: '새 대화 시작' })
+      .at(-1);
+
+    if (!startConversationButton) {
+      throw new Error('새 대화 시작 버튼을 찾지 못했습니다.');
+    }
+
+    await user.click(startConversationButton);
+
+    await waitFor(() => {
+      expect(router.state.location.pathname).toMatch(/^\/chat\//);
+    });
+
+    const firstPath = router.state.location.pathname;
+
+    await user.click(
+      screen.getAllByRole('button', { name: '새 대화 시작' })[0],
+    );
+
+    await waitFor(async () => {
+      expect(await appDb.conversations.count()).toBe(1);
+    });
+
+    expect(router.state.location.pathname).toBe(firstPath);
   });
 });

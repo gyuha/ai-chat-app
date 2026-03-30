@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AppShell } from '@/components/layout/app-shell';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { AppQueryProvider } from '@/providers/app-query-provider';
 import { useUiStore } from '@/stores/ui-store';
 import { resetUiStore, setViewport } from '@/test/test-utils';
 
@@ -27,6 +28,7 @@ vi.mock('@tanstack/react-router', async () => {
         {children}
       </a>
     ),
+    useNavigate: () => vi.fn(),
   };
 });
 
@@ -38,11 +40,13 @@ describe('AppShell', () => {
 
   it('renders the standard shell layout with sidebar, header, and content', () => {
     render(
-      <TooltipProvider>
-        <AppShell activeConversationId={null} currentPath="/" title="새 대화">
-          <div>메시지 영역</div>
-        </AppShell>
-      </TooltipProvider>,
+      <AppQueryProvider>
+        <TooltipProvider>
+          <AppShell activeConversationId={null} currentPath="/" title="새 대화">
+            <div>메시지 영역</div>
+          </AppShell>
+        </TooltipProvider>
+      </AppQueryProvider>,
     );
 
     expect(
@@ -58,11 +62,13 @@ describe('AppShell', () => {
     setViewport(375);
 
     render(
-      <TooltipProvider>
-        <AppShell activeConversationId={null} currentPath="/" title="새 대화">
-          <div>모바일 콘텐츠</div>
-        </AppShell>
-      </TooltipProvider>,
+      <AppQueryProvider>
+        <TooltipProvider>
+          <AppShell activeConversationId={null} currentPath="/" title="새 대화">
+            <div>모바일 콘텐츠</div>
+          </AppShell>
+        </TooltipProvider>
+      </AppQueryProvider>,
     );
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();

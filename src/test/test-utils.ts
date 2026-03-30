@@ -8,6 +8,7 @@ import { act, render } from '@testing-library/react';
 import { createElement } from 'react';
 import { vi } from 'vitest';
 
+import { appDb, type ConversationRecord } from '@/lib/app-db';
 import type { OpenRouterModel } from '@/lib/openrouter-client';
 import { AppQueryProvider } from '@/providers/app-query-provider';
 import { routeTree } from '@/routeTree.gen';
@@ -83,6 +84,25 @@ export function mockFetchResponses(...responses: Array<Error | Response>) {
 
 export function resetFetchMock() {
   ensureFetchMock().mockReset();
+}
+
+export async function seedConversations(conversations: ConversationRecord[]) {
+  await appDb.conversations.bulkPut(conversations);
+}
+
+export function createConversationFixture(
+  overrides: Partial<ConversationRecord> = {},
+): ConversationRecord {
+  const timestamp = overrides.updatedAt ?? new Date().toISOString();
+
+  return {
+    id: overrides.id ?? crypto.randomUUID(),
+    createdAt: overrides.createdAt ?? timestamp,
+    modelId: overrides.modelId ?? null,
+    systemPrompt: overrides.systemPrompt ?? null,
+    title: overrides.title ?? '새 대화',
+    updatedAt: timestamp,
+  };
 }
 
 export async function renderAppRoute(path = '/') {
