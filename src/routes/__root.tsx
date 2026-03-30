@@ -1,9 +1,10 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { SidebarLayout } from "@/components/layout/SidebarLayout";
 
 export const Route = createRootRoute({
   component: () => (
-    <div className="flex h-screen bg-background text-foreground">
+    <SidebarLayout>
       <Outlet />
-    </div>
+    </SidebarLayout>
   ),
 });
