@@ -51,9 +51,16 @@ Orchestrates gsd-ui-researcher and gsd-ui-checker.
 Flow: Validate → Research UI → Verify UI-SPEC → Done
 </objective>
 
+<workspace_overrides>
+- In this workspace, all user-facing guidance and generated UI planning documents must be written in Korean by default.
+- Preserve commands, code, file paths, IDs, and library names in their original form where precision matters.
+- For UI-related GSD work, also read and apply `@/Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/skills/ui-ux-pro-max/SKILL.md`.
+</workspace_overrides>
+
 <execution_context>
 @/Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/get-shit-done/workflows/ui-phase.md
 @/Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/get-shit-done/references/ui-brand.md
+@/Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/skills/ui-ux-pro-max/SKILL.md
 </execution_context>
 
 <context>

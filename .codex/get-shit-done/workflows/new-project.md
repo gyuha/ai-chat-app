@@ -6,6 +6,11 @@ Initialize a new project through unified flow: questioning, research (optional),
 Read all files referenced by the invoking prompt's execution_context before starting.
 </required_reading>
 
+<workspace_overrides>
+- In this workspace, all GSD user-facing guidance, questions, summaries, and generated planning documents must be written in Korean by default.
+- Preserve commands, code, file paths, IDs, API names, and other technical identifiers in their original form when that is clearer.
+</workspace_overrides>
+
 <available_agent_types>
 Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
 - gsd-project-researcher — Researches project-level technical decisions

@@ -6,7 +6,14 @@ UI-SPEC.md locks spacing, typography, color, copywriting, and design system deci
 
 <required_reading>
 @/Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/get-shit-done/references/ui-brand.md
+@/Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/skills/ui-ux-pro-max/SKILL.md
 </required_reading>
+
+<workspace_overrides>
+- All user-facing guidance, questions, summaries, and generated UI documents must be written in Korean by default.
+- Preserve commands, code, file paths, IDs, token names, and library/API names in their original form when that is clearer.
+- For UI-related GSD work in this workspace, `ui-ux-pro-max` is mandatory companion guidance and must be applied alongside the GSD workflow.
+</workspace_overrides>
 
 <available_agent_types>
 Valid GSD subagent types (use exact names — do not fall back to 'general-purpose'):
@@ -110,6 +117,7 @@ Build prompt:
 
 ```markdown
 Read /Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/agents/gsd-ui-researcher.md for instructions.
+Also read and apply /Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/skills/ui-ux-pro-max/SKILL.md.
 
 <objective>
 Create UI design contract for Phase {phase_number}: {phase_name}
@@ -172,6 +180,7 @@ Build prompt:
 
 ```markdown
 Read /Users/gyuha/workspace/ai-chat-app.worktrees/frontend-codex/.codex/agents/gsd-ui-checker.md for instructions.
+Keep all user-facing review output in Korean by default.
 
 <objective>
 Validate UI design contract for Phase {phase_number}: {phase_name}

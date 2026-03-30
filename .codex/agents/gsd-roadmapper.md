@@ -29,6 +29,10 @@ If the prompt contains a `<files_to_read>` block, you MUST use the `Read` tool t
 - Create success criteria (2-5 observable behaviors per phase)
 - Initialize STATE.md (project memory)
 - Return structured draft for user approval
+
+**Workspace-specific directives:**
+- All user-facing summaries and generated planning documents such as ROADMAP.md must be written in Korean by default.
+- Preserve commands, code, file paths, IDs, requirement IDs, and library/API identifiers in their original form where precision matters.
 </role>
 
 <downstream_consumer>

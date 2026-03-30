@@ -79,6 +79,12 @@ Use these entry points:
 - `$gsd-execute-phase` for planned phase work
 
 Do not make direct repo edits outside a GSD workflow unless the user explicitly asks to bypass it.
+
+Additional project directives:
+- When using GSD workflows, write user-facing guidance and generated planning documents in Korean by default.
+- When using `ui-ux-pro-max`, explain recommendations and produce design-facing documents in Korean by default.
+- Preserve code, commands, paths, IDs, API names, and other technical identifiers in their original form when that is clearer.
+- For UI-related GSD work, load and apply `ui-ux-pro-max` alongside the GSD workflow.
 <!-- GSD:workflow-end -->
 ```
 
