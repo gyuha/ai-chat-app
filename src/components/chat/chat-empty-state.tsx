@@ -2,8 +2,11 @@ import { Link } from '@tanstack/react-router';
 import { ArrowRightIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import { useStartConversation } from '@/hooks/use-start-conversation';
 
 export function ChatEmptyState() {
+  const { isPending, startConversation } = useStartConversation();
+
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col items-center text-center">
       <div className="rounded-full border border-[color-mix(in_srgb,var(--color-accent)_35%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_14%,var(--color-panel))] px-3 py-1 text-xs font-medium text-[var(--color-accent)]">
@@ -18,11 +21,14 @@ export function ChatEmptyState() {
       </p>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Button asChild className="h-11 rounded-2xl px-5 text-sm font-medium">
-          <Link preload="intent" to="/">
-            새 대화 시작
-            <ArrowRightIcon className="size-4" />
-          </Link>
+        <Button
+          className="h-11 rounded-2xl px-5 text-sm font-medium"
+          disabled={isPending}
+          onClick={() => startConversation()}
+          type="button"
+        >
+          새 대화 시작
+          <ArrowRightIcon className="size-4" />
         </Button>
         <Button
           asChild

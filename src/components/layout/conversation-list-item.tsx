@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 type ConversationListItemProps = {
   href: string;
   isActive: boolean;
+  isDraft?: boolean;
   title: string;
   updatedLabel: string;
   onNavigate?: () => void;
@@ -15,6 +16,7 @@ type ConversationListItemProps = {
 export function ConversationListItem({
   href,
   isActive,
+  isDraft = false,
   title,
   updatedLabel,
   onNavigate,
@@ -39,6 +41,8 @@ export function ConversationListItem({
                 'mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-panel)_82%,black)]',
                 isActive &&
                   'border-[color-mix(in_srgb,var(--color-accent)_60%,transparent)]',
+                isDraft &&
+                  'border-dashed border-[color-mix(in_srgb,var(--color-accent)_35%,transparent)]',
               )}
             >
               <MessageSquareTextIcon className="size-4" />

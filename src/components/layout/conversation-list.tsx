@@ -1,39 +1,54 @@
 import { ConversationListItem } from '@/components/layout/conversation-list-item';
 import { SidebarMenu } from '@/components/ui/sidebar';
+import { useConversationsQuery } from '@/hooks/use-conversations-query';
+import type { ConversationRecord } from '@/lib/app-db';
+import { getConversationDisplayTitle } from '@/lib/conversation-service';
 
-export type MockConversation = {
-  id: string;
-  title: string;
-  updatedLabel: string;
-};
+function getUpdatedLabel(updatedAt: string) {
+  const updatedTime = new Date(updatedAt).getTime();
+  const now = Date.now();
+  const diffMinutes = Math.max(0, Math.round((now - updatedTime) / 60000));
 
-export const mockConversations: MockConversation[] = [
-  {
-    id: 'welcome-brief',
-    title: 'OpenRouter 무료 모델 비교',
-    updatedLabel: '방금 전 업데이트',
-  },
-  {
-    id: 'ui-outline',
-    title: '채팅 UI 구조 초안',
-    updatedLabel: '12분 전 업데이트',
-  },
-  {
-    id: 'settings-copy',
-    title: '설정 화면 문구 점검',
-    updatedLabel: '어제 업데이트',
-  },
-];
-
-export function getConversationTitle(conversationId: string | null) {
-  if (!conversationId) {
-    return '새 대화';
+  if (diffMinutes < 1) {
+    return '방금 전 업데이트';
   }
 
-  return (
-    mockConversations.find((conversation) => conversation.id === conversationId)
-      ?.title ?? '새 대화'
-  );
+  if (diffMinutes < 60) {
+    return `${diffMinutes}분 전 업데이트`;
+  }
+
+  const diffHours = Math.round(diffMinutes / 60);
+
+  if (diffHours < 24) {
+    return `${diffHours}시간 전 업데이트`;
+  }
+
+  if (diffHours < 48) {
+    return '어제 업데이트';
+  }
+
+  return new Intl.DateTimeFormat('ko-KR', {
+    month: 'numeric',
+    day: 'numeric',
+  }).format(new Date(updatedAt));
+}
+
+function getConversationStatusLabel(conversation: ConversationRecord) {
+  if (!conversation.modelId) {
+    return 'draft · 모델 선택 필요';
+  }
+
+  return getUpdatedLabel(conversation.updatedAt);
+}
+
+export function getConversationTitle(_conversationId: string | null) {
+  return '새 대화';
+}
+
+export function getConversationListTitle(
+  conversation: ConversationRecord | null | undefined,
+) {
+  return getConversationDisplayTitle(conversation);
 }
 
 type ConversationListProps = {
@@ -45,6 +60,9 @@ export function ConversationList({
   activeConversationId,
   onNavigate,
 }: ConversationListProps) {
+  const conversationsQuery = useConversationsQuery();
+  const conversations = conversationsQuery.data ?? [];
+
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       <div className="px-2 pb-2">
@@ -54,13 +72,20 @@ export function ConversationList({
       </div>
 
       <SidebarMenu className="gap-1 px-2">
-        {mockConversations.map((conversation) => (
+        {conversations.length === 0 ? (
+          <div className="px-3 py-4 text-sm text-[var(--color-text-muted)]">
+            아직 저장된 대화가 없습니다.
+          </div>
+        ) : null}
+
+        {conversations.map((conversation) => (
           <ConversationListItem
             key={conversation.id}
             href={`/chat/${conversation.id}`}
             isActive={activeConversationId === conversation.id}
-            title={conversation.title}
-            updatedLabel={conversation.updatedLabel}
+            isDraft={!conversation.modelId}
+            title={getConversationListTitle(conversation)}
+            updatedLabel={getConversationStatusLabel(conversation)}
             onNavigate={onNavigate}
           />
         ))}
