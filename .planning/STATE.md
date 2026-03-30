@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-05-PLAN.md
-last_updated: "2026-03-30T14:44:45.184Z"
-last_activity: 2026-03-30
+stopped_at: Completed 02-CONTEXT.md
+last_updated: "2026-03-30T16:02:53.240Z"
+last_activity: 2026-03-31
 progress:
   total_phases: 5
   completed_phases: 1
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** 사용자가 서버 없이 자신의 OpenRouter API 키만으로 무료 모델과 안정적으로 대화하고, 대화 기록을 로컬에 안전하게 보관할 수 있어야 한다.
-**Current focus:** Phase 01 — app-shell-and-interface-foundation
+**Current focus:** Phase 02 — API 키와 설정 관리
 
 ## Current Position
 
 Phase: 2
 Plan: Not started
-Status: Ready to execute
-Last activity: 2026-03-30
+Status: Context gathered
+Last activity: 2026-03-31
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -69,6 +69,8 @@ Recent decisions affecting current work:
 - [Phase 01]: shadcn generated defaults 중 Geist/next-themes 의존성은 유지하지 않고 Inter 중심 토큰과 custom theme plan에 맞게 정리했다. — UI-SPEC에서 완전 중립형 타이포그래피와 custom theme provider 방향을 잠갔기 때문에 generated preset default를 그대로 두지 않았다.
 - [Phase 01]: Biome는 Tailwind v4 directives를 파싱하도록 조정해 generated CSS와 충돌하지 않게 했다. — shadcn가 추가한 globals.css를 유지하면서 lint/build를 닫으려면 parser 옵션을 즉시 열어야 이후 shell 작업이 막히지 않는다.
 - [Phase 01]: 앱 셸은 desktop fixed sidebar + mobile left Sheet 조합으로 고정한다. — ChatGPT 유사한 기본 흐름을 유지하면서 모바일에서는 기본 닫힘 내비게이션을 명시적으로 제어하기 위해.
+- [Phase 02]: API 키는 검증 성공 후에만 저장하고, 실패한 입력은 draft로만 유지한다. — 잘못된 key가 영속 설정을 덮어쓰지 않게 하면서 수정 흐름은 유지하기 위해.
+- [Phase 02]: 기본 모델과 글로벌 시스템 프롬프트는 기존 대화를 바꾸지 않고 새 대화의 초기값으로만 적용한다. — 기존 대화 컨텍스트를 보존하면서 기본 설정의 의미를 유지하기 위해.
 
 ### Pending Todos
 
@@ -80,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T14:44:40.124Z
-Stopped at: Completed 01-05-PLAN.md
+Last session: 2026-03-30T16:02:53.240Z
+Stopped at: Completed 02-CONTEXT.md
 Resume file: None
