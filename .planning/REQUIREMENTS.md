@@ -45,8 +45,8 @@
 
 ### Data (데이터 저장)
 
-- [ ] **DATA-01**: IndexedDB에 대화 데이터(메시지)가 영속적으로 저장된다
-- [ ] **DATA-02**: IndexedDB에 사용자 설정(API 키, 기본 모델)이 저장된다
+- [x] **DATA-01**: IndexedDB에 대화 데이터(메시지)가 영속적으로 저장된다
+- [x] **DATA-02**: IndexedDB에 사용자 설정(API 키, 기본 모델)이 저장된다
 
 ## v2 Requirements
 
@@ -93,8 +93,8 @@
 | CHAT-04 | Phase 1 | Pending |
 | CHAT-05 | Phase 1 | Pending |
 | CHAT-06 | Phase 1 | Pending |
-| DATA-01 | Phase 2 | Pending |
-| DATA-02 | Phase 2 | Pending |
+| DATA-01 | Phase 2 | Complete |
+| DATA-02 | Phase 2 | Complete |
 | UI-01 | Phase 2 | Pending |
 | UI-02 | Phase 2 | Pending |
 | CONV-01 | Phase 3 | Pending |
