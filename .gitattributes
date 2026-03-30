@@ -1,0 +1,39 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source files
+*.tsx text
+*.ts text
+*.jsx text
+*.js text
+
+# Styles
+*.css text
+*.scss text
+*.sass text
+
+# Documentation
+*.md text
+*.mdx text
+
+# Config
+*.json text
+*.yaml text
+*.yml text
+*.toml text
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text
+*.ico binary
+
+# Build outputs - treat as binary to avoid diff noise
+pnpm-lock.yaml binary
+package-lock.json binary
+yarn.lock binary
+
+# Node packages - skip
+*.tgz
