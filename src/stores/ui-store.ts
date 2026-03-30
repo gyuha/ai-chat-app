@@ -7,6 +7,7 @@ type UiState = {
   mobileSidebarOpen: boolean;
   resolvedTheme: ResolvedTheme;
   themePreference: ThemePreference;
+  cycleThemePreference: () => void;
   closeMobileSidebar: () => void;
   openMobileSidebar: () => void;
   setMobileSidebarOpen: (open: boolean) => void;
@@ -19,6 +20,15 @@ export const useUiStore = create<UiState>((set) => ({
   mobileSidebarOpen: false,
   resolvedTheme: 'dark',
   themePreference: 'dark',
+  cycleThemePreference: () =>
+    set((state) => ({
+      themePreference:
+        state.themePreference === 'dark'
+          ? 'light'
+          : state.themePreference === 'light'
+            ? 'system'
+            : 'dark',
+    })),
   closeMobileSidebar: () => set({ mobileSidebarOpen: false }),
   openMobileSidebar: () => set({ mobileSidebarOpen: true }),
   setMobileSidebarOpen: (mobileSidebarOpen) => set({ mobileSidebarOpen }),
@@ -28,5 +38,7 @@ export const useUiStore = create<UiState>((set) => ({
     set((state) => ({ mobileSidebarOpen: !state.mobileSidebarOpen })),
 }));
 
+export const selectMobileSidebarOpen = (state: UiState) =>
+  state.mobileSidebarOpen;
 export const selectResolvedTheme = (state: UiState) => state.resolvedTheme;
 export const selectThemePreference = (state: UiState) => state.themePreference;
