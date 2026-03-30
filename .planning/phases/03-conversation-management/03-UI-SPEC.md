@@ -76,7 +76,7 @@ Declared values (multiples of 4, inherited from Phase 1):
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
 | Body | 16px | 400 (regular) | 1.5 |
-| Label | 14px | 500 (medium) | 1.4 |
+| Label | 14px | 400 (regular) | 1.4 |
 | Heading | 20px | 600 (semibold) | 1.3 |
 | Display | 28px | 600 (semibold) | 1.2 |
 
@@ -149,6 +149,7 @@ Declared values (multiples of 4, inherited from Phase 1):
 - **Component:** DropdownMenu item or IconButton in sidebar header
 - **States:** Light mode active, Dark mode active, System mode active
 - **Icon:** Sun (light), Moon (dark), Monitor (system)
+- **Accessibility:** IconButton trigger has `aria-label="테마 전환"` for screen readers
 - **Copy:** "라이트 모드", "다크 모드", "시스템 설정"
 
 ### Mobile Sidebar Toggle (CONV-06)
@@ -210,11 +211,11 @@ Declared values (multiples of 4, inherited from Phase 1):
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS (all elements defined in Korean)
-- [ ] Dimension 2 Visuals: PASS (ChatGPT-style layout, Focal Points declared for sidebar + home)
-- [ ] Dimension 3 Color: PASS (60/30/10 split inherited from Phase 1, accent reserved for CTAs/active states/theme toggle)
-- [ ] Dimension 4 Typography: PASS (4 sizes, 2 weights, Inter font, inherited from Phase 1)
-- [ ] Dimension 5 Spacing: PASS (8-point scale, all multiples of 4, inherited from Phase 1)
-- [ ] Dimension 6 Registry Safety: PASS (shadcn official only, no third-party registries)
+- [x] Dimension 1 Copywriting: PASS (all elements defined in Korean)
+- [x] Dimension 2 Visuals: PASS (ChatGPT-style layout, Focal Points declared for sidebar + home, aria-label added to theme toggle)
+- [x] Dimension 3 Color: PASS (60/30/10 split inherited from Phase 1, accent reserved for CTAs/active states/theme toggle)
+- [x] Dimension 4 Typography: PASS (4 sizes, 2 weights: 400 for Body/Label, 600 for Heading/Display)
+- [x] Dimension 5 Spacing: PASS (8-point scale, all multiples of 4, inherited from Phase 1)
+- [x] Dimension 6 Registry Safety: PASS (shadcn official only, no third-party registries)
 
 **Approval:** pending
