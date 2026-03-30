@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: ready
-stopped_at: Completed 02-05-PLAN.md
-last_updated: "2026-03-30T16:33:23Z"
+stopped_at: Completed 03-05-PLAN.md
+last_updated: "2026-03-31T01:00:00Z"
 last_activity: 2026-03-31
 progress:
   total_phases: 5
   completed_phases: 2
-  total_plans: 10
+  total_plans: 15
   completed_plans: 10
-  percent: 100
+  percent: 67
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** 사용자가 서버 없이 자신의 OpenRouter API 키만으로 무료 모델과 안정적으로 대화하고, 대화 기록을 로컬에 안전하게 보관할 수 있어야 한다.
-**Current focus:** Phase 3 준비 — 무료 모델 선택과 대화 부트스트랩
+**Current focus:** Phase 3 실행 준비 — 무료 모델 선택과 대화 부트스트랩
 
 ## Current Position
 
-Phase: 2 (API 키와 설정 관리) — COMPLETE
+Phase: 3 (무료 모델 선택과 대화 부트스트랩) — PLANNED
 Plan: 5 of 5
-Status: Ready for Phase 3 discussion
+Status: Ready to execute Phase 3
 Last activity: 2026-03-31
 
-Progress: [██████████] 100%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
@@ -81,6 +81,8 @@ Recent decisions affecting current work:
 - [Phase 02]: QueryClient는 singleton으로 두고 테스트마다 cache를 clear한다. — settings/models query가 같은 cache 정책을 공유하면서 test 간 상태 오염을 막기 위해.
 - [Phase 02]: `/` 온보딩 성공 후에는 route 이동 없이 settings query cache를 갱신해 empty state로 전환한다. — 첫 사용 흐름을 끊지 않고 같은 화면에서 즉시 다음 행동으로 넘어가게 하기 위해.
 - [Phase 02]: settings route tests는 memory router + fake IndexedDB + fetch mock 조합으로 실제 정책을 고정한다. — 브라우저 전용 persistence 앱에서 save/delete/default 흐름 회귀를 빠르게 검증하기 위해.
+- [Phase 03]: `새 대화 시작`은 conversation 레코드를 즉시 만들고, 미선택 모델 draft는 하나만 유지한다. — ChatGPT 유사한 라우팅/사이드바 흐름을 유지하면서 미완성 대화 누적을 막기 위해.
+- [Phase 03]: 모델 선택의 주 surface는 헤더 드롭다운으로 두고, draft 상태에서는 본문 CTA로만 보조한다. — 정상 상태와 미완성 상태 모두를 커버하면서 구조 중복을 최소화하기 위해.
 
 ### Pending Todos
 
@@ -89,15 +91,17 @@ None yet.
 ### Blockers/Concerns
 
 - OpenRouter 무료 모델 조건과 rate limit은 Phase 3 구현 전에 다시 확인해야 한다.
+- 무료 모델 목록 탐색 정보 밀도와 메타데이터 초기화 세부 규칙은 아직 미확정이다.
 - route test file ignore pattern은 설정했지만, 새 route-adjacent test 파일도 `.test.tsx` 규칙을 유지해야 한다.
 
 ### Planning Notes
 
 - [Phase 02]: foundation(01) → service layer(02) → onboarding/settings UI(03/04 병렬) → integration tests(05) 순서로 plan을 분할했다. — persistence/query 기반을 먼저 고정하고, route UI는 동일한 policy/service 위에서 병렬 구현할 수 있게 하기 위해.
 - [Phase 02]: Select interaction은 action-path persistence 테스트와 route fallback 테스트로 나눠 검증했다. — Radix primitive의 JSDOM 한계를 피하면서 정책 coverage는 유지하기 위해.
+- [Phase 03]: persistence(01) → bootstrap/sidebar(02) → header selector(03)·draft body(04) → integration tests(05) 순서로 분할했다. — conversation data layer를 먼저 고정하고, shell/header와 chat body를 분리해 구현/검증 범위를 명확히 하기 위해.
 
 ## Session Continuity
 
-Last session: 2026-03-30T16:33:23Z
-Stopped at: Completed 02-05-PLAN.md
-Resume file: .planning/phases/02-api-key-and-settings-management/02-05-SUMMARY.md
+Last session: 2026-03-31T01:00:00Z
+Stopped at: Completed 03-05-PLAN.md
+Resume file: .planning/phases/03-free-model-selection-and-conversation-bootstrap/03-05-PLAN.md
