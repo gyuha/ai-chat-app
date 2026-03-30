@@ -48,10 +48,14 @@ Plans:
   1. 유효한 API 키가 없으면 사용자는 채팅 전에 API 키 온보딩 화면을 본다.
   2. 사용자는 설정에서 OpenRouter API 키를 저장, 수정, 검증, 삭제할 수 있다.
   3. 사용자는 기본 모델과 시스템 프롬프트를 저장하고 새로고침 후에도 같은 설정을 다시 확인할 수 있다.
-**Plans:** 0 plans
+**Plans:** 5 plans
 
 Plans:
-- [ ] TBD (run `$gsd-plan-phase 2` to break down)
+- [ ] 02-01-PLAN.md — Dexie settings 저장소와 Query provider, 테스트용 IndexedDB 기반을 추가한다.
+- [ ] 02-02-PLAN.md — OpenRouter validation/free-model service와 settings hooks를 만든다.
+- [ ] 02-03-PLAN.md — `/` 온보딩 카드의 검증/저장/빈 상태 전환 흐름을 구현한다.
+- [ ] 02-04-PLAN.md — `/settings`에서 API 키 관리, 기본 모델, 시스템 프롬프트 설정 UI를 구현한다.
+- [ ] 02-05-PLAN.md — 저장/검증/복구 흐름을 integration test로 고정한다.
 
 ### Phase 3: 무료 모델 선택과 대화 부트스트랩
 **Goal:** 사용자가 무료 모델을 탐색하고 새 대화를 시작할 때 대화별 설정을 확정할 수 있다.
@@ -102,8 +106,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. 앱 셸과 인터페이스 기반 | 0/5 | Not started | - |
-| 2. API 키와 설정 관리 | 0/0 | Not started | - |
+| 1. 앱 셸과 인터페이스 기반 | 5/5 | Complete | 2026-03-30 |
+| 2. API 키와 설정 관리 | 0/5 | Planned | - |
 | 3. 무료 모델 선택과 대화 부트스트랩 | 0/0 | Not started | - |
 | 4. 스트리밍 채팅 경험 | 0/0 | Not started | - |
 | 5. 대화 히스토리와 로컬 영속성 | 0/0 | Not started | - |
