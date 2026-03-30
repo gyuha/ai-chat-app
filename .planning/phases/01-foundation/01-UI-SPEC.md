@@ -34,6 +34,17 @@ created: 2026-03-30
 }
 ```
 
+### Focal Point
+
+**Primary chat screen**의 시각적 앵커는 다음과 같이 선언한다:
+
+| 상태 | Focal Point | 위치 |
+|------|-------------|------|
+| API 키 미설정 | Empty State Card | 화면 중앙 |
+| API 키 설정됨 | Chat Input | 화면 하단 고정 |
+
+Empty State Card는 사용자가 첫 번째 액션을 취해야 하는 상황임을 명확히 나타내며, Chat Input은 대화가 시작된 후 사용자의 주요 인터랙션 포인트가 된다.
+
 ---
 
 ## Spacing Scale
@@ -106,7 +117,7 @@ Declared values (multiples of 4):
 - **Component:** Input field + Primary button
 - **States:** Empty, Filled, Validating (loading), Valid (green check), Invalid (red check + error message)
 - **Behavior:** Debounced validation on blur (GET /api/v1/models)
-- **Copy:** "OpenRouter API 키 입력" (placeholder), "저장" (button)
+- **Copy:** "OpenRouter API 키 입력" (placeholder), "API 키 저장" (button)
 
 ### Model Selector (MODL-03)
 - **Component:** Dropdown (shadcn Select)
@@ -162,7 +173,7 @@ Declared values (multiples of 4):
 | Element | Copy |
 |---------|------|
 | Primary CTA | "전송" (Send message) |
-| Secondary CTA | "저장" (Save API key), "설정" (Open settings) |
+| Secondary CTA | "API 키 저장" (Save API key), "설정" (Open settings) |
 | Empty state heading | "OpenRouter API 키가 필요합니다" |
 | Empty state body | "무료 AI 모델과 대화하려면 API 키를 입력해 주세요." |
 | API key placeholder | "OpenRouter API 키를 입력하세요" |
@@ -192,7 +203,7 @@ Declared values (multiples of 4):
 ## Checker Sign-Off
 
 - [ ] Dimension 1 Copywriting: PASS (all elements defined in Korean)
-- [ ] Dimension 2 Visuals: PASS (ChatGPT-style dark theme defined)
+- [ ] Dimension 2 Visuals: PASS (ChatGPT-style dark theme defined, Focal Point declared)
 - [ ] Dimension 3 Color: PASS (60/30/10 split, accent reserved for CTAs/links/active states)
 - [ ] Dimension 4 Typography: PASS (4 sizes, 2 weights, Inter font)
 - [ ] Dimension 5 Spacing: PASS (8-point scale, all multiples of 4)
