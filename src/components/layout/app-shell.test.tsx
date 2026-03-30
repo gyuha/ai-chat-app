@@ -8,20 +8,27 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { useUiStore } from '@/stores/ui-store';
 import { resetUiStore, setViewport } from '@/test/test-utils';
 
-vi.mock('@tanstack/react-router', () => ({
-  Link: ({
-    children,
-    to,
-    ...props
-  }: AnchorHTMLAttributes<HTMLAnchorElement> & {
-    children: ReactNode;
-    to?: string;
-  }) => (
-    <a href={typeof to === 'string' ? to : '#'} {...props}>
-      {children}
-    </a>
-  ),
-}));
+vi.mock('@tanstack/react-router', async () => {
+  const actual = await vi.importActual<typeof import('@tanstack/react-router')>(
+    '@tanstack/react-router',
+  );
+
+  return {
+    ...actual,
+    Link: ({
+      children,
+      to,
+      ...props
+    }: AnchorHTMLAttributes<HTMLAnchorElement> & {
+      children: ReactNode;
+      to?: string;
+    }) => (
+      <a href={typeof to === 'string' ? to : '#'} {...props}>
+        {children}
+      </a>
+    ),
+  };
+});
 
 describe('AppShell', () => {
   beforeEach(() => {

@@ -77,6 +77,24 @@ Object.defineProperty(Element.prototype, 'scrollIntoView', {
   value: vi.fn(),
 });
 
+Object.defineProperty(Element.prototype, 'hasPointerCapture', {
+  configurable: true,
+  writable: true,
+  value: vi.fn().mockReturnValue(false),
+});
+
+Object.defineProperty(Element.prototype, 'setPointerCapture', {
+  configurable: true,
+  writable: true,
+  value: vi.fn(),
+});
+
+Object.defineProperty(Element.prototype, 'releasePointerCapture', {
+  configurable: true,
+  writable: true,
+  value: vi.fn(),
+});
+
 afterEach(async () => {
   cleanup();
   resetAppQueryClient();

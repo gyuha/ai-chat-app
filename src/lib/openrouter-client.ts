@@ -38,9 +38,7 @@ function getOpenRouterHeaders(apiKey: string) {
 }
 
 function isFreeModel(model: OpenRouterModel) {
-  return (
-    model.pricing?.prompt === '0' && model.pricing?.completion === '0'
-  );
+  return model.pricing?.prompt === '0' && model.pricing?.completion === '0';
 }
 
 export function filterFreeModels(models: OpenRouterModel[]) {

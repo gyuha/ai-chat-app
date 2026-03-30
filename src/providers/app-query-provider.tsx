@@ -1,7 +1,7 @@
 import {
   QueryClient,
-  QueryClientProvider,
   type QueryClientConfig,
+  QueryClientProvider,
 } from '@tanstack/react-query';
 
 const queryClientConfig: QueryClientConfig = {
@@ -26,6 +26,8 @@ type AppQueryProviderProps = {
 
 export function AppQueryProvider({ children }: AppQueryProviderProps) {
   return (
-    <QueryClientProvider client={appQueryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={appQueryClient}>
+      {children}
+    </QueryClientProvider>
   );
 }

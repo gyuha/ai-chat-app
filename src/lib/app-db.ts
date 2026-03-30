@@ -36,14 +36,14 @@ export async function getSettingsSnapshot() {
 
   return {
     defaultModelId:
-      entries.find((entry) => entry.key === SETTINGS_KEYS.defaultModelId)?.value ??
-      null,
+      entries.find((entry) => entry.key === SETTINGS_KEYS.defaultModelId)
+        ?.value ?? null,
     defaultSystemPrompt:
       entries.find((entry) => entry.key === SETTINGS_KEYS.defaultSystemPrompt)
         ?.value ?? null,
     openRouterApiKey:
-      entries.find((entry) => entry.key === SETTINGS_KEYS.openRouterApiKey)?.value ??
-      null,
+      entries.find((entry) => entry.key === SETTINGS_KEYS.openRouterApiKey)
+        ?.value ?? null,
   };
 }
 
