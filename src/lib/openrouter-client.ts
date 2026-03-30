@@ -1,4 +1,3 @@
-const OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1';
 const OPENROUTER_MODELS_URL = 'https://openrouter.ai/api/v1/models';
 const OPENROUTER_TITLE = 'OpenRouter Chat';
 
