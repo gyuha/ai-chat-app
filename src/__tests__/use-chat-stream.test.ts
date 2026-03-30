@@ -19,7 +19,7 @@ import { useSetting } from "@/hooks/use-settings";
 import { streamChatCompletion } from "@/services/openrouter-api";
 import { useChatStream } from "../hooks/use-chat-stream";
 
-// Helper to create mock streamChatCompletion that simulates streaming
+// Helper to create mock streamChatCompletion that simulates streaming with delays
 function createMockStream(fullContent: string) {
   return async (
     _apiKey: string,
@@ -33,7 +33,7 @@ function createMockStream(fullContent: string) {
       onError: (error: Error) => void;
     },
   ) => {
-    // Simulate token-by-token streaming
+    // Simulate token-by-token streaming with real async delays
     const tokens = fullContent.split(" ");
     let accumulated = "";
     for (const token of tokens) {
@@ -41,6 +41,8 @@ function createMockStream(fullContent: string) {
       const tokenWithSpace = accumulated === "" ? token : ` ${token}`;
       accumulated += tokenWithSpace;
       callbacks.onToken(tokenWithSpace);
+      // Yield to allow React to render between tokens
+      await new Promise((r) => setTimeout(r, 10));
     }
     callbacks.onComplete(accumulated);
   };
