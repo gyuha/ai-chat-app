@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-03-30T14:25:15.631Z"
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-03-30T14:30:07.224Z"
 last_activity: 2026-03-30
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -66,6 +66,8 @@ Recent decisions affecting current work:
 - [Phase 1]: 비주얼 톤은 ChatGPT 근접형, 거의 평면형, 제한적 강조색으로 유지한다.
 - [Phase 01]: Biome 검사 범위는 앱 소스와 루트 설정 파일로 제한해 vendored GSD 문서와 분리했다. — 프로젝트 저장소에는 앱 코드 외에 vendored workflow 파일이 함께 있어, baseline lint를 앱 범위로 제한해야 실행 품질을 안정적으로 유지할 수 있었다.
 - [Phase 01]: TypeScript 6 deprecation과 Vite ESM 경로 처리를 baseline 단계에서 바로 흡수했다. — 초기 부트스트랩 단계에서 빌드 체인을 통과시키지 못하면 이후 shadcn, router, shell 구현이 모두 막히므로 TS6/ESM 호환성을 바로 정리했다.
+- [Phase 01]: shadcn generated defaults 중 Geist/next-themes 의존성은 유지하지 않고 Inter 중심 토큰과 custom theme plan에 맞게 정리했다. — UI-SPEC에서 완전 중립형 타이포그래피와 custom theme provider 방향을 잠갔기 때문에 generated preset default를 그대로 두지 않았다.
+- [Phase 01]: Biome는 Tailwind v4 directives를 파싱하도록 조정해 generated CSS와 충돌하지 않게 했다. — shadcn가 추가한 globals.css를 유지하면서 lint/build를 닫으려면 parser 옵션을 즉시 열어야 이후 shell 작업이 막히지 않는다.
 
 ### Pending Todos
 
@@ -77,6 +79,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-30T14:12:21.179Z
-Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-app-shell-and-interface-foundation/01-UI-SPEC.md
+Last session: 2026-03-30T14:29:59.052Z
+Stopped at: Completed 01-02-PLAN.md
+Resume file: None

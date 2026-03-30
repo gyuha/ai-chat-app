@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Vite/TypeScript/Biome/Tailwind 기반 앱 골격과 엔트리 구성
-- [ ] 01-02-PLAN.md — shadcn/ui primitives와 공용 UI 기반 구성
+- [x] 01-02-PLAN.md — shadcn/ui primitives와 공용 UI 기반 구성
 - [ ] 01-03-PLAN.md — TanStack Router, theme provider, UI store 기반 라우팅 골격 구성
 - [ ] 01-04-PLAN.md — ChatGPT 유사 앱 셸과 반응형 사이드바 인터랙션 구현
 - [ ] 01-05-PLAN.md — 한국어 빈 상태, 온보딩 카드, 설정 플레이스홀더 화면 구성
