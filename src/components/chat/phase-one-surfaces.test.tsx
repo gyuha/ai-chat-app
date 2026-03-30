@@ -6,23 +6,31 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ApiKeyOnboardingCard } from '@/components/chat/api-key-onboarding-card';
 import { ChatEmptyState } from '@/components/chat/chat-empty-state';
 import { SettingsPanelPlaceholder } from '@/components/settings/settings-panel-placeholder';
+import { AppQueryProvider } from '@/providers/app-query-provider';
 import { useUiStore } from '@/stores/ui-store';
 import { resetUiStore } from '@/test/test-utils';
 
-vi.mock('@tanstack/react-router', () => ({
-  Link: ({
-    children,
-    to,
-    ...props
-  }: AnchorHTMLAttributes<HTMLAnchorElement> & {
-    children: ReactNode;
-    to?: string;
-  }) => (
-    <a href={typeof to === 'string' ? to : '#'} {...props}>
-      {children}
-    </a>
-  ),
-}));
+vi.mock('@tanstack/react-router', async () => {
+  const actual = await vi.importActual<typeof import('@tanstack/react-router')>(
+    '@tanstack/react-router',
+  );
+
+  return {
+    ...actual,
+    Link: ({
+      children,
+      to,
+      ...props
+    }: AnchorHTMLAttributes<HTMLAnchorElement> & {
+      children: ReactNode;
+      to?: string;
+    }) => (
+      <a href={typeof to === 'string' ? to : '#'} {...props}>
+        {children}
+      </a>
+    ),
+  };
+});
 
 describe('Phase 1 Korean state surfaces', () => {
   beforeEach(() => {
@@ -31,7 +39,13 @@ describe('Phase 1 Korean state surfaces', () => {
 
   it('renders the API key onboarding card with Korean guidance and inline error slot', () => {
     render(
-      <ApiKeyOnboardingCard errorMessage="입력한 키로 모델 목록을 불러오지 못했습니다." />,
+      <ApiKeyOnboardingCard
+        apiKey=""
+        onApiKeyChange={() => {}}
+        onSubmit={(event) => event.preventDefault()}
+        statusMessage="입력한 키로 모델 목록을 불러오지 못했습니다."
+        statusTone="error"
+      />,
     );
 
     expect(
@@ -51,10 +65,10 @@ describe('Phase 1 Korean state surfaces', () => {
     const user = userEvent.setup();
 
     render(
-      <>
+      <AppQueryProvider>
         <ChatEmptyState />
         <SettingsPanelPlaceholder />
-      </>,
+      </AppQueryProvider>,
     );
 
     expect(

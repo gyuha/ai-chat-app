@@ -1,9 +1,8 @@
 import {
-  appDb,
   getSettingsSnapshot,
   removeSetting,
-  setSetting,
   SETTINGS_KEYS,
+  setSetting,
 } from '@/lib/app-db';
 import type { OpenRouterModel } from '@/lib/openrouter-client';
 
@@ -75,21 +74,4 @@ export async function setDefaultSystemPrompt(systemPrompt: string | null) {
   }
 
   await setSetting(SETTINGS_KEYS.defaultSystemPrompt, normalizedPrompt);
-}
-
-export async function updateSettings(
-  updates: Partial<Record<(typeof SETTINGS_KEYS)[keyof typeof SETTINGS_KEYS], string | null>>,
-) {
-  await appDb.transaction('rw', appDb.settings, async () => {
-    for (const [key, value] of Object.entries(updates)) {
-      const normalizedValue = normalizeTextValue(value);
-
-      if (!normalizedValue) {
-        await removeSetting(key as keyof typeof SETTINGS_KEYS);
-        continue;
-      }
-
-      await setSetting(key as keyof typeof SETTINGS_KEYS, normalizedValue);
-    }
-  });
 }
