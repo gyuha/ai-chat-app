@@ -6,9 +6,10 @@ import {
 import { useEffect } from 'react';
 
 import { AppShell } from '@/components/layout/app-shell';
-import { getConversationTitle } from '@/components/layout/conversation-list';
 import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { useConversationQuery } from '@/hooks/use-conversations-query';
+import { getConversationDisplayTitle } from '@/lib/conversation-service';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { selectResolvedTheme, useUiStore } from '@/stores/ui-store';
 
@@ -25,12 +26,13 @@ function RootRouteComponent() {
   const activeConversationId = pathname.startsWith('/chat/')
     ? decodeURIComponent(pathname.replace('/chat/', ''))
     : null;
+  const activeConversationQuery = useConversationQuery(activeConversationId);
   const title =
     pathname === '/settings'
       ? '설정'
       : pathname === '/'
         ? '새 대화'
-        : getConversationTitle(activeConversationId);
+        : getConversationDisplayTitle(activeConversationQuery.data);
 
   useEffect(() => {
     if (pathname) {

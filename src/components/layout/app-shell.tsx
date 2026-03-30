@@ -36,6 +36,7 @@ export function AppShell({
 
         <div className="flex min-h-svh min-w-0 flex-1 flex-col">
           <AppHeader
+            activeConversationId={activeConversationId}
             onOpenSidebar={openMobileSidebar}
             onStartNewChat={closeMobileSidebar}
             title={title}

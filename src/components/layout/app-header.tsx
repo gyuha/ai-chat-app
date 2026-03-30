@@ -1,16 +1,19 @@
 import { PanelLeftIcon } from 'lucide-react';
 
+import { ConversationModelSelector } from '@/components/chat/conversation-model-selector';
 import { NewChatButton } from '@/components/layout/new-chat-button';
 import { ThemeToggle } from '@/components/layout/theme-toggle';
 import { Button } from '@/components/ui/button';
 
 type AppHeaderProps = {
+  activeConversationId: string | null;
   onOpenSidebar: () => void;
   onStartNewChat: () => void;
   title: string;
 };
 
 export function AppHeader({
+  activeConversationId,
   onOpenSidebar,
   onStartNewChat,
   title,
@@ -38,14 +41,7 @@ export function AppHeader({
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
-            <Button
-              className="h-9 rounded-xl border-[var(--color-border)] bg-[var(--color-panel)] px-3 text-sm text-[var(--color-text)] hover:bg-[color-mix(in_srgb,var(--color-panel)_82%,white)]"
-              variant="outline"
-            >
-              무료 모델 기준
-            </Button>
-          </div>
+          <ConversationModelSelector conversationId={activeConversationId} />
           <ThemeToggle />
           <div className="md:hidden">
             <NewChatButton mobile onNavigate={onStartNewChat} />
