@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
@@ -61,6 +62,9 @@ export function AppSidebar({
         >
           <SheetHeader className="sr-only">
             <SheetTitle>대화 목록</SheetTitle>
+            <SheetDescription>
+              최근 대화와 설정 메뉴를 확인할 수 있습니다.
+            </SheetDescription>
           </SheetHeader>
           <SidebarBody
             activeConversationId={activeConversationId}
