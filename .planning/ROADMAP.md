@@ -49,7 +49,7 @@
   10. API 오류 발생 시 재시도 버튼이 표시된다
 **Plans**: 2 plans
 Plans:
-- [ ] 02-01-PLAN.md — API & 데이터 레이어 (스트리밍 서비스, 메시지/모델 훅, 오류 처리, Toaster)
+- [x] 02-01-PLAN.md — API & 데이터 레이어 (스트리밍 서비스, 메시지/모델 훅, 오류 처리, Toaster)
 - [ ] 02-02-PLAN.md — 채팅 UI & 통합 (메시지 렌더링, 입력, 모델 선택, 채팅 페이지, 라우트)
 **UI hint**: yes
 
@@ -86,6 +86,6 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. 데이터 & 상태 기반 | 0/0 | Not started | - |
-| 2. 채팅 핵심 | 0/2 | Planning complete | - |
+| 2. 채팅 핵심 | 1/2 | In Progress | - |
 | 3. 대화 관리 & 설정 | 0/0 | Not started | - |
 | 4. 사용자 경험 개선 | 0/0 | Not started | - |

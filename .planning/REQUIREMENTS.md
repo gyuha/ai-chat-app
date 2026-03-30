@@ -9,8 +9,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### 채팅 핵심 (Chat)
 
-- [ ] **CHAT-01**: 사용자가 메시지를 전송하고 SSE 스트리밍으로 실시간 토큰 단위 응답을 받을 수 있다
-- [ ] **CHAT-02**: 사용자가 Stop 버튼으로 스트리밍 응답을 중단할 수 있다 (AbortController)
+- [x] **CHAT-01**: 사용자가 메시지를 전송하고 SSE 스트리밍으로 실시간 토큰 단위 응답을 받을 수 있다
+- [x] **CHAT-02**: 사용자가 Stop 버튼으로 스트리밍 응답을 중단할 수 있다 (AbortController)
 - [ ] **CHAT-03**: 어시스턴트 응답이 마크다운으로 렌더링된다 (코드블록 구문 강조 포함)
 - [ ] **CHAT-04**: 스트리밍 중 점진적 마크다운 렌더링이 표시된다 (불완전한 마크다운 깨짐 없이)
 - [ ] **CHAT-05**: 코드블록에 복사 버튼이 표시된다 (클릭 시 전체 코드 복사 + 토스트 피드백)
@@ -39,9 +39,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### 모델 & API (Modl)
 
-- [ ] **MODL-01**: 사용자가 무료 모델 목록을 조회하고 대화별로 모델을 선택할 수 있다
-- [ ] **MODL-02**: API 오류 시 토스트 알림이 표시된다
-- [ ] **MODL-03**: Rate Limit(429) 초과 시 사용자에게 안내가 표시된다
+- [x] **MODL-01**: 사용자가 무료 모델 목록을 조회하고 대화별로 모델을 선택할 수 있다
+- [x] **MODL-02**: API 오류 시 토스트 알림이 표시된다
+- [x] **MODL-03**: Rate Limit(429) 초과 시 사용자에게 안내가 표시된다
 - [ ] **MODL-04**: API 오류 발생 시 재시도 버튼이 표시된다
 
 ## v2 Requirements
@@ -80,8 +80,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CHAT-01 | Phase 2 | Pending |
-| CHAT-02 | Phase 2 | Pending |
+| CHAT-01 | Phase 2 | Complete |
+| CHAT-02 | Phase 2 | Complete |
 | CHAT-03 | Phase 2 | Pending |
 | CHAT-04 | Phase 4 | Pending |
 | CHAT-05 | Phase 4 | Pending |
@@ -101,9 +101,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UIUX-01 | Phase 3 | Pending |
 | UIUX-02 | Phase 3 | Pending |
 | UIUX-03 | Phase 3 | Pending |
-| MODL-01 | Phase 2 | Pending |
-| MODL-02 | Phase 2 | Pending |
-| MODL-03 | Phase 2 | Pending |
+| MODL-01 | Phase 2 | Complete |
+| MODL-02 | Phase 2 | Complete |
+| MODL-03 | Phase 2 | Complete |
 | MODL-04 | Phase 2 | Pending |
 
 **Coverage:**
