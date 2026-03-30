@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-30T16:15:10.228Z"
+status: ready
+stopped_at: Completed 02-05-PLAN.md
+last_updated: "2026-03-30T16:33:23Z"
 last_activity: 2026-03-31
 progress:
   total_phases: 5
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 10
-  completed_plans: 6
-  percent: 60
+  completed_plans: 10
+  percent: 100
 ---
 
 # Project State
@@ -21,22 +21,22 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-30)
 
 **Core value:** 사용자가 서버 없이 자신의 OpenRouter API 키만으로 무료 모델과 안정적으로 대화하고, 대화 기록을 로컬에 안전하게 보관할 수 있어야 한다.
-**Current focus:** Phase 2 — API 키와 설정 관리
+**Current focus:** Phase 3 준비 — 무료 모델 선택과 대화 부트스트랩
 
 ## Current Position
 
-Phase: 2 (API 키와 설정 관리) — EXECUTING
-Plan: 2 of 5
-Status: Ready to execute
+Phase: 2 (API 키와 설정 관리) — COMPLETE
+Plan: 5 of 5
+Status: Ready for Phase 3 discussion
 Last activity: 2026-03-31
 
-Progress: [██████░░░░] 60%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 6
+- Total plans completed: 10
 - Average duration: -
 - Total execution time: 0.0 hours
 
@@ -44,14 +44,18 @@ Progress: [██████░░░░] 60%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| Phase 02 | 5 | - | - |
 
 **Recent Trend:**
 
-- Last 5 plans: -
+- Last 5 plans: 02-01 → 02-02 → 02-03 → 02-04 → 02-05
 - Trend: Stable
 
 | Phase 02 P01 | 1 min | 2 tasks | 6 files |
+| Phase 02 P02 | 6 min | 2 tasks | 5 files |
+| Phase 02 P03 | 9 min | 2 tasks | 3 files |
+| Phase 02 P04 | 14 min | 2 tasks | 6 files |
+| Phase 02 P05 | 24 min | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -75,6 +79,8 @@ Recent decisions affecting current work:
 - [Phase 02]: 기본 모델과 글로벌 시스템 프롬프트는 기존 대화를 바꾸지 않고 새 대화의 초기값으로만 적용한다. — 기존 대화 컨텍스트를 보존하면서 기본 설정의 의미를 유지하기 위해.
 - [Phase 02]: settings persistence의 단일 source of truth는 Dexie settings store로 유지한다. — localStorage fallback을 만들지 않고 이후 settings/model 흐름을 한 저장소 위에 누적하기 위해.
 - [Phase 02]: QueryClient는 singleton으로 두고 테스트마다 cache를 clear한다. — settings/models query가 같은 cache 정책을 공유하면서 test 간 상태 오염을 막기 위해.
+- [Phase 02]: `/` 온보딩 성공 후에는 route 이동 없이 settings query cache를 갱신해 empty state로 전환한다. — 첫 사용 흐름을 끊지 않고 같은 화면에서 즉시 다음 행동으로 넘어가게 하기 위해.
+- [Phase 02]: settings route tests는 memory router + fake IndexedDB + fetch mock 조합으로 실제 정책을 고정한다. — 브라우저 전용 persistence 앱에서 save/delete/default 흐름 회귀를 빠르게 검증하기 위해.
 
 ### Pending Todos
 
@@ -82,15 +88,16 @@ None yet.
 
 ### Blockers/Concerns
 
-- OpenRouter 무료 모델 조건과 rate limit은 구현 직전에 다시 확인해야 한다.
-- Phase 2는 별도 RESEARCH.md 없이 CONTEXT.md와 요구사항 기준으로 planning을 완료했다.
+- OpenRouter 무료 모델 조건과 rate limit은 Phase 3 구현 전에 다시 확인해야 한다.
+- route test file ignore pattern은 설정했지만, 새 route-adjacent test 파일도 `.test.tsx` 규칙을 유지해야 한다.
 
 ### Planning Notes
 
 - [Phase 02]: foundation(01) → service layer(02) → onboarding/settings UI(03/04 병렬) → integration tests(05) 순서로 plan을 분할했다. — persistence/query 기반을 먼저 고정하고, route UI는 동일한 policy/service 위에서 병렬 구현할 수 있게 하기 위해.
+- [Phase 02]: Select interaction은 action-path persistence 테스트와 route fallback 테스트로 나눠 검증했다. — Radix primitive의 JSDOM 한계를 피하면서 정책 coverage는 유지하기 위해.
 
 ## Session Continuity
 
-Last session: 2026-03-30T16:15:10.228Z
-Stopped at: Completed 02-01-PLAN.md
-Resume file: None
+Last session: 2026-03-30T16:33:23Z
+Stopped at: Completed 02-05-PLAN.md
+Resume file: .planning/phases/02-api-key-and-settings-management/02-05-SUMMARY.md

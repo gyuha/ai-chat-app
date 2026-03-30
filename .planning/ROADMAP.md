@@ -12,8 +12,8 @@
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: 앱 셸과 인터페이스 기반** - ChatGPT 유사 레이아웃, 반응형 구조, 테마 기준을 확립한다.
-- [ ] **Phase 2: API 키와 설정 관리** - API 키 온보딩, 검증, 기본 설정 저장 흐름을 완성한다.
+- [x] **Phase 1: 앱 셸과 인터페이스 기반** - ChatGPT 유사 레이아웃, 반응형 구조, 테마 기준을 확립한다.
+- [x] **Phase 2: API 키와 설정 관리** - API 키 온보딩, 검증, 기본 설정 저장 흐름을 완성한다.
 - [ ] **Phase 3: 무료 모델 선택과 대화 부트스트랩** - 무료 모델 목록, 대화 생성, 대화별 메타데이터 선택을 연결한다.
 - [ ] **Phase 4: 스트리밍 채팅 경험** - 메시지 전송, SSE 스트리밍, 중단, Markdown 렌더링을 구현한다.
 - [ ] **Phase 5: 대화 히스토리와 로컬 영속성** - 대화 목록 관리와 로컬 저장 복원을 마무리한다.
@@ -52,10 +52,10 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Dexie settings 저장소와 Query provider, 테스트용 IndexedDB 기반을 추가한다.
-- [ ] 02-02-PLAN.md — OpenRouter validation/free-model service와 settings hooks를 만든다.
-- [ ] 02-03-PLAN.md — `/` 온보딩 카드의 검증/저장/빈 상태 전환 흐름을 구현한다.
-- [ ] 02-04-PLAN.md — `/settings`에서 API 키 관리, 기본 모델, 시스템 프롬프트 설정 UI를 구현한다.
-- [ ] 02-05-PLAN.md — 저장/검증/복구 흐름을 integration test로 고정한다.
+- [x] 02-02-PLAN.md — OpenRouter validation/free-model service와 settings hooks를 만든다.
+- [x] 02-03-PLAN.md — `/` 온보딩 카드의 검증/저장/빈 상태 전환 흐름을 구현한다.
+- [x] 02-04-PLAN.md — `/settings`에서 API 키 관리, 기본 모델, 시스템 프롬프트 설정 UI를 구현한다.
+- [x] 02-05-PLAN.md — 저장/검증/복구 흐름을 integration test로 고정한다.
 
 ### Phase 3: 무료 모델 선택과 대화 부트스트랩
 **Goal:** 사용자가 무료 모델을 탐색하고 새 대화를 시작할 때 대화별 설정을 확정할 수 있다.
@@ -107,7 +107,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. 앱 셸과 인터페이스 기반 | 5/5 | Complete | 2026-03-30 |
-| 2. API 키와 설정 관리 | 1/5 | In Progress | - |
+| 2. API 키와 설정 관리 | 5/5 | Complete | 2026-03-31 |
 | 3. 무료 모델 선택과 대화 부트스트랩 | 0/0 | Not started | - |
 | 4. 스트리밍 채팅 경험 | 0/0 | Not started | - |
 | 5. 대화 히스토리와 로컬 영속성 | 0/0 | Not started | - |
