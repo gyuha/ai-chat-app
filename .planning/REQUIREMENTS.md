@@ -11,12 +11,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **CHAT-01**: 사용자가 메시지를 전송하고 SSE 스트리밍으로 실시간 토큰 단위 응답을 받을 수 있다
 - [x] **CHAT-02**: 사용자가 Stop 버튼으로 스트리밍 응답을 중단할 수 있다 (AbortController)
-- [ ] **CHAT-03**: 어시스턴트 응답이 마크다운으로 렌더링된다 (코드블록 구문 강조 포함)
+- [x] **CHAT-03**: 어시스턴트 응답이 마크다운으로 렌더링된다 (코드블록 구문 강조 포함)
 - [ ] **CHAT-04**: 스트리밍 중 점진적 마크다운 렌더링이 표시된다 (불완전한 마크다운 깨짐 없이)
 - [ ] **CHAT-05**: 코드블록에 복사 버튼이 표시된다 (클릭 시 전체 코드 복사 + 토스트 피드백)
-- [ ] **CHAT-06**: 스트리밍 중 오토스크롤이 동작한다 (사용자 수동 스크롤 시 자동 스크롤 중지)
-- [ ] **CHAT-07**: 응답 대기 중 로딩 인디케이터가 표시된다
-- [ ] **CHAT-08**: Enter로 전송, Shift+Enter로 줄바꿈이 동작한다
+- [x] **CHAT-06**: 스트리밍 중 오토스크롤이 동작한다 (사용자 수동 스크롤 시 자동 스크롤 중지)
+- [x] **CHAT-07**: 응답 대기 중 로딩 인디케이터가 표시된다
+- [x] **CHAT-08**: Enter로 전송, Shift+Enter로 줄바꿈이 동작한다
 - [ ] **CHAT-09**: 사용자가 마지막 어시스턴트 응답을 재전송(Regenerate)할 수 있다
 - [ ] **CHAT-10**: 사용자가 메시지 텍스트를 복사할 수 있다
 - [ ] **CHAT-11**: 키보드 단축키가 동작한다 (Cmd+K 새 대화 등)
@@ -42,7 +42,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **MODL-01**: 사용자가 무료 모델 목록을 조회하고 대화별로 모델을 선택할 수 있다
 - [x] **MODL-02**: API 오류 시 토스트 알림이 표시된다
 - [x] **MODL-03**: Rate Limit(429) 초과 시 사용자에게 안내가 표시된다
-- [ ] **MODL-04**: API 오류 발생 시 재시도 버튼이 표시된다
+- [x] **MODL-04**: API 오류 발생 시 재시도 버튼이 표시된다
 
 ## v2 Requirements
 
@@ -82,12 +82,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | CHAT-01 | Phase 2 | Complete |
 | CHAT-02 | Phase 2 | Complete |
-| CHAT-03 | Phase 2 | Pending |
+| CHAT-03 | Phase 2 | Complete |
 | CHAT-04 | Phase 4 | Pending |
 | CHAT-05 | Phase 4 | Pending |
-| CHAT-06 | Phase 2 | Pending |
-| CHAT-07 | Phase 2 | Pending |
-| CHAT-08 | Phase 2 | Pending |
+| CHAT-06 | Phase 2 | Complete |
+| CHAT-07 | Phase 2 | Complete |
+| CHAT-08 | Phase 2 | Complete |
 | CHAT-09 | Phase 4 | Pending |
 | CHAT-10 | Phase 4 | Pending |
 | CHAT-11 | Phase 4 | Pending |
@@ -104,7 +104,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MODL-01 | Phase 2 | Complete |
 | MODL-02 | Phase 2 | Complete |
 | MODL-03 | Phase 2 | Complete |
-| MODL-04 | Phase 2 | Pending |
+| MODL-04 | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 25 total

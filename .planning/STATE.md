@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-last_updated: "2026-03-30T19:06:59.993Z"
+status: ready_for_verification
+last_updated: "2026-03-30T19:22:00.000Z"
 last_activity: 2026-03-30
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 5
-  completed_plans: 2
-  percent: 40
+  completed_plans: 3
+  percent: 60
 ---
 
 # 프로젝트 상태
@@ -20,35 +20,35 @@ progress:
 참조: .planning/PROJECT.md (2026-03-30 업데이트)
 
 **Core value:** 사용자가 무료 AI 모델과 실시간 스트리밍 채팅을 할 수 있는 것
-**Current focus:** Phase 02 — 채팅-핵심
+**Current focus:** Phase 02 완료 — 검증 대기
 
 ## 현재 위치
 
-Phase: 2 of 4 (채팅-핵심)
-Plan: 2 of 2
-Status: Executing Phase 02
+Phase: 2 of 4 (채팅-핵심) — 완료
+Plan: 2 of 2 (완료)
+Status: Ready for Verification
 Last activity: 2026-03-30
 
-Progress: [████░░░░░░] 40%
+Progress: [██████░░░░] 60%
 
 ## 성능 지표
 
 **속도:**
 
-- 완료된 총 플랜: 2
-- 평균 소요 시간: 8분
-- 총 실행 시간: 16분
+- 완료된 총 플랜: 3
+- 평균 소요 시간: 8.7분
+- 총 실행 시간: 26분
 
 **페이즈별:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 | 1 | 6분 | 6분 |
-| 02 | 1 | 10분 | 10분 |
+| 02 | 2 | 20분 | 10분 |
 
 **최근 트렌드:**
 
-- 최근 5개 플랜: 01-01 (6분), 02-01 (10분)
+- 최근 5개 플랜: 01-01 (6분), 02-01 (10분), 02-02 (10분)
 - 트렌드: 초기 실행
 
 *각 플랜 완료 후 업데이트*
@@ -67,6 +67,8 @@ Progress: [████░░░░░░] 40%
 - 01-01: shadcn/ui CLI 대신 수동 설정 (비대화형 환경 호환성)
 - 02-01: vitest/config defineConfig 사용 (tsc -b + vitest test 설정 충돌 해결)
 - 02-01: SSE 파싱에 외부 라이브러리 없이 fetch + ReadableStream 직접 구현
+- 02-02: shadcn/ui Select로 모델 선택 (Popover 미설치)
+- 02-02: @testing-library/jest-dom 전역 설정으로 DOM 매처 사용
 
 ### 보류 중인 할일
 
@@ -83,5 +85,5 @@ Progress: [████░░░░░░] 40%
 ## 세션 연속성
 
 마지막 세션: 2026-03-30
-중단 지점: Phase 2 Plan 01 완료, Plan 02 준비됨
+중단 지점: Phase 02 완료, 검증 대기
 재개 파일: 없음
