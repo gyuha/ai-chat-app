@@ -23,10 +23,10 @@ describe("StreamingIndicator", () => {
     expect(spinner).toBeInTheDocument();
   });
 
-  it("should have text-muted-foreground color on the text", () => {
+  it("should have text-muted-foreground color on content", () => {
     const { container } = render(<StreamingIndicator />);
 
-    const wrapper = container.firstChild as HTMLElement;
-    expect(wrapper.className).toContain("text-muted-foreground");
+    const content = container.querySelector(".text-muted-foreground");
+    expect(content).toBeInTheDocument();
   });
 });

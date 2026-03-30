@@ -1,9 +1,8 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MessageItem } from "../components/chat/MessageItem";
 import type { Message } from "../db";
 
-// Mock highlight.js CSS import
 vi.mock("highlight.js/styles/github-dark.css", () => ({}));
 
 describe("MessageItem", () => {
@@ -55,15 +54,21 @@ describe("MessageItem", () => {
 
   it("should render assistant message with ReactMarkdown", () => {
     const markdownContent = "# Hello\n\nThis is **bold** text.";
-    render(
+    const { container } = render(
       <MessageItem
         message={{ ...baseMessage, role: "assistant", content: markdownContent }}
       />,
     );
 
-    // ReactMarkdown should render the heading and bold text
-    expect(screen.getByText("Hello")).toBeInTheDocument();
-    expect(screen.getByText("bold")).toBeInTheDocument();
+    // ReactMarkdown renders # Hello as h1 heading
+    const heading = container.querySelector("h1");
+    expect(heading).toBeInTheDocument();
+    expect(heading?.textContent).toBe("Hello");
+
+    // bold text rendered via <strong>
+    const bold = container.querySelector("strong");
+    expect(bold).toBeInTheDocument();
+    expect(bold?.textContent).toBe("bold");
   });
 
   it("should render code blocks in assistant markdown with pre > code elements", () => {

@@ -1,10 +1,14 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeAll } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MessageList } from "../components/chat/MessageList";
 import type { Message } from "../db";
 
-// Mock highlight.js CSS import
 vi.mock("highlight.js/styles/github-dark.css", () => ({}));
+
+// Mock scrollTo for jsdom
+beforeAll(() => {
+  HTMLElement.prototype.scrollTo = vi.fn();
+});
 
 describe("MessageList", () => {
   const mockMessages: Message[] = [
@@ -78,7 +82,9 @@ describe("MessageList", () => {
       />,
     );
 
-    const scrollContainer = container.querySelector("[data-slot='message-list-scroll']");
+    const scrollContainer = container.querySelector(
+      "[data-slot='message-list-scroll']",
+    );
     expect(scrollContainer).toBeInTheDocument();
     expect(scrollContainer?.className).toContain("overflow-y-auto");
   });
