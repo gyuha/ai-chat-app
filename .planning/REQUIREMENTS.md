@@ -40,7 +40,7 @@
 
 - [ ] **UI-01**: ChatGPT와 유사한 좌측 사이드바 + 우측 채팅 영역 레이아웃
 - [ ] **UI-02**: 반응형 디자인 (모바일 <1024px, 데스크톱 ≥1024px)
-- [ ] **UI-03**: 다크모드/라이트모드 지원 (시스템 테마 감지 + 수동 전환)
+- [x] **UI-03**: 다크모드/라이트모드 지원 (시스템 테마 감지 + 수동 전환)
 - [ ] **UI-04**: 빈 상태 표시 (환영 메시지, API 키 미등록 안내)
 
 ### Data (데이터 저장)
@@ -103,7 +103,7 @@
 | CONV-04 | Phase 3 | Pending |
 | CONV-05 | Phase 3 | Pending |
 | CONV-06 | Phase 3 | Pending |
-| UI-03 | Phase 3 | Pending |
+| UI-03 | Phase 3 | Complete |
 | UI-04 | Phase 3 | Pending |
 
 **Coverage:**
