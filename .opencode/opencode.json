@@ -1,4 +1,5 @@
 {
+  "$schema": "https://opencode.ai/config.json",
   "permission": {
     "read": {
       "/Users/gyuha/workspace/ai-chat-app.worktrees/opencode/.opencode/get-shit-done/*": "allow"
