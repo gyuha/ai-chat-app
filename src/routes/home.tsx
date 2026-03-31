@@ -1,5 +1,6 @@
 import { useRef, useEffect, useCallback } from "react"
 import { useNavigate } from "@tanstack/react-router"
+import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ApiKeySetup } from "@/components/api-key-setup"
 import { ChatMessage } from "@/components/chat-message"
@@ -108,22 +109,37 @@ export function HomePage() {
       <div className="flex h-full flex-col">
         {/* Chat Area */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto">
-          {messages.length === 0 ? (
+          {messages.length === 0 && !currentConversationId ? (
+            <div className="flex h-full items-center justify-center">
+              <div className="text-center space-y-3 max-w-md px-6">
+                <div className="mx-auto w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                  <MessageSquare className="h-6 w-6 text-accent" />
+                </div>
+                <h2 className="text-xl font-semibold text-foreground">대화를 시작하세요</h2>
+                <p className="text-muted-foreground text-sm">
+                  질문을 입력해 AI와 대화를 시작하세요.
+                </p>
+                <Button
+                  onClick={async () => {
+                    const id = await createConversation()
+                    setCurrentConversation(id)
+                  }}
+                  className="mt-2"
+                >
+                  새 대화
+                </Button>
+              </div>
+            </div>
+          ) : messages.length === 0 && !defaultModel ? (
             <div className="flex h-full items-center justify-center">
               <div className="text-center space-y-2">
-                <p className="text-muted-foreground">
-                  {defaultModel
-                    ? "메시지를 입력하여 대화를 시작하세요."
-                    : "먼저 모델을 선택해 주세요."}
-                </p>
-                {!defaultModel && (
-                  <Button
-                    variant="link"
-                    onClick={() => navigate({ to: "/settings" })}
-                  >
-                    설정에서 모델 선택하기
-                  </Button>
-                )}
+                <p className="text-muted-foreground">먼저 모델을 선택해 주세요.</p>
+                <Button
+                  variant="link"
+                  onClick={() => navigate({ to: "/settings" })}
+                >
+                  설정에서 모델 선택하기
+                </Button>
               </div>
             </div>
           ) : (
