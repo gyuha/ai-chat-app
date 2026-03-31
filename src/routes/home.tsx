@@ -15,7 +15,9 @@ import {
   useMessages,
   createConversation,
   addMessage,
+  updateConversationTitle,
 } from "@/hooks/use-db"
+import { db } from "@/db"
 
 export function HomePage() {
   const { apiKey, defaultModel, isLoading: settingsLoading } = useSettings()
@@ -38,15 +40,29 @@ export function HomePage() {
   // Phase 2: Handle sending message with persistence
   const handleSend = useCallback(
     async (content: string) => {
-      if (!currentConversationId) {
+      let targetConvId = currentConversationId
+
+      if (!targetConvId) {
         // Create new conversation if none selected
-        const newId = await createConversation()
-        setCurrentConversation(newId)
-        // Add message after setting conversation
-        await addMessage(newId, "user", content)
-      } else {
-        await addMessage(currentConversationId, "user", content)
+        targetConvId = await createConversation()
+        setCurrentConversation(targetConvId)
       }
+
+      // Add message
+      await addMessage(targetConvId, "user", content)
+
+      // CONV-03: Auto-generate title from first message
+      const messageCount = await db.messages
+        .where("conversationId")
+        .equals(targetConvId)
+        .count()
+      if (messageCount === 1) {
+        // First message in conversation - generate title
+        const raw = content.slice(0, 40).replace(/[#*`_\[\]]/g, "").trim()
+        const title = raw + (content.length > 40 ? "..." : "") || "새 대화"
+        await updateConversationTitle(targetConvId, title)
+      }
+
       // Send to API (useChat handles streaming)
       await sendMessage(content)
     },
