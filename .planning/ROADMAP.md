@@ -64,7 +64,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 03-01-PLAN.md — localStorage 저장/복원 로직 및 오류 처리
+- [x] 03-01-PLAN.md — localStorage 저장/복원 로직 및 오류 처리
 
 ## Progress
 
@@ -72,4 +72,4 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-04-02 |
 | 2. Core Chat Loop | 0/3 | Not started | - |
-| 3. Persistence | 0/1 | Not started | - |
+| 3. Persistence | 1/1 | Not started | - |
