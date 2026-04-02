@@ -7,10 +7,11 @@ const initialState: ChatState = {
   apiKey: null,
   conversations: [],
   selectedConversationId: null,
-  selectedModel: 'openrouter/free-models',
+  selectedModel: 'google/gemma-3-4b-it:free',
   isValidating: false,
   isStreaming: false,
   error: null,
+  showApiKeyModal: false,
 };
 
 function chatReducer(state: ChatState, action: ChatAction): ChatState {
@@ -21,6 +22,8 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
       return { ...state, isValidating: action.payload };
     case 'SET_API_KEY_ERROR':
       return { ...state, error: action.payload, isValidating: false };
+    case 'SHOW_API_KEY_MODAL':
+      return { ...state, showApiKeyModal: action.payload };
     case 'CREATE_CHAT': {
       const newChat: Conversation = {
         id: crypto.randomUUID(),
@@ -121,6 +124,7 @@ interface ChatContextValue {
   startStreaming: () => void;
   finishStreaming: () => void;
   cancelStreaming: () => void;
+  showApiKeyModal: (show: boolean) => void;
 }
 
 const ChatContext = createContext<ChatContextValue | null>(null);
@@ -169,10 +173,11 @@ function ChatProviderInner({ children }: { children: ReactNode }) {
   const startStreaming = () => dispatch({ type: 'START_STREAMING' });
   const finishStreaming = () => dispatch({ type: 'FINISH_STREAMING' });
   const cancelStreaming = () => dispatch({ type: 'CANCEL_STREAMING' });
+  const showApiKeyModal = (show: boolean) => dispatch({ type: 'SHOW_API_KEY_MODAL', payload: show });
 
   return (
     <ChatContext.Provider
-      value={{ state, dispatch, createChat, selectChat, deleteChat, addMessage, updateMessage, updateChatName, setModel, setApiKey, startStreaming, finishStreaming, cancelStreaming }}
+      value={{ state, dispatch, createChat, selectChat, deleteChat, addMessage, updateMessage, updateChatName, setModel, setApiKey, startStreaming, finishStreaming, cancelStreaming, showApiKeyModal }}
     >
       {children}
     </ChatContext.Provider>

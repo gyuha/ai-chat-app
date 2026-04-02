@@ -1,6 +1,7 @@
 // src/components/chat/ChatInput.tsx
 import { useState, useRef } from 'react';
 import { useChat } from '../../context/ChatContext';
+import { useToast } from '../../components/Toast';
 import { Message } from '../../types/chat';
 import { streamChat } from '../../lib/openrouter';
 
@@ -8,8 +9,9 @@ export function ChatInput() {
   const [input, setInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
-  const { state, addMessage, updateMessage, startStreaming, finishStreaming, cancelStreaming } = useChat();
+  const { state, addMessage, updateMessage, startStreaming, finishStreaming, cancelStreaming, showApiKeyModal } = useChat();
   const { selectedConversationId, apiKey, selectedModel, isStreaming } = state;
+  const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
@@ -51,6 +53,13 @@ export function ChatInput() {
       return;
     }
 
+    // Check if API key is set
+    if (!apiKey) {
+      toast({ message: 'API 키를 설정해주세요.', type: 'error' });
+      showApiKeyModal(true);
+      return;
+    }
+
     // Cancel any existing abort controller
     abortControllerRef.current?.abort();
     abortControllerRef.current = new AbortController();
@@ -85,17 +94,17 @@ export function ChatInput() {
     };
     addMessage(selectedConversationId, assistantMessage);
 
-    // Prepare messages for API
+    // Prepare messages for API - include both existing messages and the new user message
     const conversation = state.conversations.find(c => c.id === selectedConversationId);
-    if (!conversation) {
-      finishStreaming();
-      return;
-    }
+    const existingMessages = conversation?.messages || [];
 
-    const messagesForApi = conversation.messages.map(m => ({
-      role: m.role as 'user' | 'assistant' | 'system',
-      content: m.content,
-    }));
+    const messagesForApi = [
+      ...existingMessages.map(m => ({
+        role: m.role as 'user' | 'assistant' | 'system',
+        content: m.content,
+      })),
+      { role: 'user' as const, content: input.trim() },
+    ];
 
     // Stream the response
     try {
@@ -110,6 +119,7 @@ export function ChatInput() {
     } catch (err) {
       if (err instanceof Error && err.name !== 'AbortError') {
         console.error('Streaming error:', err);
+        toast({ message: `오류: ${err.message}`, type: 'error' });
       }
     } finally {
       finishStreaming();

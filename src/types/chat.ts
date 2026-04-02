@@ -22,12 +22,14 @@ export interface ChatState {
   isValidating: boolean;
   isStreaming: boolean;
   error: string | null;
+  showApiKeyModal: boolean;
 }
 
 export type ChatAction =
   | { type: 'SET_API_KEY'; payload: string }
   | { type: 'SET_API_KEY_VALIDATING'; payload: boolean }
   | { type: 'SET_API_KEY_ERROR'; payload: string }
+  | { type: 'SHOW_API_KEY_MODAL'; payload: boolean }
   | { type: 'CREATE_CHAT' }
   | { type: 'SELECT_CHAT'; payload: string }
   | { type: 'DELETE_CHAT'; payload: string }

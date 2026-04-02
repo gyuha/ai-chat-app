@@ -7,8 +7,8 @@ import { ApiKeyModal } from './components/modals/ApiKeyModal';
 function AppContent() {
   const { state } = useChat();
 
-  // D-03: Show API key modal when no key is set
-  const showApiKeyModal = !state.apiKey;
+  // D-03: Show API key modal when no key is set OR when modal is explicitly shown
+  const showApiKeyModal = !state.apiKey || state.showApiKeyModal;
 
   return (
     <div className="flex h-screen bg-white text-gray-900">

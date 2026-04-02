@@ -4,9 +4,9 @@ import { useChat } from '../../context/ChatContext';
 import { validateApiKey } from '../../lib/api';
 
 export function ApiKeyModal() {
-  const { state, dispatch, setApiKey } = useChat();
-  const { isValidating, error } = state;
-  const [inputValue, setInputValue] = useState('');
+  const { state, dispatch, setApiKey, showApiKeyModal } = useChat();
+  const { isValidating, error, apiKey } = state;
+  const [inputValue, setInputValue] = useState(apiKey || '');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -24,6 +24,7 @@ export function ApiKeyModal() {
 
     if (result.valid) {
       setApiKey(trimmedKey);
+      showApiKeyModal(false);
     } else {
       dispatch({ type: 'SET_API_KEY_ERROR', payload: result.error || 'Invalid API key' });
     }
