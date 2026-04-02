@@ -37,9 +37,9 @@
 
 ### Storage
 
-- [ ] **STORE-01**: 모든 대화방 데이터는 localStorage에 자동 저장
-- [ ] **STORE-02**: 페이지 새로고침 후 대화 데이터 복원
-- [ ] **STORE-03**: localStorage 용량 초과 시 적절한 오류 처리
+- [x] **STORE-01**: 모든 대화방 데이터는 localStorage에 자동 저장
+- [x] **STORE-02**: 페이지 새로고침 후 대화 데이터 복원
+- [x] **STORE-03**: localStorage 용량 초과 시 적절한 오류 처리
 
 ## v2 Requirements
 
@@ -91,9 +91,9 @@ Deferred for future release.
 | MSG-07 | Phase 2 | Complete |
 | MODEL-01 | Phase 1 | Complete |
 | MODEL-02 | Phase 1 | Complete |
-| STORE-01 | Phase 3 | Pending |
-| STORE-02 | Phase 3 | Pending |
-| STORE-03 | Phase 3 | Pending |
+| STORE-01 | Phase 3 | Complete |
+| STORE-02 | Phase 3 | Complete |
+| STORE-03 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 21 total
