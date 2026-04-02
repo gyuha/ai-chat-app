@@ -1,15 +1,28 @@
 // src/App.tsx
-import { ChatProvider } from './context/ChatContext';
+import { ChatProvider, useChat } from './context/ChatContext';
 import { Sidebar } from './components/layout/Sidebar';
 import { ChatArea } from './components/layout/ChatArea';
+import { ApiKeyModal } from './components/modals/ApiKeyModal';
+
+function AppContent() {
+  const { state } = useChat();
+
+  // D-03: Show API key modal when no key is set
+  const showApiKeyModal = !state.apiKey;
+
+  return (
+    <div className="flex h-screen bg-white text-gray-900">
+      <Sidebar />
+      <ChatArea />
+      {showApiKeyModal && <ApiKeyModal />}
+    </div>
+  );
+}
 
 function App() {
   return (
     <ChatProvider>
-      <div className="flex h-screen bg-white text-gray-900">
-        <Sidebar />
-        <ChatArea />
-      </div>
+      <AppContent />
     </ChatProvider>
   );
 }

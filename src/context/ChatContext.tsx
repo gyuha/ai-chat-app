@@ -51,11 +51,19 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
       const { conversationId, message } = action.payload;
       return {
         ...state,
-        conversations: state.conversations.map(c =>
-          c.id === conversationId
-            ? { ...c, messages: [...c.messages, message], updatedAt: Date.now() }
-            : c
-        ),
+        conversations: state.conversations.map(c => {
+          if (c.id !== conversationId) return c;
+          const isFirstMessage = c.messages.length === 0;
+          const shouldUpdateName = isFirstMessage && message.role === 'user';
+          return {
+            ...c,
+            messages: [...c.messages, message],
+            updatedAt: Date.now(),
+            name: shouldUpdateName
+              ? message.content.slice(0, 30) + (message.content.length > 30 ? '...' : '')
+              : c.name,
+          };
+        }),
       };
     }
     case 'UPDATE_CHAT_NAME': {
