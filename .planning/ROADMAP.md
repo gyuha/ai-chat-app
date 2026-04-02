@@ -2,7 +2,7 @@
 
 ## Overview
 
-AI 채팅 웹 어플리케이션 개발 로드맵. OpenRouter 무료 API를利用한 ChatGPT 스타일 인터페이스. Phase 1에서 프로젝트 기반 구축, Phase 2에서 핵심 채팅 기능 구현, Phase 3에서 데이터 영속성을 추가.
+AI 채팅 웹 애플리케이션 개발 로드맵. OpenRouter 무료 API를利用한 ChatGPT 스타일 인터페이스. Phase 1에서 프로젝트 기반 구축, Phase 2에서 핵심 채팅 기능 구현, Phase 3에서 데이터 영속성을 추가.
 
 ## Phases
 
@@ -49,9 +49,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — 메시지 입력 컴포넌트 및 전송 로직
-- [ ] 02-02-PLAN.md — OpenRouter API 연동 및 스트리밍 응답 처리
-- [ ] 02-03-PLAN.md — 취소 기능, 입력 잠금, 자동 스크롤
+- [ ] 02-01-PLAN.md (Wave 1) — 메시지 입력 컴포넌트 및 전송 로직
+- [ ] 02-02-PLAN.md (Wave 2) — OpenRouter API 연동 및 스트리밍 응답 처리
+- [ ] 02-03-PLAN.md (Wave 3) — 취소 기능, 입력 잠금, 자동 스크롤
 
 ### Phase 3: Persistence
 **Goal**: localStorage를 통한 데이터 영속성
