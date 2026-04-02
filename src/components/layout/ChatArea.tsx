@@ -1,6 +1,7 @@
 // src/components/layout/ChatArea.tsx
 import { useChat } from '../../context/ChatContext';
 import { Header } from './Header';
+import { ChatInput } from '../chat/ChatInput';
 
 export function ChatArea() {
   const { state } = useChat();
@@ -42,6 +43,9 @@ export function ChatArea() {
                 </div>
               ))
             )}
+          </div>
+          <div className="pt-4 pb-4">
+            <ChatInput />
           </div>
         </div>
       </main>
