@@ -31,6 +31,7 @@ export type ChatAction =
   | { type: 'SELECT_CHAT'; payload: string }
   | { type: 'DELETE_CHAT'; payload: string }
   | { type: 'ADD_MESSAGE'; payload: { conversationId: string; message: Message } }
+  | { type: 'UPDATE_MESSAGE'; payload: { conversationId: string; messageId: string; content: string } }
   | { type: 'UPDATE_CHAT_NAME'; payload: { conversationId: string; name: string } }
   | { type: 'SET_MODEL'; payload: string }
   | { type: 'LOAD_STATE'; payload: Partial<ChatState> };

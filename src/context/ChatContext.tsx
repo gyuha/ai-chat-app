@@ -66,6 +66,22 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
         }),
       };
     }
+    case 'UPDATE_MESSAGE': {
+      const { conversationId, messageId, content } = action.payload;
+      return {
+        ...state,
+        conversations: state.conversations.map(c => {
+          if (c.id !== conversationId) return c;
+          return {
+            ...c,
+            messages: c.messages.map(m =>
+              m.id === messageId ? { ...m, content: m.content + content } : m
+            ),
+            updatedAt: Date.now(),
+          };
+        }),
+      };
+    }
     case 'UPDATE_CHAT_NAME': {
       const { conversationId, name } = action.payload;
       return {
@@ -91,6 +107,7 @@ interface ChatContextValue {
   selectChat: (id: string) => void;
   deleteChat: (id: string) => void;
   addMessage: (conversationId: string, message: Message) => void;
+  updateMessage: (conversationId: string, messageId: string, content: string) => void;
   updateChatName: (conversationId: string, name: string) => void;
   setModel: (model: string) => void;
   setApiKey: (key: string) => void;
@@ -117,6 +134,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   const deleteChat = (id: string) => dispatch({ type: 'DELETE_CHAT', payload: id });
   const addMessage = (conversationId: string, message: Message) =>
     dispatch({ type: 'ADD_MESSAGE', payload: { conversationId, message } });
+  const updateMessage = (conversationId: string, messageId: string, content: string) =>
+    dispatch({ type: 'UPDATE_MESSAGE', payload: { conversationId, messageId, content } });
   const updateChatName = (conversationId: string, name: string) =>
     dispatch({ type: 'UPDATE_CHAT_NAME', payload: { conversationId, name } });
   const setModel = (model: string) => dispatch({ type: 'SET_MODEL', payload: model });
@@ -124,7 +143,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
 
   return (
     <ChatContext.Provider
-      value={{ state, dispatch, createChat, selectChat, deleteChat, addMessage, updateChatName, setModel, setApiKey }}
+      value={{ state, dispatch, createChat, selectChat, deleteChat, addMessage, updateMessage, updateChatName, setModel, setApiKey }}
     >
       {children}
     </ChatContext.Provider>
