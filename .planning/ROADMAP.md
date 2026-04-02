@@ -51,7 +51,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md (Wave 1) — 메시지 입력 컴포넌트 및 전송 로직
 - [x] 02-02-PLAN.md (Wave 2) — OpenRouter API 연동 및 스트리밍 응답 처리
-- [ ] 02-03-PLAN.md (Wave 3) — 취소 기능, 입력 잠금, 자동 스크롤
+- [x] 02-03-PLAN.md (Wave 3) — 취소 기능, 입력 잠금, 자동 스크롤
 
 ### Phase 3: Persistence
 **Goal**: localStorage를 통한 데이터 영속성

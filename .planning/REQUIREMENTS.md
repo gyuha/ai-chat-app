@@ -26,9 +26,9 @@
 - [x] **MSG-02**: 사용자는 Enter로 메시지 전송 (Shift+Enter는 줄바꿈)
 - [x] **MSG-03**: 빈 메시지는 전송 불가 (입력 방지)
 - [x] **MSG-04**: AI 응답은 실시간 스트리밍으로 토큰 단위 표시
-- [ ] **MSG-05**: AI 응답 완료 전 취소 버튼으로 중단 가능
-- [ ] **MSG-06**: 메시지 전송 중 입력창 비활성화 (중복 전송 방지)
-- [ ] **MSG-07**: 메시지 영역은 자동 스크롤로 최신 메시지 위치
+- [x] **MSG-05**: AI 응답 완료 전 취소 버튼으로 중단 가능
+- [x] **MSG-06**: 메시지 전송 중 입력창 비활성화 (중복 전송 방지)
+- [x] **MSG-07**: 메시지 영역은 자동 스크롤로 최신 메시지 위치
 
 ### Model Selection
 
@@ -86,9 +86,9 @@ Deferred for future release.
 | MSG-02 | Phase 2 | Complete |
 | MSG-03 | Phase 2 | Complete |
 | MSG-04 | Phase 2 | Complete |
-| MSG-05 | Phase 2 | Pending |
-| MSG-06 | Phase 2 | Pending |
-| MSG-07 | Phase 2 | Pending |
+| MSG-05 | Phase 2 | Complete |
+| MSG-06 | Phase 2 | Complete |
+| MSG-07 | Phase 2 | Complete |
 | MODEL-01 | Phase 1 | Complete |
 | MODEL-02 | Phase 1 | Complete |
 | STORE-01 | Phase 3 | Pending |
