@@ -7,17 +7,17 @@
 
 ### API & Authentication
 
-- [ ] **API-01**: 사용자는 API 키 입력 필드에 OpenRouter API 키를 입력 가능
-- [ ] **API-02**: 사용자는 "연결" 버튼으로 API 키 유효성 검사 가능
+- [x] **API-01**: 사용자는 API 키 입력 필드에 OpenRouter API 키를 입력 가능
+- [x] **API-02**: 사용자는 "연결" 버튼으로 API 키 유효성 검사 가능
 - [x] **API-03**: API 키는 localStorage에 저장되어 페이지 새로고침 후에도 유지
-- [ ] **API-04**: API 키 유효하지 않을 때 오류 메시지 표시
+- [x] **API-04**: API 키 유효하지 않을 때 오류 메시지 표시
 
 ### Conversations
 
 - [x] **CHAT-01**: 사용자는 사이드바에서 "새 대화" 버튼으로 새 대화방 생성 가능
 - [x] **CHAT-02**: 사용자는 사이드바에서 기존 대화방 클릭하여 선택 가능
 - [x] **CHAT-03**: 사용자는 사이드바에서 대화방 삭제 가능
-- [ ] **CHAT-04**: 대화방 이름은 첫 번째 사용자 메시지 내용으로 자동 설정
+- [x] **CHAT-04**: 대화방 이름은 첫 번째 사용자 메시지 내용으로 자동 설정
 - [x] **CHAT-05**: 선택된 대화방의 메시지 목록이 메인 영역에 표시
 
 ### Messaging
@@ -73,14 +73,14 @@ Deferred for future release.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-01 | Phase 1 | Pending |
-| API-02 | Phase 1 | Pending |
+| API-01 | Phase 1 | Complete |
+| API-02 | Phase 1 | Complete |
 | API-03 | Phase 1 | Complete |
-| API-04 | Phase 1 | Pending |
+| API-04 | Phase 1 | Complete |
 | CHAT-01 | Phase 1 | Complete |
 | CHAT-02 | Phase 1 | Complete |
 | CHAT-03 | Phase 1 | Complete |
-| CHAT-04 | Phase 1 | Pending |
+| CHAT-04 | Phase 1 | Complete |
 | CHAT-05 | Phase 1 | Complete |
 | MSG-01 | Phase 2 | Pending |
 | MSG-02 | Phase 2 | Pending |
