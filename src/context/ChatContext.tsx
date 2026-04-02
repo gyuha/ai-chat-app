@@ -8,6 +8,7 @@ const initialState: ChatState = {
   selectedConversationId: null,
   selectedModel: 'openrouter/free-models',
   isValidating: false,
+  isStreaming: false,
   error: null,
 };
 
@@ -95,6 +96,11 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
       return { ...state, selectedModel: action.payload };
     case 'LOAD_STATE':
       return { ...state, ...action.payload };
+    case 'START_STREAMING':
+      return { ...state, isStreaming: true };
+    case 'FINISH_STREAMING':
+    case 'CANCEL_STREAMING':
+      return { ...state, isStreaming: false };
     default:
       return state;
   }
@@ -111,6 +117,9 @@ interface ChatContextValue {
   updateChatName: (conversationId: string, name: string) => void;
   setModel: (model: string) => void;
   setApiKey: (key: string) => void;
+  startStreaming: () => void;
+  finishStreaming: () => void;
+  cancelStreaming: () => void;
 }
 
 const ChatContext = createContext<ChatContextValue | null>(null);
@@ -140,10 +149,13 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'UPDATE_CHAT_NAME', payload: { conversationId, name } });
   const setModel = (model: string) => dispatch({ type: 'SET_MODEL', payload: model });
   const setApiKey = (key: string) => dispatch({ type: 'SET_API_KEY', payload: key });
+  const startStreaming = () => dispatch({ type: 'START_STREAMING' });
+  const finishStreaming = () => dispatch({ type: 'FINISH_STREAMING' });
+  const cancelStreaming = () => dispatch({ type: 'CANCEL_STREAMING' });
 
   return (
     <ChatContext.Provider
-      value={{ state, dispatch, createChat, selectChat, deleteChat, addMessage, updateMessage, updateChatName, setModel, setApiKey }}
+      value={{ state, dispatch, createChat, selectChat, deleteChat, addMessage, updateMessage, updateChatName, setModel, setApiKey, startStreaming, finishStreaming, cancelStreaming }}
     >
       {children}
     </ChatContext.Provider>

@@ -6,11 +6,10 @@ import { streamChat } from '../../lib/openrouter';
 
 export function ChatInput() {
   const [input, setInput] = useState('');
-  const [isStreaming, setIsStreaming] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
-  const { state, addMessage, updateMessage } = useChat();
-  const { selectedConversationId, apiKey, selectedModel } = state;
+  const { state, addMessage, updateMessage, startStreaming, finishStreaming, cancelStreaming } = useChat();
+  const { selectedConversationId, apiKey, selectedModel, isStreaming } = state;
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
@@ -33,7 +32,7 @@ export function ChatInput() {
       abortControllerRef.current.abort();
       abortControllerRef.current = null;
     }
-    setIsStreaming(false);
+    cancelStreaming();
   };
 
   const handleSubmit = async () => {
@@ -56,7 +55,7 @@ export function ChatInput() {
     abortControllerRef.current?.abort();
     abortControllerRef.current = new AbortController();
 
-    setIsStreaming(true);
+    startStreaming();
 
     // Create user message
     const userMessage: Message = {
@@ -89,7 +88,7 @@ export function ChatInput() {
     // Prepare messages for API
     const conversation = state.conversations.find(c => c.id === selectedConversationId);
     if (!conversation) {
-      setIsStreaming(false);
+      finishStreaming();
       return;
     }
 
@@ -113,7 +112,7 @@ export function ChatInput() {
         console.error('Streaming error:', err);
       }
     } finally {
-      setIsStreaming(false);
+      finishStreaming();
       abortControllerRef.current = null;
     }
   };

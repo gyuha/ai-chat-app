@@ -20,6 +20,7 @@ export interface ChatState {
   selectedConversationId: string | null;
   selectedModel: string;
   isValidating: boolean;
+  isStreaming: boolean;
   error: string | null;
 }
 
@@ -34,4 +35,7 @@ export type ChatAction =
   | { type: 'UPDATE_MESSAGE'; payload: { conversationId: string; messageId: string; content: string } }
   | { type: 'UPDATE_CHAT_NAME'; payload: { conversationId: string; name: string } }
   | { type: 'SET_MODEL'; payload: string }
-  | { type: 'LOAD_STATE'; payload: Partial<ChatState> };
+  | { type: 'LOAD_STATE'; payload: Partial<ChatState> }
+  | { type: 'START_STREAMING' }
+  | { type: 'FINISH_STREAMING' }
+  | { type: 'CANCEL_STREAMING' };
