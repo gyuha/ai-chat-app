@@ -27,6 +27,15 @@ export function ChatInput() {
     // Shift+Enter allows default (natural newline)
   };
 
+  const cancelStream = () => {
+    // MSG-05: Cancel button calls abort() on AbortController
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setIsStreaming(false);
+  };
+
   const handleSubmit = async () => {
     // MSG-03: Empty message rejection
     if (input.trim() === '') {
@@ -110,17 +119,39 @@ export function ChatInput() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full flex items-end gap-2">
       <textarea
         ref={textareaRef}
         value={input}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        placeholder="Type a message... (Enter to send, Shift+Enter for new line)"
-        className="w-full resize-none rounded-lg border border-gray-300 p-3 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        placeholder={isStreaming ? 'Waiting for response...' : 'Type a message... (Enter to send, Shift+Enter for new line)'}
+        className={`flex-1 resize-none rounded-lg border p-3 focus:outline-none focus:ring-1 ${
+          isStreaming
+            ? 'bg-gray-100 border-gray-300 cursor-not-allowed text-gray-500'
+            : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+        }`}
         rows={1}
         disabled={isStreaming}
       />
+      {isStreaming ? (
+        <button
+          type="button"
+          onClick={cancelStream}
+          className="shrink-0 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors duration-200 cursor-pointer"
+        >
+          Cancel
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={handleSubmit}
+          disabled={input.trim() === ''}
+          className="shrink-0 px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors duration-200 cursor-pointer"
+        >
+          Send
+        </button>
+      )}
     </div>
   );
 }
