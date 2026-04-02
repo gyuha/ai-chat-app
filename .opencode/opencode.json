@@ -1,0 +1,10 @@
+{
+  "permission": {
+    "read": {
+      "/Users/gyuha/workspace/ai-chat-app.worktrees/simple/.opencode/get-shit-done/*": "allow"
+    },
+    "external_directory": {
+      "/Users/gyuha/workspace/ai-chat-app.worktrees/simple/.opencode/get-shit-done/*": "allow"
+    }
+  }
+}
