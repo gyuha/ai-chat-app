@@ -73,19 +73,34 @@ Deferred for future release.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-01 ~ API-04 | Phase 1 | Pending |
-| CHAT-01 ~ CHAT-05 | Phase 1 | Pending |
-| MSG-01 ~ MSG-07 | Phase 2 | Pending |
-| MODEL-01 ~ MODEL-02 | Phase 1 | Pending |
-| STORE-01 ~ STORE-03 | Phase 3 | Pending |
-| UX-01 ~ UX-05 | Phase 4 | Pending |
-| DATA-01 ~ DATA-02 | Phase 4 | Pending |
+| API-01 | Phase 1 | Pending |
+| API-02 | Phase 1 | Pending |
+| API-03 | Phase 1 | Pending |
+| API-04 | Phase 1 | Pending |
+| CHAT-01 | Phase 1 | Pending |
+| CHAT-02 | Phase 1 | Pending |
+| CHAT-03 | Phase 1 | Pending |
+| CHAT-04 | Phase 1 | Pending |
+| CHAT-05 | Phase 1 | Pending |
+| MSG-01 | Phase 2 | Pending |
+| MSG-02 | Phase 2 | Pending |
+| MSG-03 | Phase 2 | Pending |
+| MSG-04 | Phase 2 | Pending |
+| MSG-05 | Phase 2 | Pending |
+| MSG-06 | Phase 2 | Pending |
+| MSG-07 | Phase 2 | Pending |
+| MODEL-01 | Phase 1 | Pending |
+| MODEL-02 | Phase 1 | Pending |
+| STORE-01 | Phase 3 | Pending |
+| STORE-02 | Phase 3 | Pending |
+| STORE-03 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 18 total
-- Mapped to phases: 18
-- Unmapped: 0 ✓
+- v1 requirements: 21 total
+- Mapped to phases: 21
+- Unmapped: 0
 
 ---
+
 *Requirements defined: 2026-04-02*
-*Last updated: 2026-04-02 after initial definition*
+*Last updated: 2026-04-02 after roadmap creation*
