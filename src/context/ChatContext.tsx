@@ -1,6 +1,7 @@
-import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useReducer, useEffect, useRef, ReactNode } from 'react';
 import { ChatState, ChatAction, Conversation, Message } from '../types/chat';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { ToastProvider, useToast } from '../components/Toast';
 
 const initialState: ChatState = {
   apiKey: null,
@@ -124,7 +125,12 @@ interface ChatContextValue {
 
 const ChatContext = createContext<ChatContextValue | null>(null);
 
-export function ChatProvider({ children }: { children: ReactNode }) {
+// Inner component that uses useToast (must be inside ToastProvider)
+function ChatProviderInner({ children }: { children: ReactNode }) {
+  const { toast } = useToast();
+  const toastRef = useRef(toast);
+  toastRef.current = toast;
+
   const [savedState, setSavedState] = useLocalStorage<Partial<ChatState>>('chat-state', {});
   const [state, dispatch] = useReducer(chatReducer, {
     ...initialState,
@@ -135,7 +141,18 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   // Persist state changes to localStorage
   useEffect(() => {
     const { apiKey, selectedModel, conversations } = state;
-    setSavedState({ apiKey, selectedModel, conversations });
+    try {
+      setSavedState({ apiKey, selectedModel, conversations });
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'QuotaExceededError') {
+        toastRef.current({
+          message: 'localStorage 용량이 부족합니다. 대화를 삭제하여 공간을 확보해주세요.',
+          type: 'error',
+        });
+      } else {
+        console.error('localStorage error:', error);
+      }
+    }
   }, [state, setSavedState]);
 
   const createChat = () => dispatch({ type: 'CREATE_CHAT' });
@@ -159,6 +176,14 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     >
       {children}
     </ChatContext.Provider>
+  );
+}
+
+export function ChatProvider({ children }: { children: ReactNode }) {
+  return (
+    <ToastProvider>
+      <ChatProviderInner>{children}</ChatProviderInner>
+    </ToastProvider>
   );
 }
 
