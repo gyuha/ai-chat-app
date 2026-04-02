@@ -1,8 +1,16 @@
+// src/App.tsx
+import { ChatProvider } from './context/ChatContext';
+import { Sidebar } from './components/layout/Sidebar';
+import { ChatArea } from './components/layout/ChatArea';
+
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <h1 className="text-2xl font-bold">AI Chat App</h1>
-    </div>
+    <ChatProvider>
+      <div className="flex h-screen bg-white text-gray-900">
+        <Sidebar />
+        <ChatArea />
+      </div>
+    </ChatProvider>
   );
 }
 
