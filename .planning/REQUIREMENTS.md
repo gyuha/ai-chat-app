@@ -9,16 +9,16 @@
 
 - [ ] **API-01**: 사용자는 API 키 입력 필드에 OpenRouter API 키를 입력 가능
 - [ ] **API-02**: 사용자는 "연결" 버튼으로 API 키 유효성 검사 가능
-- [ ] **API-03**: API 키는 localStorage에 저장되어 페이지 새로고침 후에도 유지
+- [x] **API-03**: API 키는 localStorage에 저장되어 페이지 새로고침 후에도 유지
 - [ ] **API-04**: API 키 유효하지 않을 때 오류 메시지 표시
 
 ### Conversations
 
-- [ ] **CHAT-01**: 사용자는 사이드바에서 "새 대화" 버튼으로 새 대화방 생성 가능
-- [ ] **CHAT-02**: 사용자는 사이드바에서 기존 대화방 클릭하여 선택 가능
-- [ ] **CHAT-03**: 사용자는 사이드바에서 대화방 삭제 가능
+- [x] **CHAT-01**: 사용자는 사이드바에서 "새 대화" 버튼으로 새 대화방 생성 가능
+- [x] **CHAT-02**: 사용자는 사이드바에서 기존 대화방 클릭하여 선택 가능
+- [x] **CHAT-03**: 사용자는 사이드바에서 대화방 삭제 가능
 - [ ] **CHAT-04**: 대화방 이름은 첫 번째 사용자 메시지 내용으로 자동 설정
-- [ ] **CHAT-05**: 선택된 대화방의 메시지 목록이 메인 영역에 표시
+- [x] **CHAT-05**: 선택된 대화방의 메시지 목록이 메인 영역에 표시
 
 ### Messaging
 
@@ -32,8 +32,8 @@
 
 ### Model Selection
 
-- [ ] **MODEL-01**: 사용자는 오른쪽 상단 셀렉트 박스에서 무료 모델 선택 가능
-- [ ] **MODEL-02**: 선택된 모델은 localStorage에 저장
+- [x] **MODEL-01**: 사용자는 오른쪽 상단 셀렉트 박스에서 무료 모델 선택 가능
+- [x] **MODEL-02**: 선택된 모델은 localStorage에 저장
 
 ### Storage
 
@@ -75,13 +75,13 @@ Deferred for future release.
 |-------------|-------|--------|
 | API-01 | Phase 1 | Pending |
 | API-02 | Phase 1 | Pending |
-| API-03 | Phase 1 | Pending |
+| API-03 | Phase 1 | Complete |
 | API-04 | Phase 1 | Pending |
-| CHAT-01 | Phase 1 | Pending |
-| CHAT-02 | Phase 1 | Pending |
-| CHAT-03 | Phase 1 | Pending |
+| CHAT-01 | Phase 1 | Complete |
+| CHAT-02 | Phase 1 | Complete |
+| CHAT-03 | Phase 1 | Complete |
 | CHAT-04 | Phase 1 | Pending |
-| CHAT-05 | Phase 1 | Pending |
+| CHAT-05 | Phase 1 | Complete |
 | MSG-01 | Phase 2 | Pending |
 | MSG-02 | Phase 2 | Pending |
 | MSG-03 | Phase 2 | Pending |
@@ -89,8 +89,8 @@ Deferred for future release.
 | MSG-05 | Phase 2 | Pending |
 | MSG-06 | Phase 2 | Pending |
 | MSG-07 | Phase 2 | Pending |
-| MODEL-01 | Phase 1 | Pending |
-| MODEL-02 | Phase 1 | Pending |
+| MODEL-01 | Phase 1 | Complete |
+| MODEL-02 | Phase 1 | Complete |
 | STORE-01 | Phase 3 | Pending |
 | STORE-02 | Phase 3 | Pending |
 | STORE-03 | Phase 3 | Pending |
