@@ -25,7 +25,7 @@
 - [x] **MSG-01**: 사용자는 텍스트 입력창에 메시지 작성 가능
 - [x] **MSG-02**: 사용자는 Enter로 메시지 전송 (Shift+Enter는 줄바꿈)
 - [x] **MSG-03**: 빈 메시지는 전송 불가 (입력 방지)
-- [ ] **MSG-04**: AI 응답은 실시간 스트리밍으로 토큰 단위 표시
+- [x] **MSG-04**: AI 응답은 실시간 스트리밍으로 토큰 단위 표시
 - [ ] **MSG-05**: AI 응답 완료 전 취소 버튼으로 중단 가능
 - [ ] **MSG-06**: 메시지 전송 중 입력창 비활성화 (중복 전송 방지)
 - [ ] **MSG-07**: 메시지 영역은 자동 스크롤로 최신 메시지 위치
@@ -85,7 +85,7 @@ Deferred for future release.
 | MSG-01 | Phase 2 | Complete |
 | MSG-02 | Phase 2 | Complete |
 | MSG-03 | Phase 2 | Complete |
-| MSG-04 | Phase 2 | Pending |
+| MSG-04 | Phase 2 | Complete |
 | MSG-05 | Phase 2 | Pending |
 | MSG-06 | Phase 2 | Pending |
 | MSG-07 | Phase 2 | Pending |

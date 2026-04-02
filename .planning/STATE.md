@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-core-chat-loop-01-PLAN.md
-last_updated: "2026-04-02T02:33:59.715Z"
+stopped_at: Completed 02-core-chat-loop-02-PLAN.md
+last_updated: "2026-04-02T02:38:09.964Z"
 last_activity: 2026-04-02
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-02)
 ## Current Position
 
 Phase: 02 (core-chat-loop) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-04-02
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-foundation P01 | 15 | 3 tasks | 10 files |
 | Phase 01 P02 | 5 | 3 tasks | 7 files |
 | Phase 02-core-chat-loop P02-01 | 74 | 2 tasks | 2 files |
+| Phase 02-core-chat-loop P02 | 2 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,9 @@ Recent decisions affecting current work:
 - Phase 2: OpenRouter streaming format needs verification (research flag)
 - [Phase 01-foundation]: Manual scaffold instead of create-vite (interactive prompts conflict)
 - [Phase 01]: Context+Reducer pattern established for global state (ChatContext.tsx)
+- [Phase 02-core-chat-loop]: Async generator pattern for streamChat yields delta tokens as they arrive
+- [Phase 02-core-chat-loop]: UPDATE_MESSAGE appends content to accumulate streamed tokens
+- [Phase 02-core-chat-loop]: AbortController ref pattern enables proper request cancellation
 
 ### Pending Todos
 
@@ -79,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-02T02:33:59.713Z
-Stopped at: Completed 02-core-chat-loop-01-PLAN.md
+Last session: 2026-04-02T02:38:09.962Z
+Stopped at: Completed 02-core-chat-loop-02-PLAN.md
 Resume file: None
